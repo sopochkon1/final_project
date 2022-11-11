@@ -31,11 +31,9 @@ Examine this correlation with key time points in film history.
 **Anticipated data sources:**
 There are a number of datasets we intend to pull from: 
 
-* [FiveThirtyEight](https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv): This dataset describes movies released between 1990 - 2013 and contains variables on year of release, IMDB ID, title, Bechdel test type and pass/fail scores, budget, domestic gross revenue, international revenue, and budget (all monetary variables are presented in original amounts as well as adjusted for 2013 inflation)
-
-* [The Movie Database](https://www.themoviedb.org/): This database contains up-to-date data regarding budget, rating, revenue, cast, and crew. Data can be accessed through an API
-
-* [Bechdeltest.com](https://bechdeltest.com/): This database contains a running list of 9630 movies from 1874 to the present day (2022) and whether they pass the Bechdel test. Data can be accessed through an API 
+* [FiveThirtyEight](https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv):  contains year of release, IMDB ID, title, Bechdel test scores, budget(inflation adjusted), domestic/international gross revenue.
+* [The Movie Database](https://www.themoviedb.org/): budget, rating, revenue, cast, and crew. Data can be accessed through an API
+* [Bechdeltest.com](https://bechdeltest.com/): Film database with Bechdel test results. 
 
 **Planned analyses/visualizations/coding challenges:**
 Planned analyses include correlation tests between Bechdel test scores and various indicators such as budget, gross profit, metacritic scores, IMDB scores, as well as stratified analyses by movie genre. We will also create visualizations for these analyses as well as for  the trend of movies passing the Bechdel test over time. 
