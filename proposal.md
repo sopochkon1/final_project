@@ -16,10 +16,8 @@ of the active presence of women in the entire field of film and other
 fiction and calls attention to gender inequality in fiction. Some
 studies indicate that films that pass the test perform better
 financially while receiving a lower budget, compared to those that do
-not. Thus, through this project, we intend: To examine the relationship
-between representation in movies and movie budget/profit To examine the
-number of movies that pass the Bechdel test over time (2000 - 2020)
-Examine this correlation with key time points in film history.
+not. Thus, through this project, we intend to examine the relationship
+between representation in movies and movie budget/profit
 
 **Intended final products:**
 
