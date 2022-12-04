@@ -3,10 +3,21 @@ title: "Analysis"
 output: github_document
 ---
 
+# Library
+```{r}
+library(tidyverse)
+```
+
+
+
 # Import and tidy
 
 
 ```{r}
-
+bechedl = 
+read_csv(
+  "bechdel/movies.csv"
+) %>% 
+  janitor::clean_names()
 ```
 
