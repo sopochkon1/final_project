@@ -5,9 +5,59 @@ output:
     toc: true
     toc_float: true
 ---
+<<<<<<< HEAD
 
 ```{r setup}
+=======
+<<<<<<< HEAD
+```{r setup}
+library(tidyverse)
+library(readr)
+library(rvest)
+library(httr)
+
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE,
+  fig.dim = c(12, 7))
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+
+# Import and tidy
+
+```{r}
+movies_df = read_csv("./bechdel/movies.csv") %>% 
+  janitor::clean_names()
+
+raw_bechdel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
+movies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
+>>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
 
 ```
 
 
+<<<<<<< HEAD
+=======
+```{r}
+imdb_json <- jsonlite::parse_json(url("https://raw.githubusercontent.com/brianckeegan/Bechdel/master/imdb_data.json"))
+
+all_imdb <- imdb_json %>%
+  map_dfr(~as.data.frame(.x, stringsAsFactors = FALSE))
+
+cleaned_imdb <- all_imdb %>% 
+  janitor::clean_names() %>% 
+  mutate(metascore = parse_number(metascore),
+         imdb_rating = parse_number(imdb_rating),
+         year = as.integer(year)) %>% 
+  mutate(imdb_id = str_remove(imdb_id, "tt")) %>% 
+  tibble()
+
+all_imdb
+
+```
+
+=======
+>>>>>>> 151fca5dff1803b1adaf0629d99092b90616b899
+>>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
