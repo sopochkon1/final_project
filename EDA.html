@@ -431,13 +431,18 @@ movies = read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytue
          intgross = as.numeric(intgross),
          domgross_2013 = as.numeric(domgross_2013),
          intgross_2013 = as.numeric(intgross_2013),
-         decade_code = ifelse(year &gt;= 1970 &amp; year &lt; 1980, 5, decade_code),
-         decade_code = ifelse(year &gt;= 1980 &amp; year &lt; 1990, 4, decade_code), 
+         decade_code = case_when(year &gt;= 1970 &amp; year &lt; 1980 ~ &quot;1970-1979&quot;,
+                            year &gt;= 1980 &amp; year &lt; 1990 ~ &quot;1980-1989&quot;,
+                            year &gt;= 1990 &amp; year &lt; 2000 ~ &quot;1990-1999&quot;,
+                            year &gt;= 2000 &amp; year &lt; 2010 ~ &quot;2009-2009&quot;,
+                            year &gt;= 2010 &amp; year &lt; 2020 ~ &quot;2010 - present&quot;),
+         decade_code = as.factor(decade_code),
          title = str_replace(title, &quot;&amp;#39;&quot;, &quot;&#39;&quot;),
          title = str_replace(title, &quot;&amp;amp;&quot;, &quot;&amp;&quot;)) %&gt;% 
   rename(&quot;pass_bechdel&quot; = binary,
-         &quot;bechdel_score&quot; = clean_test) %&gt;% 
-  select(-test, -code, -response, -released, -type, -poster, -error)</code></pre>
+         &quot;bechdel_score&quot; = clean_test,
+         &quot;decade&quot; = decade_code) %&gt;% 
+  select(-test, -code, -response, -period_code, -released, -type, -poster, -error)</code></pre>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
@@ -490,44 +495,43 @@ movies = read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytue
 <h3>Bechdel Test Scores by decade</h3>
 <pre class="r"><code>less2_df = movies %&gt;% 
   filter(bechdel_score == &quot;Less than 2 women&quot;) %&gt;% 
-  group_by(decade_code, bechdel_score) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
   summarise(n = n()) 
 
 notalk_df = movies %&gt;% 
   filter(bechdel_score == &quot;Don&#39;t talk to each other&quot;) %&gt;% 
-  group_by(decade_code, bechdel_score) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
   summarise(n = n()) 
 
 talkmen_df = movies %&gt;% 
   filter(bechdel_score == &quot;Only talk about men&quot;) %&gt;% 
-  group_by(decade_code, bechdel_score) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
   summarise(n = n()) 
 
 dubious_df = movies %&gt;% 
   filter(bechdel_score == &quot;Dubious&quot;) %&gt;% 
-  group_by(decade_code, bechdel_score) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
   summarise(n = n()) 
 
 pass_df = movies %&gt;% 
   filter(bechdel_score == &quot;Passes Bechdel&quot;) %&gt;% 
-  group_by(decade_code, bechdel_score) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
   summarise(n = n()) 
 
 table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df)
 
 table %&gt;% 
-  plot_ly(x = ~decade_code...1, y = ~n...3, type = &quot;bar&quot;, name = &quot;Critical&quot;,
-          marker = list(color = &quot;3f4585ff&quot;)) %&gt;% 
-  add_trace(y = ~n...3, name = &quot;Less than 2 women&quot;, marker = list(color = &quot;22958bff&quot;)) %&gt;% 
-  add_trace(y = ~n...6, name = &quot;Don&#39;t talk to each other&quot;, marker = list(color = &quot;green&quot;)) %&gt;% 
-  add_trace(y = ~n...9, name = &quot;Only talk about men&quot;, marker = list(color = &quot;yellow&quot;)) %&gt;% 
-  add_trace(y = ~n...12, name = &quot;Dubious&quot;, marker = list(color = &quot;red&quot;)) %&gt;% 
-  add_trace(y = ~n...15, name = &quot;Passes Bechdel&quot;, marker = list(color = &quot;orange&quot;)) %&gt;% 
+  plot_ly(x = ~decade...1, y = ~n...3, type = &quot;bar&quot;, name = &quot;Less than 2 women&quot;,
+          marker = list(color = &quot;darkred&quot;)) %&gt;% 
+  add_trace(y = ~n...6, name = &quot;Don&#39;t talk to each other&quot;, marker = list(color = &quot;red&quot;)) %&gt;% 
+  add_trace(y = ~n...9, name = &quot;Only talk about men&quot;, marker = list(color = &quot;darkorange&quot;)) %&gt;% 
+  add_trace(y = ~n...12, name = &quot;Dubious&quot;, marker = list(color = &quot;yellow&quot;)) %&gt;% 
+  add_trace(y = ~n...15, name = &quot;Passes Bechdel&quot;, marker = list(color = &quot;lightgreen&quot;)) %&gt;% 
   layout(barmode = &quot;stack&quot;,
          xaxis = list(title = &quot;Decade&quot;),
          yaxis = list(title = &quot;Count&quot;))</code></pre>
-<div id="htmlwidget-d3fccbf891010c078805" style="width:1152px;height:672px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d3fccbf891010c078805">{"x":{"visdat":{"1e63320acbf6":["function () ","plotlyVisDat"]},"cur_data":"1e63320acbf6","attrs":{"1e63320acbf6":{"x":{},"y":{},"marker":{"color":"3f4585ff"},"name":"Critical","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"1e63320acbf6.1":{"x":{},"y":{},"marker":{"color":"22958bff"},"name":"Less than 2 women","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.2":{"x":{},"y":{},"marker":{"color":"green"},"name":"Don't talk to each other","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.3":{"x":{},"y":{},"marker":{"color":"yellow"},"name":"Only talk about men","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.4":{"x":{},"y":{},"marker":{"color":"red"},"name":"Dubious","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.5":{"x":{},"y":{},"marker":{"color":"orange"},"name":"Passes Bechdel","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Decade"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"3f4585ff","line":{"color":"rgba(31,119,180,1)"}},"name":"Critical","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"22958bff","line":{"color":"rgba(255,127,14,1)"}},"name":"Less than 2 women","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[121,224,105,37,27],"marker":{"color":"green","line":{"color":"rgba(44,160,44,1)"}},"name":"Don't talk to each other","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[45,86,37,19,7],"marker":{"color":"yellow","line":{"color":"rgba(214,39,40,1)"}},"name":"Only talk about men","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[43,57,24,16,2],"marker":{"color":"red","line":{"color":"rgba(148,103,189,1)"}},"name":"Dubious","type":"bar","error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[197,409,147,36,14],"marker":{"color":"orange","line":{"color":"rgba(140,86,75,1)"}},"name":"Passes Bechdel","type":"bar","error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5a40454d64e2f92ae917" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5a40454d64e2f92ae917">{"x":{"visdat":{"20312917267b":["function () ","plotlyVisDat"]},"cur_data":"20312917267b","attrs":{"20312917267b":{"x":{},"y":{},"marker":{"color":"darkred"},"name":"Less than 2 women","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"20312917267b.1":{"x":{},"y":{},"marker":{"color":"red"},"name":"Don't talk to each other","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"20312917267b.2":{"x":{},"y":{},"marker":{"color":"darkorange"},"name":"Only talk about men","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"20312917267b.3":{"x":{},"y":{},"marker":{"color":"yellow"},"name":"Dubious","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"20312917267b.4":{"x":{},"y":{},"marker":{"color":"lightgreen"},"name":"Passes Bechdel","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Decade","type":"category","categoryorder":"array","categoryarray":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[4,17,24,64,32],"marker":{"color":"darkred","line":{"color":"rgba(31,119,180,1)"}},"name":"Less than 2 women","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[27,37,105,224,121],"marker":{"color":"red","line":{"color":"rgba(255,127,14,1)"}},"name":"Don't talk to each other","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[7,19,37,86,45],"marker":{"color":"darkorange","line":{"color":"rgba(44,160,44,1)"}},"name":"Only talk about men","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[2,16,24,57,43],"marker":{"color":"yellow","line":{"color":"rgba(214,39,40,1)"}},"name":"Dubious","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[14,36,147,409,197],"marker":{"color":"lightgreen","line":{"color":"rgba(148,103,189,1)"}},"name":"Passes Bechdel","type":"bar","error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="bechdel-test-scores-by-genre" class="section level3">
 <h3>Bechdel Test Scores by genre</h3>
