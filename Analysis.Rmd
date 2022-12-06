@@ -1,7 +1,11 @@
 ---
 title: "Analysis"
-output: github_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
+<<<<<<< HEAD
 ```{r setup}
 library(tidyverse)
 library(readr)
@@ -47,3 +51,5 @@ all_imdb
 
 ```
 
+=======
+>>>>>>> 151fca5dff1803b1adaf0629d99092b90616b899

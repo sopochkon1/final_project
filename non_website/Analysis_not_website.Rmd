@@ -1,0 +1,41 @@
+---
+title: "Analysis_not_for_website"
+output: github_document
+---
+
+# Library
+```{r}
+library(tidyverse)
+```
+
+
+
+# Import and tidy
+
+
+```{r}
+bechdel = 
+read_csv(
+  "bechdel/movies.csv"
+) %>% 
+  janitor::clean_names()
+```
+
+
+
+
+
+```{r}
+install.packages("jsonlite")
+library(jsonlite)
+library(httr)
+
+movies_df = GET("http://bechdeltest.com/view/id") %>% 
+ content("text") %>%
+  jsonlite::fromJSON() %>%
+  as_tibble()
+
+
+```
+ 
+ 

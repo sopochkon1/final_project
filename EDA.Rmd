@@ -99,13 +99,16 @@ pass_df = movies %>%
   group_by(decade_code, bechdel_score) %>% 
   summarise(n = n()) 
 
-table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df, .name_repair = "unique")
+table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df)
 
 table %>% 
   plot_ly(x = ~decade_code...1, y = ~n...3, type = "bar", name = "Critical",
           marker = list(color = "3f4585ff")) %>% 
-  add_trace(y = ~n...3, name = "", marker = list(color = "22958bff")) %>% 
-  add_trace(y = ~n...6, name = "") %>% 
+  add_trace(y = ~n...3, name = "Less than 2 women", marker = list(color = "22958bff")) %>% 
+  add_trace(y = ~n...6, name = "Don't talk to each other") %>% 
+  add_trace(y = ~n...9, name = "Only talk about men") %>% 
+  add_trace(y = ~n...12, name = "Dubious") %>% 
+  add_trace(y = ~n...15, name = "Passes Bechdel") %>% 
   layout(barmode = "stack",
          xaxis = list(title = "Decade"),
          yaxis = list(title = "Count"))

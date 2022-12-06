@@ -1,0 +1,27 @@
+---
+title: "Female Representation in Film: Does Girl Power Translate to Profit"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: journal
+---
+<style type="text/css">
+
+h1.title {
+  text-align: center;
+}
+
+</style>
+
+&nbsp;
+
+
+<center>
+<img src="images/Leia.jpg" style="width:50%" class="center">
+</center>
+
+
+
+
+
