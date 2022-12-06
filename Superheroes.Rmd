@@ -15,10 +15,14 @@ library(tidyverse)
 library(flexdashboard)
 library(plotly)
 library(viridis)
+library(shiny)
 
 
 Superheroes = 
   readxl::read_excel("bechdel/Superheroes.xlsx")
+
+
+
 
 ```
 
@@ -26,6 +30,21 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
+studio = Superheroes %>% distinct(universe) 
+
+selectInput(
+  inputId = "studio_choice",
+  label = h3("Studio"),
+  choices = studio
+)
+
+fluidPage(
+  # Copy the line below to make a text input box
+  textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
+  hr(),
+  fluidRow(column(3, verbatimTextOutput("value"))))
+      
+
 
 ```
 
@@ -35,10 +54,9 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-
 Superheroes %>% 
   group_by(universe) %>%  
-  summarise(proportion = sum(binary== "PASS")/n() * 100) %>% 
+  summarise(proportion = sum(binary== "PASS")/n() * 100) %>%
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
           color = ~ universe, alpha = 0.5) %>%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
@@ -60,6 +78,15 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
+
+function(input, output) {
+  # You can access the value of the widget with input$text, e.g.
+  output$value <- renderPrint({ input$text })
+}
+
+
+
+
 
 ```
 

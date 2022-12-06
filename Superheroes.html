@@ -27,19 +27,10 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
+<link href="site_libs/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.4.1/accessibility/css/bootstrap-accessibility.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.4.1/accessibility/js/bootstrap-accessibility.min.js"></script>
 <script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -50,6 +41,9 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/prism-1.4.1/prism.js"></script>
 <link href="site_libs/flexdashboard-css-0.6.0/flexdashboard.min.css" rel="stylesheet" />
 <link href="site_libs/flexdashboard-css-0.6.0/theme-sandstone.css" rel="stylesheet" />
+<link href="site_libs/selectize-0.12.4/css/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.4/js/selectize.min.js"></script>
+<script src="site_libs/selectize-0.12.4/accessibility/js/selectize-plugin-a11y.min.js"></script>
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
@@ -1887,6 +1881,32 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
+<div class="form-group shiny-input-container">
+<label class="control-label" id="studio_choice-label" for="studio_choice">
+<h3>Studio</h3>
+</label>
+<div>
+<select id="studio_choice"><optgroup label="universe">
+<option value="MCU" selected>MCU</option>
+<option value="DCEU">DCEU</option>
+</optgroup></select>
+<script type="application/json" data-for="studio_choice" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+<div class="container-fluid">
+<div class="form-group shiny-input-container">
+<label class="control-label" id="search_bar-label" for="search_bar">
+<h3>Search Movie</h3>
+</label>
+<input id="search_bar" type="text" class="form-control" value="i.e. Iron Man..."/>
+</div>
+<hr/>
+<div class="row">
+<div class="col-sm-3">
+<pre class="shiny-text-output noplaceholder" id="value"></pre>
+</div>
+</div>
+</div>
 </div>
 <div id="section-column-1" class="section level2" data-width="650">
 <h2>Column</h2>
@@ -1896,7 +1916,7 @@ window.FlexDashboardComponents.push({
 
 </div>
 <div id="htmlwidget-0f60f1ab5be832690c73" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0f60f1ab5be832690c73">{"x":{"visdat":{"128b1f118227":["function () ","plotlyVisDat"]},"cur_data":"128b1f118227","attrs":{"128b1f118227":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":9.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0f60f1ab5be832690c73">{"x":{"visdat":{"1347a91ac832":["function () ","plotlyVisDat"]},"cur_data":"1347a91ac832","attrs":{"1347a91ac832":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":9.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="section-column-2" class="section level2" data-width="350">
@@ -1906,6 +1926,10 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
+<pre><code>function(input, output) {
+  # You can access the value of the widget with input$text, e.g.
+  output$value &lt;- renderPrint({ input$text })
+}</code></pre>
 </div>
 <div id="section-chart-c" class="section level3">
 <h3>Chart C</h3>
@@ -1949,10 +1973,14 @@ library(tidyverse)
 library(flexdashboard)
 library(plotly)
 library(viridis)
+library(shiny)
 
 
 Superheroes = 
   readxl::read_excel("bechdel/Superheroes.xlsx")
+
+
+
 
 ```
 
@@ -1960,6 +1988,21 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
+studio = Superheroes %&gt;% distinct(universe) 
+
+selectInput(
+  inputId = "studio_choice",
+  label = h3("Studio"),
+  choices = studio
+)
+
+fluidPage(
+  # Copy the line below to make a text input box
+  textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
+  hr(),
+  fluidRow(column(3, verbatimTextOutput("value"))))
+      
+
 
 ```
 
@@ -1969,10 +2012,9 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-
 Superheroes %&gt;% 
   group_by(universe) %&gt;%  
-  summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;% 
+  summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;%
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
           color = ~ universe, alpha = 0.5) %&gt;%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
@@ -1994,6 +2036,15 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
+
+function(input, output) {
+  # You can access the value of the widget with input$text, e.g.
+  output$value &lt;- renderPrint({ input$text })
+}
+
+
+
+
 
 ```
 

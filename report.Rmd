@@ -5,5 +5,4 @@ output:
     toc: true
     toc_float: true
     code_folding: "hide"
-date: "2022-12-05"
 ---
