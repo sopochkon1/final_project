@@ -32,6 +32,7 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
+Superheroes = readxl::read_excel("./bechdel/Superheroes.xlsx")
 
 Superheroes %>% 
   group_by(universe) %>%  
@@ -47,7 +48,6 @@ plot_ly(x = ~ universe, y = ~proportion, type = "bar",
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
   )
-
 
 ```
 
