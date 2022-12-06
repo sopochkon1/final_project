@@ -1,6 +1,10 @@
 ---
 title: "Exploratory Data Analysis"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "show"
 date: "2022-12-05"
 ---
 
@@ -27,9 +31,9 @@ The source of the dataset comes from R for Data Science's Tidy Tuesday Project, 
 ## Import and tidy
 
 ```{r load}
-raw_bechdel <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
+raw_bechdel = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
 
-movies <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
+movies = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
 ```
 
 Talk about the 2 datasets here (# obs, vars, etc.)
@@ -51,7 +55,9 @@ movies = movies %>%
          domgross_2013 = as.numeric(domgross_2013),
          intgross_2013 = as.numeric(intgross_2013),
          decade_code = ifelse(year >= 1970 & year < 1980, 5, decade_code),
-         decade_code = ifelse(year >= 1980 & year < 1990, 4, decade_code)) %>% 
+         decade_code = ifelse(year >= 1980 & year < 1990, 4, decade_code), 
+         title = str_replace(title, "&#39;", "'"),
+         title = str_replace(title, "&amp;", "&")) %>% 
   rename("pass_bechdel" = binary,
          "bechdel_score" = clean_test) %>% 
   select(-test, -code, -response, -released, -type, -poster, -error)

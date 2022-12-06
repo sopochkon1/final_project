@@ -30,7 +30,11 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
@@ -226,7 +230,73 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -236,6 +306,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -299,6 +379,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Exploratory Data Analysis</h1>
@@ -324,9 +412,9 @@ each movie</li>
 </div>
 <div id="import-and-tidy" class="section level2">
 <h2>Import and tidy</h2>
-<pre class="r"><code>raw_bechdel &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv&#39;)
+<pre class="r"><code>raw_bechdel = read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv&#39;)
 
-movies &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv&#39;)</code></pre>
+movies = read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv&#39;)</code></pre>
 <p>Talk about the 2 datasets here (# obs, vars, etc.)</p>
 <pre class="r"><code>movies = movies %&gt;% 
   mutate(test = as.factor(test), 
@@ -344,7 +432,9 @@ movies &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tid
          domgross_2013 = as.numeric(domgross_2013),
          intgross_2013 = as.numeric(intgross_2013),
          decade_code = ifelse(year &gt;= 1970 &amp; year &lt; 1980, 5, decade_code),
-         decade_code = ifelse(year &gt;= 1980 &amp; year &lt; 1990, 4, decade_code)) %&gt;% 
+         decade_code = ifelse(year &gt;= 1980 &amp; year &lt; 1990, 4, decade_code), 
+         title = str_replace(title, &quot;&amp;#39;&quot;, &quot;&#39;&quot;),
+         title = str_replace(title, &quot;&amp;amp;&quot;, &quot;&amp;&quot;)) %&gt;% 
   rename(&quot;pass_bechdel&quot; = binary,
          &quot;bechdel_score&quot; = clean_test) %&gt;% 
   select(-test, -code, -response, -released, -type, -poster, -error)</code></pre>
@@ -436,8 +526,8 @@ table %&gt;%
   layout(barmode = &quot;stack&quot;,
          xaxis = list(title = &quot;Decade&quot;),
          yaxis = list(title = &quot;Count&quot;))</code></pre>
-<div id="htmlwidget-1ec3c122effe0172cc2e" style="width:1152px;height:672px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ec3c122effe0172cc2e">{"x":{"visdat":{"1ae544a7920c":["function () ","plotlyVisDat"]},"cur_data":"1ae544a7920c","attrs":{"1ae544a7920c":{"x":{},"y":{},"marker":{"color":"3f4585ff"},"name":"Critical","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"1ae544a7920c.1":{"x":{},"y":{},"marker":{"color":"22958bff"},"name":"Less than 2 women","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.2":{"x":{},"y":{},"marker":{"color":"green"},"name":"Don't talk to each other","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.3":{"x":{},"y":{},"marker":{"color":"yellow"},"name":"Only talk about men","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.4":{"x":{},"y":{},"marker":{"color":"red"},"name":"Dubious","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.5":{"x":{},"y":{},"marker":{"color":"orange"},"name":"Passes Bechdel","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Decade"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"3f4585ff","line":{"color":"rgba(31,119,180,1)"}},"name":"Critical","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"22958bff","line":{"color":"rgba(255,127,14,1)"}},"name":"Less than 2 women","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[121,224,105,37,27],"marker":{"color":"green","line":{"color":"rgba(44,160,44,1)"}},"name":"Don't talk to each other","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[45,86,37,19,7],"marker":{"color":"yellow","line":{"color":"rgba(214,39,40,1)"}},"name":"Only talk about men","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[43,57,24,16,2],"marker":{"color":"red","line":{"color":"rgba(148,103,189,1)"}},"name":"Dubious","type":"bar","error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[197,409,147,36,14],"marker":{"color":"orange","line":{"color":"rgba(140,86,75,1)"}},"name":"Passes Bechdel","type":"bar","error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d3fccbf891010c078805" style="width:1152px;height:672px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d3fccbf891010c078805">{"x":{"visdat":{"1e63320acbf6":["function () ","plotlyVisDat"]},"cur_data":"1e63320acbf6","attrs":{"1e63320acbf6":{"x":{},"y":{},"marker":{"color":"3f4585ff"},"name":"Critical","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"1e63320acbf6.1":{"x":{},"y":{},"marker":{"color":"22958bff"},"name":"Less than 2 women","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.2":{"x":{},"y":{},"marker":{"color":"green"},"name":"Don't talk to each other","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.3":{"x":{},"y":{},"marker":{"color":"yellow"},"name":"Only talk about men","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.4":{"x":{},"y":{},"marker":{"color":"red"},"name":"Dubious","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1e63320acbf6.5":{"x":{},"y":{},"marker":{"color":"orange"},"name":"Passes Bechdel","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Decade"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"3f4585ff","line":{"color":"rgba(31,119,180,1)"}},"name":"Critical","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"22958bff","line":{"color":"rgba(255,127,14,1)"}},"name":"Less than 2 women","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[121,224,105,37,27],"marker":{"color":"green","line":{"color":"rgba(44,160,44,1)"}},"name":"Don't talk to each other","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[45,86,37,19,7],"marker":{"color":"yellow","line":{"color":"rgba(214,39,40,1)"}},"name":"Only talk about men","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[43,57,24,16,2],"marker":{"color":"red","line":{"color":"rgba(148,103,189,1)"}},"name":"Dubious","type":"bar","error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[197,409,147,36,14],"marker":{"color":"orange","line":{"color":"rgba(140,86,75,1)"}},"name":"Passes Bechdel","type":"bar","error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="bechdel-test-scores-by-genre" class="section level3">
 <h3>Bechdel Test Scores by genre</h3>
@@ -449,6 +539,8 @@ table %&gt;%
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -480,7 +572,41 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
