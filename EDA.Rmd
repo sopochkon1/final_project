@@ -12,16 +12,10 @@ date: "2022-12-05"
 library(tidyverse)
 library(readr)
 library(plotly)
-
 knitr::opts_chunk$set(
   warning = FALSE, 
-<<<<<<< HEAD
-  message = FALSE)
-=======
   message = FALSE,
   fig.align = 'center')
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
-
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
@@ -29,42 +23,26 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 The source of the dataset comes from R for Data Science's [Tidy Tuesday Project](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-03-09), which provides weekly releases of raw datasets for users to wrangle and analyze. The data itself originates from FiveThirtyEight, containing movies ranging from 1970 to 2013, and merges data from several sources:
 
-<<<<<<< HEAD
-* **[IMDB](imdb.com)**: Provides information about each film, such as year, runtime, genre, language, rating.
-* **[BechdelTest.com](bechdeltest.com)**: Provides year, title, and a Bechdel Test score ranging from 0-3.
-* **[The-Numbers.com](The-Numbers.com)**: Provides information about budget and revenue of each movie.
-=======
 * **[IMDB](https://imdb.com)**: Provides information about each film, such as year, runtime, genre, language, rating.
 * **[BechdelTest.com](http://bechdeltest.com)**: Provides year, title, and a Bechdel Test score ranging from 0-3.
 * **[The-Numbers.com](https://The-Numbers.com)**: Provides information about budget and revenue of each movie.
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
 
 ## Data Import and Cleaning
 
 ```{r load}
 raw_bechdel = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
-
 movies = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
 ```
 
 The dataset was distributed in two files, `movies.csv`, `raw_bechdel.csv`.
 
-<<<<<<< HEAD
-* `movies.csv`: A data file of `r nrow(movies)` observations and `r ncol(movies)` variables, which includes movies from 1970 to 2013, and contains variables for title, IMDB ID, year, Bechdel test (uncleaned, cleaned, binary pass/fail), genres, ratings, budget, domestic and internationl gross revenue, and 2013-adjusted budget and revenues.
-=======
 * `movies.csv`: A data file of `r nrow(movies)` observations and `r ncol(movies)` variables, which includes movies from 1970 to 2013, and contains variables for title, IMDB ID, year, Bechdel test (uncleaned, cleaned, binary pass/fail), genres, ratings, budget, domestic and international gross revenue, and 2013-adjusted budget and revenues.
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
 * `raw_bechdel.csv`: A data file of `r nrow(raw_bechdel)` observations and `r ncol(raw_bechdel)` variables, containing movies from 1888 to 2021, and contains variables for title, movie ID, IMDB ID, and raw Bechdel test score (0 to 3).
 
 ### Data cleaning
 
 The data cleaning steps involve the following:
 - Converting character to numeric variables for `domgross`, `intgross`, `domgross_2013`, `intgross_2013`
-<<<<<<< HEAD
-- Converting the `binary` character variable to a logical variable that indicates whether the movie passes or fails the Bechdel Test
-- Recoding and relevelling the numeric `decade_code` variable into a `decade` factor variable according to the year of release
-- Recoding and relevelling the `clean_test` variable into 4 levels corresponding to the Bechdel Test criteria:
-=======
 
 - Converting the `binary` character variable to a logical variable that indicates whether the movie passes or fails the Bechdel Test
 
@@ -72,19 +50,14 @@ The data cleaning steps involve the following:
 
 - Recoding and relevelling the `clean_test` variable into 4 levels corresponding to the Bechdel Test criteria:
 
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
   - 0 = Less than 2 women
   - 1 = Women don't talk to each other
   - 2 = Women only talk about men
   - 3 = Dubious (uncertain whether it passes Bechdel Test)
   - 4 = Passes Bechdel Test
-<<<<<<< HEAD
-- Creating a `profit` variable, the difference between 2013-adjusted domestic revenue less budget
-=======
-  
+
 - Creating a `profit` variable, the difference between 2013-adjusted domestic revenue less budget
 
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
 - Renaming key variables to relevant names
 
 
@@ -120,7 +93,6 @@ movies = movies %>%
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
   select(year, title:pass_bechdel, budget_2013:intgross_2013, decade:rated, imdb_rating, genre:runtime, profit)
-
 head(movies) %>% 
   kableExtra::kbl() %>% 
   kableExtra::kable_paper("striped", full_width = F) %>% 
@@ -132,11 +104,9 @@ head(movies) %>%
 Our resulting dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables, indicating information about each movie's Bechdel Test score, budget, revenue, genre, and ratings.
 
 
-<<<<<<< HEAD
+
 ## Exploratory Data Analysis
-=======
-## Exploratory Data Analyses
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
+
 
 ### Distribution of Bechdel Test Scores
 
@@ -158,29 +128,23 @@ less2_df = movies %>%
   filter(bechdel_score == "Less than 2 women") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
-
 notalk_df = movies %>% 
   filter(bechdel_score == "Don't talk to each other") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
-
 talkmen_df = movies %>% 
   filter(bechdel_score == "Only talk about men") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
-
 dubious_df = movies %>% 
   filter(bechdel_score == "Dubious") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
-
 pass_df = movies %>% 
   filter(bechdel_score == "Passes Bechdel") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
-
 table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df)
-
 table %>% 
   plot_ly(x = ~decade...1, y = ~n...3, type = "bar", name = "Less than 2 women",
           marker = list(color = "darkred")) %>% 
@@ -192,7 +156,6 @@ table %>%
          xaxis = list(title = "Decade"),
          yaxis = list(title = "Count"))
 ```
-
 
 ### Bechdel Test Scores by genre
 
@@ -207,9 +170,12 @@ movies %>%
          xaxis = list(title = "Bechdel Criterion"), tickfont = list(size = 10), gridcolor = "gray")
 ```
 
-<<<<<<< HEAD
-=======
+
+
 ### Distribution of budgets according to Bechdel scores
+
+Next, we want to explore how movie budgets may differ according to the primacy of women's roles in movies. Grouping by Bechdel score, we can compute the median budget, adjusted to 2013 inflation. 
+
 
 ```{r}
 movies %>% 
@@ -219,7 +185,6 @@ movies %>%
   layout(yaxis = list(title = "Bechdel Criterion", standoff = 10),
          xaxis = list(title = "Median movie budget ($)"), 
          legend = list(reverse = TRUE))
-
 movies %>% 
   plot_ly(x = ~bechdel_score, y = ~budget_2013, type = "box", text = ~title) %>% 
   layout(yaxis = list(title = "Movie budget ($)", standoff = 10),
@@ -227,10 +192,27 @@ movies %>%
          legend = list(reverse = TRUE))
 ```
 
-Testing the claim
+We can  visualize the median budgets with a bar chart to see that movies featuring two women who don't talk to each other appear to have much larger budgets than the rest. Movies that pass the Bechdel test also appear to have slightly smaller budgets than movies that don't pass.
+
+Next steps...
+
+- F-test (ANOVA) of differences in budget
+
 
 ```{r}
-
+budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Count",
+    y = "Budget ($, 2013-adjusted)",
+    title = "Distribution of movie budgets")
+ggplotly(budget_dist_p)
+kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped")) %>%
+  kableExtra::kable_styling(font_size = 12)
 ```
-
->>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
