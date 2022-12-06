@@ -105,10 +105,10 @@ table %>%
   plot_ly(x = ~decade_code...1, y = ~n...3, type = "bar", name = "Critical",
           marker = list(color = "3f4585ff")) %>% 
   add_trace(y = ~n...3, name = "Less than 2 women", marker = list(color = "22958bff")) %>% 
-  add_trace(y = ~n...6, name = "Don't talk to each other") %>% 
-  add_trace(y = ~n...9, name = "Only talk about men") %>% 
-  add_trace(y = ~n...12, name = "Dubious") %>% 
-  add_trace(y = ~n...15, name = "Passes Bechdel") %>% 
+  add_trace(y = ~n...6, name = "Don't talk to each other", marker = list(color = "green")) %>% 
+  add_trace(y = ~n...9, name = "Only talk about men", marker = list(color = "yellow")) %>% 
+  add_trace(y = ~n...12, name = "Dubious", marker = list(color = "red")) %>% 
+  add_trace(y = ~n...15, name = "Passes Bechdel", marker = list(color = "orange")) %>% 
   layout(barmode = "stack",
          xaxis = list(title = "Decade"),
          yaxis = list(title = "Count"))

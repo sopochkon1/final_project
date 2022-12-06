@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2022-12-05" />
+
+<title>Exploratory Data Analysis</title>
+
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Data.html">Data Sources</a>
+    </li>
+    <li>
+      <a href="Regression.html">Regression</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Superheroes.html">
+    <span class="fa fa-solid fa-bat"></span>
+     
+    Superheroes
+  </a>
+</li>
+<li>
+  <a href="mailto:&lt;sc4934@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/sopochkon1/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Exploratory Data Analysis</h1>
+<h4 class="date">2022-12-05</h4>
+
+</div>
+
+
+<div id="data-sources-and-overview" class="section level2">
+<h2>Data Sources and Overview</h2>
+<p>The source of the dataset comes from R for Data Science’s Tidy
+Tuesday Project, which provides weekly releases of raw datasets for
+users to wrangle and analyze. The data itself originates from
+FiveThirtyEight, which merges data from several sources:</p>
+<ul>
+<li>IMDB: Provides information about each film, such as year, runtime,
+genre, language, rating.</li>
+<li>BechdelTest.com: Provides year, title, and a Bechdel Test score
+ranging from 0-3.</li>
+<li>The-Numbers.com: Provides information about budget and revenue of
+each movie</li>
+</ul>
+</div>
+<div id="import-and-tidy" class="section level2">
+<h2>Import and tidy</h2>
+<pre class="r"><code>raw_bechdel &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv&#39;)
+
+movies &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv&#39;)</code></pre>
+<p>Talk about the 2 datasets here (# obs, vars, etc.)</p>
+<pre class="r"><code>movies = movies %&gt;% 
+  mutate(test = as.factor(test), 
+         clean_test = fct_recode(clean_test, 
+                                 &quot;Less than 2 women&quot; = &quot;nowomen&quot;, 
+                                 &quot;Don&#39;t talk to each other&quot; = &quot;notalk&quot;,
+                                 &quot;Only talk about men&quot; = &quot;men&quot;, 
+                                 &quot;Dubious&quot; = &quot;dubious&quot;,
+                                 &quot;Passes Bechdel&quot; = &quot;ok&quot;),
+         clean_test = fct_relevel(clean_test, c(&quot;Less than 2 women&quot;, &quot;Don&#39;t talk to each other&quot;, 
+                                                &quot;Only talk about men&quot;, &quot;Dubious&quot;, &quot;Passes Bechdel&quot;)),
+         binary = ifelse(binary == &quot;PASS&quot;, TRUE, FALSE), 
+         domgross = as.numeric(domgross),
+         intgross = as.numeric(intgross),
+         domgross_2013 = as.numeric(domgross_2013),
+         intgross_2013 = as.numeric(intgross_2013),
+         decade_code = ifelse(year &gt;= 1970 &amp; year &lt; 1980, 5, decade_code),
+         decade_code = ifelse(year &gt;= 1980 &amp; year &lt; 1990, 4, decade_code)) %&gt;% 
+  rename(&quot;pass_bechdel&quot; = binary,
+         &quot;bechdel_score&quot; = clean_test) %&gt;% 
+  select(-test, -code, -response, -released, -type, -poster, -error)</code></pre>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
+<div id="distribution-of-bechdel-test-scores" class="section level3">
+<h3>Distribution of Bechdel Test Scores</h3>
+<pre class="r"><code>movies %&gt;% 
+  group_by(bechdel_score) %&gt;% 
+  summarise(N = n()) %&gt;% 
+  mutate(Proportion = N/sum(N)) %&gt;% 
+  rename(&quot;Bechdel Test Criterion&quot; = bechdel_score) %&gt;% 
+  knitr::kable(digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Bechdel Test Criterion</th>
+<th align="right">N</th>
+<th align="right">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Less than 2 women</td>
+<td align="right">141</td>
+<td align="right">0.079</td>
+</tr>
+<tr class="even">
+<td align="left">Don’t talk to each other</td>
+<td align="right">514</td>
+<td align="right">0.287</td>
+</tr>
+<tr class="odd">
+<td align="left">Only talk about men</td>
+<td align="right">194</td>
+<td align="right">0.108</td>
+</tr>
+<tr class="even">
+<td align="left">Dubious</td>
+<td align="right">142</td>
+<td align="right">0.079</td>
+</tr>
+<tr class="odd">
+<td align="left">Passes Bechdel</td>
+<td align="right">803</td>
+<td align="right">0.448</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bechdel-test-scores-by-decade" class="section level3">
+<h3>Bechdel Test Scores by decade</h3>
+<pre class="r"><code>less2_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Less than 2 women&quot;) %&gt;% 
+  group_by(decade_code, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+notalk_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Don&#39;t talk to each other&quot;) %&gt;% 
+  group_by(decade_code, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+talkmen_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Only talk about men&quot;) %&gt;% 
+  group_by(decade_code, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+dubious_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Dubious&quot;) %&gt;% 
+  group_by(decade_code, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+pass_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Passes Bechdel&quot;) %&gt;% 
+  group_by(decade_code, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df)
+
+table %&gt;% 
+  plot_ly(x = ~decade_code...1, y = ~n...3, type = &quot;bar&quot;, name = &quot;Critical&quot;,
+          marker = list(color = &quot;3f4585ff&quot;)) %&gt;% 
+  add_trace(y = ~n...3, name = &quot;Less than 2 women&quot;, marker = list(color = &quot;22958bff&quot;)) %&gt;% 
+  add_trace(y = ~n...6, name = &quot;Don&#39;t talk to each other&quot;, marker = list(color = &quot;green&quot;)) %&gt;% 
+  add_trace(y = ~n...9, name = &quot;Only talk about men&quot;, marker = list(color = &quot;yellow&quot;)) %&gt;% 
+  add_trace(y = ~n...12, name = &quot;Dubious&quot;, marker = list(color = &quot;red&quot;)) %&gt;% 
+  add_trace(y = ~n...15, name = &quot;Passes Bechdel&quot;, marker = list(color = &quot;orange&quot;)) %&gt;% 
+  layout(barmode = &quot;stack&quot;,
+         xaxis = list(title = &quot;Decade&quot;),
+         yaxis = list(title = &quot;Count&quot;))</code></pre>
+<div id="htmlwidget-1ec3c122effe0172cc2e" style="width:1152px;height:672px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ec3c122effe0172cc2e">{"x":{"visdat":{"1ae544a7920c":["function () ","plotlyVisDat"]},"cur_data":"1ae544a7920c","attrs":{"1ae544a7920c":{"x":{},"y":{},"marker":{"color":"3f4585ff"},"name":"Critical","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"1ae544a7920c.1":{"x":{},"y":{},"marker":{"color":"22958bff"},"name":"Less than 2 women","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.2":{"x":{},"y":{},"marker":{"color":"green"},"name":"Don't talk to each other","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.3":{"x":{},"y":{},"marker":{"color":"yellow"},"name":"Only talk about men","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.4":{"x":{},"y":{},"marker":{"color":"red"},"name":"Dubious","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"1ae544a7920c.5":{"x":{},"y":{},"marker":{"color":"orange"},"name":"Passes Bechdel","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Decade"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"3f4585ff","line":{"color":"rgba(31,119,180,1)"}},"name":"Critical","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[32,64,24,17,4],"marker":{"color":"22958bff","line":{"color":"rgba(255,127,14,1)"}},"name":"Less than 2 women","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[121,224,105,37,27],"marker":{"color":"green","line":{"color":"rgba(44,160,44,1)"}},"name":"Don't talk to each other","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[45,86,37,19,7],"marker":{"color":"yellow","line":{"color":"rgba(214,39,40,1)"}},"name":"Only talk about men","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[43,57,24,16,2],"marker":{"color":"red","line":{"color":"rgba(148,103,189,1)"}},"name":"Dubious","type":"bar","error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,2,3,4,5],"y":[197,409,147,36,14],"marker":{"color":"orange","line":{"color":"rgba(140,86,75,1)"}},"name":"Passes Bechdel","type":"bar","error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="bechdel-test-scores-by-genre" class="section level3">
+<h3>Bechdel Test Scores by genre</h3>
+</div>
+<div id="bechdel-test-by-imdb-rating" class="section level3">
+<h3>Bechdel Test by IMDB Rating</h3>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
