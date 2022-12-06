@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2022-12-05" />
+
+<title>Exploratory Data Analysis</title>
+
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Data.html">Data Sources</a>
+    </li>
+    <li>
+      <a href="Regression.html">Regression</a>
+    </li>
+    <li>
+      <a href="EDA.html">Exploratory Analysis</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Superheroes.html">
+    <span class="fa fa-solid fa-bat"></span>
+     
+    Superheroes
+  </a>
+</li>
+<li>
+  <a href="mailto:&lt;sc4934@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/sopochkon1/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Exploratory Data Analysis</h1>
+<h4 class="date">2022-12-05</h4>
+
+</div>
+
+
+<div id="data-sources-and-overview" class="section level2">
+<h2>Data Sources and Overview</h2>
+<p>The source of the dataset comes from R for Data Science’s <a
+href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-03-09">Tidy
+Tuesday Project</a>, which provides weekly releases of raw datasets for
+users to wrangle and analyze. The data itself originates from
+FiveThirtyEight, containing movies ranging from 1970 to 2013, and merges
+data from several sources:</p>
+<ul>
+<li><strong><a href="imdb.com">IMDB</a></strong>: Provides information
+about each film, such as year, runtime, genre, language, rating.</li>
+<li><strong><a href="bechdeltest.com">BechdelTest.com</a></strong>:
+Provides year, title, and a Bechdel Test score ranging from 0-3.</li>
+<li><strong><a href="The-Numbers.com">The-Numbers.com</a></strong>:
+Provides information about budget and revenue of each movie.</li>
+</ul>
+</div>
+<div id="data-import-and-cleaning" class="section level2">
+<h2>Data Import and Cleaning</h2>
+<pre class="r"><code>raw_bechdel = read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv&#39;)
+
+movies = read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv&#39;)</code></pre>
+<p>The dataset was distributed in two files, <code>movies.csv</code>,
+<code>raw_bechdel.csv</code>.</p>
+<ul>
+<li><code>movies.csv</code>: A data file of 1794 observations and 34
+variables, which includes movies from 1970 to 2013, and contains
+variables for title, IMDB ID, year, Bechdel test (uncleaned, cleaned,
+binary pass/fail), genres, ratings, budget, domestic and internationl
+gross revenue, and 2013-adjusted budget and revenues.</li>
+<li><code>raw_bechdel.csv</code>: A data file of 8839 observations and 5
+variables, containing movies from 1888 to 2021, and contains variables
+for title, movie ID, IMDB ID, and raw Bechdel test score (0 to 3).</li>
+</ul>
+<div id="data-cleaning" class="section level3">
+<h3>Data cleaning</h3>
+<p>The data cleaning steps involve the following: - Converting character
+to numeric variables for <code>domgross</code>, <code>intgross</code>,
+<code>domgross_2013</code>, <code>intgross_2013</code> - Converting the
+<code>binary</code> character variable to a logical variable that
+indicates whether the movie passes or fails the Bechdel Test - Recoding
+and relevelling the numeric <code>decade_code</code> variable into a
+<code>decade</code> factor variable according to the year of release -
+Recoding and relevelling the <code>clean_test</code> variable into 4
+levels corresponding to the Bechdel Test criteria: - 0 = Less than 2
+women - 1 = Women don’t talk to each other - 2 = Women only talk about
+men - 3 = Dubious (uncertain whether it passes Bechdel Test) - 4 =
+Passes Bechdel Test - Creating a <code>profit</code> variable, the
+difference between 2013-adjusted domestic revenue less budget - Renaming
+key variables to relevant names</p>
+<pre class="r"><code>movies = movies %&gt;% 
+  mutate(test = as.factor(test), 
+         clean_test = fct_recode(clean_test, 
+                                 &quot;Less than 2 women&quot; = &quot;nowomen&quot;, 
+                                 &quot;Don&#39;t talk to each other&quot; = &quot;notalk&quot;,
+                                 &quot;Only talk about men&quot; = &quot;men&quot;, 
+                                 &quot;Dubious&quot; = &quot;dubious&quot;,
+                                 &quot;Passes Bechdel&quot; = &quot;ok&quot;),
+         clean_test = fct_relevel(clean_test, c(&quot;Less than 2 women&quot;, &quot;Don&#39;t talk to each other&quot;, 
+                                                &quot;Only talk about men&quot;, &quot;Dubious&quot;, &quot;Passes Bechdel&quot;)),
+         binary = ifelse(binary == &quot;PASS&quot;, TRUE, FALSE), 
+         domgross = as.numeric(domgross),
+         intgross = as.numeric(intgross),
+         domgross_2013 = as.numeric(domgross_2013),
+         intgross_2013 = as.numeric(intgross_2013),
+         decade_code = case_when(year &gt;= 1970 &amp; year &lt; 1980 ~ &quot;1970-1979&quot;,
+                            year &gt;= 1980 &amp; year &lt; 1990 ~ &quot;1980-1989&quot;,
+                            year &gt;= 1990 &amp; year &lt; 2000 ~ &quot;1990-1999&quot;,
+                            year &gt;= 2000 &amp; year &lt; 2010 ~ &quot;2009-2009&quot;,
+                            year &gt;= 2010 &amp; year &lt; 2020 ~ &quot;2010 - present&quot;),
+         decade_code = as.factor(decade_code),
+         title = str_replace(title, &quot;&amp;#39;&quot;, &quot;&#39;&quot;),
+         title = str_replace(title, &quot;&amp;amp;&quot;, &quot;&amp;&quot;),
+         title = str_replace(title, &quot;&amp;agrave;&quot;, &quot;à&quot;),
+         title = str_replace(title, &quot;&amp;aring;&quot;, &quot;å&quot;),
+         title = str_replace(title, &quot;&amp;auml;&quot;, &quot;ä&quot;), 
+         profit = (domgross_2013 + intgross_2013) - budget_2013) %&gt;% 
+  rename(&quot;pass_bechdel&quot; = binary,
+         &quot;bechdel_score&quot; = clean_test,
+         &quot;decade&quot; = decade_code) %&gt;% 
+  select(year, title:pass_bechdel, budget_2013:intgross_2013, decade:rated, imdb_rating, genre:runtime, profit)
+
+head(movies) %&gt;% 
+  kableExtra::kbl() %&gt;% 
+  kableExtra::kable_paper(&quot;striped&quot;, full_width = F) %&gt;% 
+  kableExtra::scroll_box(width = &quot;100%&quot;, height = &quot;200px&quot;)</code></pre>
+<div
+style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
+<table class=" lightable-paper lightable-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+test
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+bechdel_score
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pass_bechdel
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+budget_2013
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+domgross_2013
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+intgross_2013
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+decade
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+imdb_id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+plot
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+rated
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+imdb_rating
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+genre
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+awards
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+runtime
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+profit
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+21 &amp; Over
+</td>
+<td style="text-align:left;">
+notalk
+</td>
+<td style="text-align:left;">
+Don’t talk to each other
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+13000000
+</td>
+<td style="text-align:right;">
+25682380
+</td>
+<td style="text-align:right;">
+42195766
+</td>
+<td style="text-align:left;">
+2010 - present
+</td>
+<td style="text-align:left;">
+1711425
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+54878146
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Dredd 3D
+</td>
+<td style="text-align:left;">
+ok-disagree
+</td>
+<td style="text-align:left;">
+Passes Bechdel
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+45658735
+</td>
+<td style="text-align:right;">
+13611086
+</td>
+<td style="text-align:right;">
+41467257
+</td>
+<td style="text-align:left;">
+2010 - present
+</td>
+<td style="text-align:left;">
+1343727
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+9419608
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+12 Years a Slave
+</td>
+<td style="text-align:left;">
+notalk-disagree
+</td>
+<td style="text-align:left;">
+Don’t talk to each other
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+20000000
+</td>
+<td style="text-align:right;">
+53107035
+</td>
+<td style="text-align:right;">
+158607035
+</td>
+<td style="text-align:left;">
+2010 - present
+</td>
+<td style="text-align:left;">
+2024544
+</td>
+<td style="text-align:left;">
+In the antebellum United States, Solomon Northup, a free black man from
+upstate New York, is abducted and sold into slavery.
+</td>
+<td style="text-align:left;">
+R
+</td>
+<td style="text-align:right;">
+8.3
+</td>
+<td style="text-align:left;">
+Biography, Drama, History
+</td>
+<td style="text-align:left;">
+Won 3 Oscars. Another 131 wins &amp; 137 nominations.
+</td>
+<td style="text-align:left;">
+134 min
+</td>
+<td style="text-align:right;">
+191714070
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+2 Guns
+</td>
+<td style="text-align:left;">
+notalk
+</td>
+<td style="text-align:left;">
+Don’t talk to each other
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+61000000
+</td>
+<td style="text-align:right;">
+75612460
+</td>
+<td style="text-align:right;">
+132493015
+</td>
+<td style="text-align:left;">
+2010 - present
+</td>
+<td style="text-align:left;">
+1272878
+</td>
+<td style="text-align:left;">
+A DEA agent and a naval intelligence officer find themselves on the run
+after a botched attempt to infiltrate a drug cartel. While fleeing, they
+learn the secret of their shaky alliance: Neither knew that the other
+was an undercover agent.
+</td>
+<td style="text-align:left;">
+R
+</td>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:left;">
+Action, Comedy, Crime
+</td>
+<td style="text-align:left;">
+1 win.
+</td>
+<td style="text-align:left;">
+109 min
+</td>
+<td style="text-align:right;">
+147105475
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:left;">
+men
+</td>
+<td style="text-align:left;">
+Only talk about men
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+40000000
+</td>
+<td style="text-align:right;">
+95020213
+</td>
+<td style="text-align:right;">
+95020213
+</td>
+<td style="text-align:left;">
+2010 - present
+</td>
+<td style="text-align:left;">
+0453562
+</td>
+<td style="text-align:left;">
+The life story of Jackie Robinson and his history-making signing with
+the Brooklyn Dodgers under the guidance of team executive Branch Rickey.
+</td>
+<td style="text-align:left;">
+PG-13
+</td>
+<td style="text-align:right;">
+7.6
+</td>
+<td style="text-align:left;">
+Biography, Drama, Sport
+</td>
+<td style="text-align:left;">
+3 wins &amp; 13 nominations.
+</td>
+<td style="text-align:left;">
+128 min
+</td>
+<td style="text-align:right;">
+150040426
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:left;">
+47 Ronin
+</td>
+<td style="text-align:left;">
+men
+</td>
+<td style="text-align:left;">
+Only talk about men
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+225000000
+</td>
+<td style="text-align:right;">
+38362475
+</td>
+<td style="text-align:right;">
+145803842
+</td>
+<td style="text-align:left;">
+2010 - present
+</td>
+<td style="text-align:left;">
+1335975
+</td>
+<td style="text-align:left;">
+A band of samurai set out to avenge the death and dishonor of their
+master at the hands of a ruthless shogun.
+</td>
+<td style="text-align:left;">
+PG-13
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:left;">
+Action, Adventure, Fantasy
+</td>
+<td style="text-align:left;">
+1 nomination.
+</td>
+<td style="text-align:left;">
+118 min
+</td>
+<td style="text-align:right;">
+-40833683
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Our resulting dataset contains 1794 observations and 17 variables,
+indicating information about each movie’s Bechdel Test score, budget,
+revenue, genre, and ratings.</p>
+</div>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
+<div id="distribution-of-bechdel-test-scores" class="section level3">
+<h3>Distribution of Bechdel Test Scores</h3>
+<pre class="r"><code>movies %&gt;% 
+  group_by(bechdel_score) %&gt;% 
+  summarise(N = n()) %&gt;% 
+  mutate(Proportion = N/sum(N)) %&gt;% 
+  rename(&quot;Bechdel Test Criterion&quot; = bechdel_score) %&gt;% 
+  knitr::kable(digits = 3) %&gt;% 
+  kableExtra::kable_styling(bootstrap_options = c(&quot;striped&quot;))</code></pre>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Bechdel Test Criterion
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Proportion
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Less than 2 women
+</td>
+<td style="text-align:right;">
+141
+</td>
+<td style="text-align:right;">
+0.079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Don’t talk to each other
+</td>
+<td style="text-align:right;">
+514
+</td>
+<td style="text-align:right;">
+0.287
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Only talk about men
+</td>
+<td style="text-align:right;">
+194
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dubious
+</td>
+<td style="text-align:right;">
+142
+</td>
+<td style="text-align:right;">
+0.079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Passes Bechdel
+</td>
+<td style="text-align:right;">
+803
+</td>
+<td style="text-align:right;">
+0.448
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bechdel-test-scores-by-decade" class="section level3">
+<h3>Bechdel Test Scores by decade</h3>
+<pre class="r"><code>less2_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Less than 2 women&quot;) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+notalk_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Don&#39;t talk to each other&quot;) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+talkmen_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Only talk about men&quot;) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+dubious_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Dubious&quot;) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+pass_df = movies %&gt;% 
+  filter(bechdel_score == &quot;Passes Bechdel&quot;) %&gt;% 
+  group_by(decade, bechdel_score) %&gt;% 
+  summarise(n = n()) 
+
+table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df)
+
+table %&gt;% 
+  plot_ly(x = ~decade...1, y = ~n...3, type = &quot;bar&quot;, name = &quot;Less than 2 women&quot;,
+          marker = list(color = &quot;darkred&quot;)) %&gt;% 
+  add_trace(y = ~n...6, name = &quot;Don&#39;t talk to each other&quot;, marker = list(color = &quot;red&quot;)) %&gt;% 
+  add_trace(y = ~n...9, name = &quot;Only talk about men&quot;, marker = list(color = &quot;darkorange&quot;)) %&gt;% 
+  add_trace(y = ~n...12, name = &quot;Dubious&quot;, marker = list(color = &quot;yellow&quot;)) %&gt;% 
+  add_trace(y = ~n...15, name = &quot;Passes Bechdel&quot;, marker = list(color = &quot;lightgreen&quot;)) %&gt;% 
+  layout(barmode = &quot;stack&quot;,
+         xaxis = list(title = &quot;Decade&quot;),
+         yaxis = list(title = &quot;Count&quot;))</code></pre>
+<div id="htmlwidget-a92d01c7e2a1672f522c" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a92d01c7e2a1672f522c">{"x":{"visdat":{"11504cfbc685":["function () ","plotlyVisDat"]},"cur_data":"11504cfbc685","attrs":{"11504cfbc685":{"x":{},"y":{},"marker":{"color":"darkred"},"name":"Less than 2 women","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"11504cfbc685.1":{"x":{},"y":{},"marker":{"color":"red"},"name":"Don't talk to each other","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"11504cfbc685.2":{"x":{},"y":{},"marker":{"color":"darkorange"},"name":"Only talk about men","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"11504cfbc685.3":{"x":{},"y":{},"marker":{"color":"yellow"},"name":"Dubious","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"11504cfbc685.4":{"x":{},"y":{},"marker":{"color":"lightgreen"},"name":"Passes Bechdel","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Decade","type":"category","categoryorder":"array","categoryarray":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[4,17,24,64,32],"marker":{"color":"darkred","line":{"color":"rgba(31,119,180,1)"}},"name":"Less than 2 women","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[27,37,105,224,121],"marker":{"color":"red","line":{"color":"rgba(255,127,14,1)"}},"name":"Don't talk to each other","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[7,19,37,86,45],"marker":{"color":"darkorange","line":{"color":"rgba(44,160,44,1)"}},"name":"Only talk about men","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[2,16,24,57,43],"marker":{"color":"yellow","line":{"color":"rgba(214,39,40,1)"}},"name":"Dubious","type":"bar","error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1970-1979","1980-1989","1990-1999","2009-2009","2010 - present"],"y":[14,36,147,409,197],"marker":{"color":"lightgreen","line":{"color":"rgba(148,103,189,1)"}},"name":"Passes Bechdel","type":"bar","error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="bechdel-test-scores-by-genre" class="section level3">
+<h3>Bechdel Test Scores by genre</h3>
+</div>
+<div id="bechdel-test-by-imdb-rating" class="section level3">
+<h3>Bechdel Test by IMDB Rating</h3>
+<pre class="r"><code>movies %&gt;% 
+  plot_ly(y = ~imdb_rating, x = ~bechdel_score, type = &quot;scatter&quot;, 
+          mode = &quot;markers&quot;, marker = list(color = ~imdb_rating)) %&gt;% 
+  layout(yaxis = list(title = list(text = &quot;IMDB Rating&quot;, standoff = 5), tickfont = list(size = 10), gridcolor = &quot;white&quot;),
+         xaxis = list(title = &quot;Bechdel Criterion&quot;), tickfont = list(size = 10), gridcolor = &quot;gray&quot;)</code></pre>
+<div id="htmlwidget-e5a68c01f0ac375af70b" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e5a68c01f0ac375af70b">{"x":{"visdat":{"115048e338f0":["function () ","plotlyVisDat"]},"cur_data":"115048e338f0","attrs":{"115048e338f0":{"y":{},"x":{},"mode":"markers","marker":{"color":{}},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"IMDB Rating","standoff":5},"tickfont":{"size":10},"gridcolor":"white"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Bechdel Criterion","type":"category","categoryorder":"array","categoryarray":["Less than 2 women","Don't talk to each other","Only talk about men","Dubious","Passes Bechdel"]},"tickfont":{"size":10},"gridcolor":"gray","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"y":[8.3,6.8,7.6,6.6,5.4,7.8,5.7,5,7.5,7.4,6.2,7.4,8,6,6.5,7.6,6.8,6.7,6.7,5.9,6.8,6.5,7.9,5.9,6.8,7,8.2,5.4,8.3,5.7,6.7,7.4,6.3,6.8,6.7,5.8,6.3,7.4,7.9,7.3,7,6.5,6.4,7.1,6.2,5,6,8.1,5.6,6.4,5.6,8.3,6.7,7.7,7.1,7.9,4.8,5.6,7.7,6.7,7.6,5.5,7.3,6.4,6.1,6.4,7.4,6.7,8.2,5.9,7.9,5.9,6.4,3.9,6.6,6,5.5,5.4,5.8,7.5,8.5,6.8,6.9,7.3,7,6.5,7,6.4,7.1,6,6.5,7.8,6.6,7.8,5.9,7.3,6,7.2,5.8,5,7.1,7.6,6.5,8.5,7.3,7,7.1,7,6.6,6.2,8.1,7.5,5.6,7.8,7.4,5.3,4.5,7,6.1,7.1,7.3,6.5,5.5,5.9,7.3,5.9,6.5,7.1,7.2,5.1,7.9,6.8,7.8,6.2,5.5,5.4,6.5,6.3,7.1,7.2,8.2,8.6,4.1,6.4,6.8,8.1,7.3,7.6,5.4,7.1,6.7,7.4,5.6,6.8,5.7,6.5,7.1,6.5,6.3,6.4,5.6,5.8,7.8,7.4,6.2,7.8,6.5,6.3,7,5.2,7.1,6.6,5.7,5.5,6.6,6.9,6.8,6.4,6,6.4,5.2,6.7,6.1,5.8,6.6,6.9,5.9,7.9,7.3,5.9,5.8,6.4,5.7,5.9,6.8,8.1,5.8,6.3,6.1,5.5,6.9,7.6,6.1,6.1,6.6,6.3,6.3,5.5,6.4,6.3,6.5,7.4,7.2,6.7,7.4,6.4,7.1,5.4,7,7.1,7.7,7.4,7.6,6.2,6.7,6.5,5.9,7.1,6.7,5.7,6.7,7.3,7.1,5.4,6.2,6.8,7,7.6,7.3,6,7.1,7.5,5.8,6.1,7.1,7.5,7.1,7.4,8,7.3,4.9,5.8,6.1,7.9,5.9,7.3,8.1,6.4,7.3,6.5,7.2,6,4.8,5.5,5.8,6.7,4.9,7,7.1,6.2,6.4,7.3,8.3,7.2,7.7,7.3,7.8,6.3,7.7,6.5,7.3,7.3,7.2,7.5,8.1,7.4,6.3,6.2,6.4,6.4,5.8,7.2,5.7,6.3,6.3,6.3,6.2,7.7,6.3,6.2,5.9,6.6,5.2,7.2,6.6,6.5,6.8,6.5,5.8,6.2,6.4,6.9,5.9,6.5,7.7,6.5,8.2,8.8,6.8,7.1,7.8,6.3,5.1,7.2,6.5,6.7,7.3,6.4,6.5,7.2,5.7,6.6,6.4,6.6,7,6.7,7.1,7.2,6.3,6.7,6.4,7.5,7.2,6.4,8.1,4.4,6.4,7.3,6.8,6.2,7.9,6.8,5.1,6.4,7,6.6,6.9,6.5,7.9,7.5,6.3,7.1,6.2,4.4,5.6,6.4,7.4,6.6,6.6,7.8,5.4,6,5.4,6,7.6,4.9,5.8,6.4,8.5,7.7,6.8,6.3,7,4.5,5.8,6.3,7.8,6.4,5.8,7.1,6.5,7,7.6,7.3,6.8,7.2,7.3,4.8,7.3,5.7,6.4,8,7.1,5.3,7,7.2,7.4,6.2,6.3,7,7.7,6.5,6.4,8,6.7,7.3,7.8,6.2,7.3,5.6,6.4,5.1,5.8,5.8,7.1,7.3,7.4,5.4,6.7,7.1,7.1,8.3,7.4,6.2,7.4,6.5,6.6,8,7.3,5.9,6.4,7.2,6.8,7.1,6.8,6.1,7,6.1,7.6,5.8,8.1,7.2,6.3,6.7,7.7,6.4,5.6,6.4,5.1,5.9,7.8,5.6,5.9,7.8,6.9,6.5,6.4,7.1,6.7,6.3,7.2,7.2,6.7,7.3,7.6,6.7,6.5,4.7,7.3,6,8.3,7.5,6.6,7.6,7.2,6.8,6.9,5.5,6.8,6.5,7.8,6.8,6.8,6.6,6.1,6.4,6.1,6.6,7,7,7.8,7.2,6.5,7.1,4.5,6.4,7.2,7.2,6,7.5,6.6,6.7,6.5,7.3,5.6,7.8,7.2,6.8,8.2,6.4,6.5,4.2,6.1,8,6.3,6.1,7.9,5.8,6,7.6,5.8,5.4,4.9,7.7,6,7,6.7,5.7,3.8,6.7,6.1,6.7,7.4,7.3,7.6,5.4,8.1,6.1,7.3,6.8,6.9,7.4,7.9,7.3,6.9,6.6,7.8,9,5.5,5.3,6.6,5.5,7.6,6.9,7.1,6.8,7.6,7.3,6.2,6.2,4.9,8,6.2,6.7,7,5.2,7.1,7.2,8,6.7,5.2,7.1,6.9,7.5,6.8,7,7.8,6.6,5.9,7.5,7.8,7.1,6.3,6.4,7.2,6.4,7.1,7.4,5.8,6.9,7.7,7.2,7.7,6.9,6.1,6.2,7.4,6.3,5.4,7.9,6.7,7.2,8.2,7.6,7.1,7.3,7.3,6.6,8.2,6.3,6.4,8,5.8,8,6.3,7.2,6,7.8,7.3,7.7,6.3,5.5,7.4,6.1,7.6,8,5.4,7.2,6.4,7.2,6.1,7.4,7.7,8.1,6.4,7.2,7.1,6.9,5.8,7.8,7.1,7.5,5.2,5.7,4.5,8,7.3,6,7.3,8,7.9,7.5,7,4.8,5.1,6.8,5.8,6.7,6.3,5.9,6.9,6.2,7.7,7.2,5.7,6.3,8,7.6,7.9,7.8,6.1,6.4,7,6.7,5.7,6.3,7.5,8,6.2,7.5,5.6,8.6,6.2,6.7,6.6,6.6,6.5,5.7,5.5,6.3,7.7,6.2,6.6,5.9,6.5,6.8,8.5,6.8,7.4,4.9,6.8,6.9,7,7.6,6.8,7.5,8.5,7.9,7.4,7.6,4.4,7.6,7.1,4.9,7.4,6.8,5.6,4.1,6.3,8.3,5.4,4.8,2.8,4.1,6.5,7.5,7.7,7.4,6.8,8,7.2,6.9,7.1,7.4,4.9,5.5,6,5.2,5.7,6.2,6.1,7.6,7.2,7.6,4.7,5.9,6.7,6.6,5.8,6,7.1,7.1,6.8,7.3,7.2,7.7,7.6,6.9,5.4,7.7,7.4,7.3,7,7.7,7.2,6.9,6.8,6.5,7.1,6.3,6.6,8,6.5,8.2,7.2,6.2,2.1,7.7,5,6,7.7,3.4,5.9,6.8,6.9,7.5,7.3,6.7,3.5,6.9,7.1,5.9,6.7,5.3,6.5,7.4,6,7.5,6.8,8.2,6.8,7.9,6.5,7.8,5.5,6.1,6.1,7.5,6.8,5.8,7.8,7.3,5.8,5.5,8.1,5.8,3.3,6.5,7.3,7.6,6.2,7.9,5.2,7.4,6.7,6.3,8.4,6.7,7.8,6.1,7.7,6.8,5.4,6.8,7.1,6.5,7.1,7.8,7.4,7.5,6.9,8.1,7.5,6.8,6.9,4.7,7,5.9,7.8,6.1,6.9,7.7,6.6,6,8,7.3,7.6,6.1,6.5,7.4,7.2,7.5,7.8,7.7,6.7,6.4,5.8,8,7.3,8,7.4,6.6,5.6,5.2,7.3,6.5,5.4,7.2,5.9,7.7,5.3,6.3,5.6,8,6.9,6.7,7.2,5.7,5.5,5.4,4.9,5.5,6.2,8.2,6.1,7,7.1,5.3,7.6,6.3,5.7,7.3,5.3,5.5,8.2,5.4,7.7,7.4,6.3,7.3,8,6.9,8.1,5.4,6,5.4,7.6,6.2,7.3,6.6,4.1,6.8,6.4,5.4,7,5.3,7.7,5.8,8.9,7.2,6.7,6.5,6.9,5.6,5.6,7,6.1,7.7,7.7,6.9,7.2,7.6,7.3,6.2,6.7,6.7,5.6,5.6,5.5,8,7.2,3.2,6.4,6.1,5.5,7.6,7.4,7.4,6.4,7.5,6.2,7.3,6.3,5.4,7.6,7,7.2,4.9,6.8,6,7.7,6.6,6.8,7.1,5.1,7.5,7,7.2,6.1,6.7,4.9,6.7,5.1,6.2,7.3,6.9,6.8,5,6.4,6.8,3.7,5.6,7.9,7.1,6.5,7.6,6.9,8.8,6.4,7.2,7.1,6.8,5.5,5,6.8,5.2,7,6.7,6,7.1,7.7,7.2,5.8,8.2,5.9,6.1,6.7,7.7,7.6,8.1,4.6,6,6.9,7.5,7.3,6.7,7.8,6.2,6.2,4.3,6.9,6,5.3,6.6,6.7,7.3,5.7,6.2,4.7,7.4,8.1,7.7,7.7,6.2,5.9,6.1,5.9,7.3,7.9,6.1,5.4,7.1,6.5,5.7,6.6,8.9,6.9,5.9,7.6,6.1,7.6,5.1,5.5,7.7,4.6,6.9,6.6,5.9,8,7.6,5.9,7.5,7.7,7,5.9,7.7,6.6,7.1,7.3,5.5,8,7.1,7.2,6.8,8.5,6.4,7.6,5.7,5.3,7,8.6,6.1,5.5,7.8,7.1,5.6,7.7,8.4,6.9,6,6.9,5.5,7.3,6.6,8.4,7.2,6.6,6.3,6.7,7.1,6.8,6.7,6.7,6.6,7.2,7,5.8,6.6,6.4,6.8,7.4,7.2,6.4,8.5,7,6.7,6.7,6.1,6.6,7.8,5,6.2,6.9,6.2,7.4,6.5,7.3,7.3,8.9,6.4,6.5,7.3,7.3,5.3,8,6,7,7.9,7.1,7.1,7.5,6.5,5.9,7.2,6.5,6.4,7.9,8.5,4.8,7.9,8.7,7,8.2,7.3,6.1,7.4,7.9,4.8,4.7,4,5.7,8.6,6.6,5.8,7.1,5.3,7.8,6.1,5.5,7.6,7.3,7.8,7.8,5.2,5.6,7.8,5.8,7,8.2,5,6,7.5,7.1,7.5,6,6.7,6.1,7.4,7.8,6.9,7.8,6.1,8.6,7.2,5.7,6.8,6.6,6.1,7.2,6,6.4,6.6,3.6,8.2,6.4,6.4,6.7,7.3,6.9,6.2,7.6,8,5.4,7,6.5,5.3,5,6.4,6.3,7,7.8,7,7.9,7.4,6.3,6.4,6.8,6.7,7.4,6.7,6.7,4.9,5.8,7.8,5.4,8.2,7.4,7.2,5.6,7.3,7.5,6.5,8.3,6.8,7.2,3.6,6.2,6,6.6,5.2,7.2,7.6,7.8,6.4,5.9,5.9,7.7,5.4,6,7.5,5.9,5.5,6.4,6.9,5.6,6.1,8.2,6.9,7.3,7.9,5.9,6.9,5.3,6.9,6.4,6.3,7,6.9,7.2,6.7,6.1,5.2,7.6,4.2,6.8,6,6.2,7.4,5.8,6.1,5.3,6.8,6.7,6.4,7.4,8.2,6.2,6.8,7.6,6.2,5.4,8.1,8.4,8.2,5.9,6.7,4.9,6.5,7.6,6.7,7.2,5.8,6.5,6.5,9.2,6.2,7.1,8.7,7.7,4.4,5.8,5.1,6.8,7.5,5.8,6.4,8.7,8.3,8.1,6,7.5,6.9,5.4,7.9,6.9,7.9,8.8,7.5,7.3,6.4,3,7.3,9,7.2,7,3.7,6.7,7.4,8.5,6.8,6.3,5.9,9.3,5.3,5.8,7.2,6.3,6.8,7.7,7.7,8.1,6.5,8,6.8,4,7.3,7.8,7.3,8,7.9,7.6,7.1,8,7.6,7,5.5,6.3,7.9,6.4,6.4,7.7,7.5,8.4,7.3,6.3,7.7,7.7,8.1,6.6,5.7,6.9,7.1,7.2,5.9,6.8,8.6,6.6,7.4,7.1,8,6.5,7,8.8,7.4,6.2,6.9,7.6,7.5,7.2,7.8,7.6,8,7.8,8.3,6.6,7.2,6.3,7.2,5.3,7.6,5.2,7,5,8.1,6.7,7.7,8.3,7.6,5.1,6.1,4.4,8,7,7.3,7.6,7.3,5.9,7.7,6.8,6.4,7.9,6.9,7.2,7.1,7.6,7.9,7.6,7.5,7.1,3.6,7.8,7.2,8.2,8.5,6.5,7.2,6.9,6.3,8.2,5.3,6.8,8.5,8,6.6,7.2,6.9,6.4,7,4.9,6.7,7.8,8.4,7.3,6.7,5.8,6.6,7.8,7.2,7.6,6.6,6.9,6.2,6.6,7.2,8.1,6,8.4,4.9,7.3,7.1,8.3,6,6.9,7.2,7.2,7.6,5.6,7.4,5.7,7.4,6.8,8.5,7.2,6,6.5,6.7,6.8,8.6,7.6,7,7.8,6.5,6.4,6.5,6,8.3,7.3,8.8,6.8,8,6.8,8.5,8.5,8.5,6.2,6.3,6.2,7.7,8.1,8,7.2,7.9,5.6,7.4,8.2,7.4,8.2,7.7,7.4,6.7,7.5,7.4,6.8,8.2,8.1,6.6,7.1,8.4,8.1,8.1,8.4,7.4,7.3,7.8,8,9.1,7.5,6.9,8.1,7.5,7.7,7.3,8,8.4,7.6,6.1,9.2,6.2,6.6,7.6,7.8,6.2],"x":["Don't talk to each other","Don't talk to each other","Only talk about men","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Only talk about men","Only talk about men","Only talk about men","Only talk about men","Dubious","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Only talk about men","Don't talk to each other","Less than 2 women","Dubious","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Dubious","Less than 2 women","Dubious","Only talk about men","Only talk about men","Dubious","Dubious","Less than 2 women","Dubious","Only talk about men","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Less than 2 women","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Dubious","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Only talk about men","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Dubious","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Dubious","Passes Bechdel","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Dubious","Passes Bechdel","Only talk about men","Passes Bechdel","Dubious","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Less than 2 women","Passes Bechdel","Less than 2 women","Only talk about men","Passes Bechdel","Dubious","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Dubious","Dubious","Less than 2 women","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Dubious","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Less than 2 women","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Only talk about men","Less than 2 women","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Don't talk to each other","Less than 2 women","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Less than 2 women","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Less than 2 women","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Less than 2 women","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Dubious","Dubious","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Less than 2 women","Dubious","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Dubious","Dubious","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Dubious","Only talk about men","Don't talk to each other","Only talk about men","Only talk about men","Don't talk to each other","Only talk about men","Passes Bechdel","Passes Bechdel","Less than 2 women","Dubious","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Only talk about men","Don't talk to each other","Dubious","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Dubious","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Dubious","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Only talk about men","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Dubious","Dubious","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Only talk about men","Passes Bechdel","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Less than 2 women","Don't talk to each other","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Only talk about men","Dubious","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Less than 2 women","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Only talk about men","Less than 2 women","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Dubious","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Only talk about men","Dubious","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Dubious","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Dubious","Less than 2 women","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Dubious","Less than 2 women","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Less than 2 women","Dubious","Dubious","Don't talk to each other","Less than 2 women","Dubious","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Dubious","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Less than 2 women","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Less than 2 women","Less than 2 women","Don't talk to each other","Only talk about men","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Dubious","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Don't talk to each other","Only talk about men","Only talk about men","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Dubious","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Don't talk to each other","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Less than 2 women","Less than 2 women","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Less than 2 women","Passes Bechdel","Passes Bechdel","Don't talk to each other","Less than 2 women","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Less than 2 women","Passes Bechdel","Passes Bechdel","Don't talk to each other","Dubious","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Dubious","Don't talk to each other","Passes Bechdel","Less than 2 women","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Only talk about men","Don't talk to each other","Less than 2 women","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Only talk about men","Passes Bechdel","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Less than 2 women","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Dubious","Less than 2 women","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Less than 2 women","Passes Bechdel","Don't talk to each other","Only talk about men","Dubious","Dubious","Less than 2 women","Only talk about men","Passes Bechdel","Passes Bechdel","Less than 2 women","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Only talk about men","Dubious","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Less than 2 women","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Dubious","Passes Bechdel","Less than 2 women","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Don't talk to each other","Dubious","Dubious","Don't talk to each other","Passes Bechdel","Don't talk to each other","Dubious","Only talk about men","Only talk about men","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Dubious","Only talk about men","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Dubious","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Dubious","Dubious","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Less than 2 women","Don't talk to each other","Only talk about men","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Less than 2 women","Only talk about men","Only talk about men","Passes Bechdel","Passes Bechdel","Less than 2 women","Dubious","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Less than 2 women","Passes Bechdel","Only talk about men","Less than 2 women","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Less than 2 women","Less than 2 women","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Dubious","Passes Bechdel","Only talk about men","Less than 2 women","Less than 2 women","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Only talk about men","Less than 2 women","Passes Bechdel","Passes Bechdel","Less than 2 women","Don't talk to each other","Don't talk to each other","Dubious","Don't talk to each other","Less than 2 women","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Dubious","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Dubious","Passes Bechdel","Passes Bechdel","Only talk about men","Only talk about men","Only talk about men","Only talk about men","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Less than 2 women","Only talk about men","Don't talk to each other","Don't talk to each other","Only talk about men","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Only talk about men","Less than 2 women","Only talk about men","Don't talk to each other","Don't talk to each other","Don't talk to each other","Dubious","Dubious","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Don't talk to each other","Don't talk to each other","Dubious","Passes Bechdel","Dubious","Don't talk to each other","Only talk about men","Passes Bechdel","Dubious","Passes Bechdel","Don't talk to each other","Passes Bechdel","Less than 2 women","Passes Bechdel","Only talk about men","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Less than 2 women","Dubious","Only talk about men","Passes Bechdel","Passes Bechdel","Passes Bechdel","Passes Bechdel","Less than 2 women","Only talk about men","Dubious","Dubious","Don't talk to each other","Don't talk to each other","Less than 2 women","Dubious","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Less than 2 women","Passes Bechdel","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Less than 2 women","Dubious","Passes Bechdel","Passes Bechdel","Don't talk to each other","Less than 2 women","Less than 2 women","Less than 2 women","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Less than 2 women","Don't talk to each other","Don't talk to each other","Dubious","Passes Bechdel","Dubious","Only talk about men","Passes Bechdel","Don't talk to each other","Only talk about men","Less than 2 women","Dubious","Don't talk to each other","Passes Bechdel","Only talk about men","Passes Bechdel","Less than 2 women","Don't talk to each other","Don't talk to each other","Passes Bechdel","Only talk about men","Less than 2 women","Passes Bechdel","Passes Bechdel","Dubious","Less than 2 women","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Less than 2 women","Don't talk to each other","Passes Bechdel","Don't talk to each other","Passes Bechdel","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Only talk about men","Dubious","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Only talk about men","Only talk about men","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Passes Bechdel","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Don't talk to each other","Passes Bechdel"],"mode":"markers","marker":{"color":[null,null,8.3,6.8,7.6,6.6,5.4,7.8,5.7,5,7.5,7.4,6.2,7.4,8,6,6.5,7.6,6.8,6.7,null,6.7,5.9,6.8,6.5,null,7.9,5.9,6.8,7,8.2,5.4,null,8.3,5.7,6.7,7.4,6.3,6.8,6.7,null,5.8,6.3,7.4,7.9,7.3,7,6.5,6.4,7.1,null,6.2,5,6,8.1,5.6,null,6.4,5.6,8.3,6.7,7.7,7.1,7.9,4.8,5.6,7.7,6.7,7.6,5.5,7.3,6.4,6.1,6.4,7.4,null,6.7,8.2,5.9,7.9,5.9,6.4,3.9,6.6,6,5.5,5.4,5.8,7.5,8.5,6.8,null,6.9,7.3,7,6.5,7,null,6.4,7.1,6,6.5,7.8,6.6,7.8,5.9,7.3,6,7.2,5.8,5,7.1,7.6,6.5,8.5,7.3,7,null,7.1,7,null,6.6,6.2,null,8.1,7.5,null,null,5.6,7.8,7.4,5.3,4.5,7,6.1,7.1,7.3,6.5,5.5,5.9,7.3,5.9,6.5,7.1,7.2,5.1,7.9,6.8,7.8,6.2,5.5,5.4,6.5,6.3,7.1,null,7.2,8.2,8.6,4.1,6.4,6.8,null,8.1,7.3,7.6,5.4,7.1,6.7,7.4,5.6,6.8,5.7,6.5,7.1,6.5,null,6.3,6.4,5.6,null,null,5.8,7.8,7.4,6.2,7.8,6.5,6.3,null,7,5.2,7.1,6.6,5.7,null,5.5,6.6,6.9,6.8,6.4,6,6.4,5.2,6.7,6.1,null,5.8,6.6,6.9,5.9,7.9,7.3,5.9,5.8,6.4,5.7,5.9,6.8,8.1,5.8,null,6.3,6.1,5.5,6.9,7.6,6.1,6.1,6.6,6.3,null,6.3,5.5,6.4,6.3,6.5,7.4,7.2,6.7,7.4,6.4,7.1,5.4,7,7.1,7.7,7.4,7.6,null,null,6.2,6.7,6.5,5.9,7.1,6.7,5.7,6.7,7.3,7.1,5.4,6.2,6.8,7,7.6,7.3,6,7.1,7.5,5.8,6.1,7.1,7.5,7.1,7.4,8,7.3,null,4.9,5.8,6.1,7.9,5.9,7.3,8.1,6.4,7.3,6.5,7.2,6,4.8,5.5,5.8,6.7,4.9,7,7.1,6.2,6.4,7.3,8.3,7.2,7.7,null,7.3,7.8,6.3,null,7.7,6.5,7.3,7.3,null,7.2,7.5,8.1,7.4,6.3,6.2,6.4,6.4,5.8,7.2,5.7,6.3,6.3,6.3,6.2,7.7,6.3,6.2,5.9,null,6.6,5.2,7.2,null,6.6,6.5,6.8,6.5,5.8,6.2,null,6.4,6.9,5.9,6.5,7.7,6.5,8.2,null,8.8,6.8,7.1,null,7.8,6.3,5.1,7.2,6.5,null,6.7,null,null,7.3,6.4,6.5,null,7.2,5.7,null,6.6,6.4,6.6,7,6.7,7.1,7.2,6.3,6.7,6.4,7.5,7.2,null,6.4,8.1,4.4,6.4,7.3,6.8,6.2,7.9,6.8,5.1,6.4,7,6.6,6.9,6.5,7.9,null,7.5,6.3,7.1,6.2,null,4.4,5.6,6.4,7.4,6.6,6.6,7.8,null,5.4,6,5.4,6,7.6,4.9,5.8,6.4,8.5,null,7.7,null,6.8,null,6.3,7,null,null,null,4.5,5.8,6.3,7.8,6.4,5.8,7.1,6.5,7,7.6,7.3,6.8,7.2,7.3,4.8,7.3,null,5.7,6.4,8,7.1,null,5.3,7,null,7.2,7.4,6.2,6.3,7,null,7.7,6.5,6.4,8,6.7,7.3,null,7.8,null,6.2,7.3,5.6,6.4,5.1,5.8,5.8,7.1,7.3,7.4,null,5.4,6.7,7.1,7.1,8.3,7.4,null,null,null,6.2,7.4,6.5,null,6.6,8,7.3,null,null,5.9,6.4,7.2,6.8,7.1,6.8,null,6.1,null,7,6.1,7.6,5.8,8.1,7.2,6.3,6.7,7.7,null,6.4,5.6,6.4,5.1,5.9,7.8,5.6,5.9,7.8,6.9,6.5,6.4,7.1,6.7,6.3,7.2,7.2,6.7,7.3,7.6,6.7,null,null,6.5,4.7,7.3,6,8.3,7.5,6.6,7.6,7.2,6.8,6.9,5.5,6.8,null,6.5,7.8,6.8,6.8,6.6,6.1,6.4,6.1,6.6,7,7,7.8,7.2,6.5,7.1,4.5,6.4,7.2,7.2,6,7.5,6.6,6.7,6.5,null,7.3,5.6,7.8,7.2,null,6.8,8.2,6.4,6.5,null,4.2,6.1,8,6.3,6.1,7.9,5.8,6,7.6,null,5.8,5.4,4.9,7.7,6,null,null,7,6.7,5.7,3.8,6.7,6.1,6.7,7.4,7.3,7.6,5.4,8.1,6.1,7.3,6.8,6.9,7.4,7.9,7.3,6.9,6.6,7.8,9,5.5,5.3,6.6,5.5,7.6,6.9,7.1,6.8,7.6,7.3,6.2,6.2,null,4.9,8,6.2,6.7,7,5.2,7.1,7.2,null,8,6.7,5.2,7.1,null,6.9,7.5,6.8,7,7.8,6.6,5.9,7.5,7.8,7.1,6.3,6.4,7.2,6.4,7.1,null,7.4,5.8,6.9,7.7,7.2,null,7.7,6.9,6.1,6.2,7.4,6.3,5.4,7.9,6.7,7.2,8.2,7.6,7.1,null,7.3,7.3,6.6,8.2,6.3,6.4,8,null,5.8,8,6.3,null,7.2,6,null,7.8,7.3,7.7,6.3,5.5,7.4,6.1,7.6,8,5.4,7.2,6.4,7.2,6.1,7.4,7.7,8.1,6.4,7.2,null,7.1,6.9,5.8,7.8,7.1,7.5,5.2,5.7,4.5,8,null,7.3,6,7.3,8,7.9,7.5,7,null,4.8,null,5.1,6.8,5.8,6.7,6.3,5.9,6.9,6.2,7.7,7.2,5.7,6.3,8,7.6,7.9,null,7.8,6.1,6.4,7,6.7,5.7,6.3,7.5,8,6.2,null,7.5,null,5.6,null,8.6,6.2,null,6.7,6.6,6.6,6.5,null,5.7,5.5,6.3,7.7,6.2,6.6,5.9,null,6.5,6.8,8.5,6.8,7.4,4.9,6.8,6.9,7,7.6,6.8,7.5,8.5,7.9,7.4,7.6,4.4,7.6,7.1,4.9,7.4,6.8,5.6,4.1,null,null,6.3,8.3,5.4,4.8,2.8,4.1,6.5,7.5,7.7,7.4,6.8,null,8,7.2,6.9,7.1,7.4,4.9,null,5.5,null,6,5.2,5.7,6.2,6.1,7.6,7.2,7.6,4.7,5.9,6.7,6.6,5.8,null,6,7.1,7.1,6.8,7.3,7.2,7.7,7.6,6.9,5.4,7.7,7.4,7.3,7,null,null,7.7,7.2,6.9,null,6.8,6.5,7.1,6.3,6.6,8,6.5,8.2,7.2,6.2,2.1,7.7,5,6,7.7,null,3.4,5.9,6.8,6.9,7.5,7.3,null,6.7,3.5,null,6.9,7.1,5.9,6.7,5.3,6.5,7.4,6,7.5,6.8,8.2,6.8,7.9,6.5,7.8,5.5,null,6.1,6.1,7.5,6.8,5.8,null,7.8,7.3,5.8,5.5,null,8.1,5.8,3.3,6.5,7.3,7.6,6.2,7.9,5.2,7.4,6.7,6.3,8.4,6.7,7.8,6.1,7.7,null,null,6.8,5.4,6.8,7.1,6.5,7.1,7.8,7.4,null,7.5,6.9,8.1,7.5,6.8,6.9,4.7,7,5.9,7.8,6.1,6.9,7.7,6.6,6,8,7.3,7.6,6.1,6.5,7.4,7.2,7.5,7.8,7.7,6.7,6.4,5.8,8,7.3,8,7.4,6.6,5.6,5.2,7.3,6.5,5.4,7.2,5.9,7.7,5.3,6.3,5.6,null,8,6.9,6.7,null,7.2,5.7,5.5,5.4,4.9,5.5,6.2,8.2,6.1,7,null,7.1,5.3,7.6,6.3,5.7,7.3,5.3,5.5,8.2,5.4,null,null,null,7.7,7.4,6.3,7.3,8,6.9,8.1,5.4,6,5.4,7.6,6.2,7.3,6.6,null,4.1,6.8,6.4,5.4,7,5.3,7.7,5.8,8.9,7.2,6.7,6.5,null,6.9,5.6,5.6,7,6.1,null,7.7,7.7,null,6.9,7.2,null,7.6,7.3,6.2,6.7,6.7,5.6,5.6,5.5,8,7.2,3.2,6.4,6.1,5.5,7.6,7.4,7.4,6.4,7.5,6.2,7.3,6.3,5.4,7.6,7,7.2,null,4.9,6.8,6,7.7,null,6.6,6.8,7.1,5.1,7.5,7,7.2,6.1,6.7,4.9,6.7,5.1,6.2,7.3,6.9,6.8,5,6.4,6.8,3.7,5.6,7.9,7.1,6.5,7.6,6.9,8.8,6.4,7.2,7.1,6.8,5.5,5,6.8,5.2,7,6.7,6,7.1,7.7,7.2,5.8,8.2,null,null,5.9,6.1,null,6.7,7.7,7.6,null,null,8.1,4.6,6,6.9,7.5,7.3,6.7,null,7.8,6.2,6.2,4.3,6.9,6,5.3,null,6.6,6.7,7.3,5.7,6.2,null,4.7,7.4,8.1,7.7,null,7.7,null,6.2,5.9,6.1,5.9,7.3,7.9,6.1,5.4,7.1,6.5,5.7,6.6,8.9,6.9,5.9,7.6,6.1,7.6,5.1,5.5,7.7,4.6,6.9,6.6,5.9,8,7.6,5.9,7.5,7.7,7,5.9,7.7,null,6.6,null,7.1,7.3,5.5,8,null,7.1,7.2,6.8,8.5,6.4,7.6,5.7,5.3,null,7,8.6,6.1,5.5,7.8,7.1,null,5.6,7.7,8.4,6.9,6,null,6.9,5.5,7.3,6.6,8.4,7.2,6.6,6.3,null,6.7,7.1,6.8,6.7,6.7,null,6.6,7.2,7,5.8,6.6,6.4,6.8,null,7.4,7.2,6.4,8.5,7,6.7,6.7,6.1,6.6,7.8,5,6.2,null,null,null,6.9,6.2,7.4,6.5,7.3,7.3,8.9,6.4,6.5,7.3,7.3,null,5.3,8,null,6,7,7.9,7.1,null,7.1,7.5,null,6.5,5.9,7.2,6.5,6.4,7.9,8.5,4.8,7.9,8.7,7,8.2,7.3,6.1,7.4,7.9,4.8,4.7,4,5.7,null,8.6,6.6,5.8,7.1,5.3,null,7.8,6.1,5.5,7.6,7.3,null,7.8,null,7.8,5.2,5.6,7.8,5.8,7,8.2,5,6,7.5,7.1,7.5,6,6.7,6.1,7.4,7.8,6.9,7.8,6.1,8.6,7.2,5.7,6.8,6.6,6.1,7.2,6,6.4,6.6,3.6,8.2,6.4,6.4,6.7,7.3,6.9,6.2,7.6,8,null,5.4,null,7,6.5,null,5.3,5,6.4,6.3,7,7.8,7,null,7.9,null,7.4,6.3,6.4,6.8,6.7,7.4,null,6.7,6.7,4.9,5.8,7.8,5.4,8.2,7.4,7.2,5.6,7.3,7.5,6.5,8.3,6.8,7.2,null,3.6,null,null,6.2,6,6.6,null,5.2,7.2,null,7.6,7.8,6.4,5.9,5.9,7.7,5.4,6,7.5,5.9,5.5,6.4,6.9,5.6,6.1,8.2,6.9,7.3,7.9,5.9,6.9,5.3,6.9,6.4,6.3,7,6.9,7.2,null,6.7,6.1,5.2,7.6,4.2,6.8,6,6.2,7.4,5.8,6.1,5.3,6.8,6.7,6.4,7.4,8.2,6.2,6.8,null,7.6,6.2,5.4,8.1,8.4,8.2,5.9,6.7,4.9,6.5,7.6,null,null,6.7,7.2,5.8,6.5,6.5,9.2,6.2,7.1,8.7,7.7,4.4,5.8,5.1,6.8,7.5,null,5.8,6.4,8.7,8.3,8.1,6,7.5,6.9,5.4,7.9,6.9,null,7.9,8.8,7.5,7.3,6.4,3,7.3,9,7.2,7,3.7,6.7,7.4,8.5,6.8,6.3,5.9,9.3,5.3,5.8,7.2,6.3,6.8,7.7,7.7,8.1,6.5,8,6.8,null,null,4,7.3,7.8,7.3,8,7.9,7.6,7.1,8,null,7.6,7,5.5,6.3,null,7.9,6.4,6.4,7.7,7.5,8.4,7.3,6.3,7.7,7.7,null,8.1,null,6.6,5.7,6.9,7.1,7.2,5.9,null,6.8,null,8.6,6.6,7.4,null,null,7.1,8,6.5,7,8.8,7.4,null,6.2,6.9,7.6,7.5,7.2,7.8,7.6,null,8,7.8,8.3,6.6,7.2,6.3,7.2,5.3,7.6,5.2,7,5,8.1,null,6.7,null,7.7,8.3,7.6,5.1,6.1,4.4,8,7,7.3,7.6,7.3,5.9,7.7,6.8,6.4,7.9,6.9,7.2,7.1,7.6,7.9,7.6,7.5,7.1,3.6,7.8,7.2,8.2,8.5,6.5,7.2,null,6.9,6.3,8.2,null,5.3,6.8,8.5,8,6.6,7.2,6.9,6.4,7,4.9,6.7,7.8,null,8.4,7.3,6.7,5.8,6.6,null,7.8,7.2,7.6,6.6,6.9,6.2,6.6,7.2,8.1,6,8.4,4.9,7.3,7.1,8.3,6,6.9,7.2,null,7.2,7.6,5.6,7.4,null,null,5.7,7.4,6.8,8.5,7.2,6,6.5,6.7,6.8,8.6,7.6,7,7.8,null,6.5,6.4,6.5,null,6,8.3,7.3,8.8,6.8,8,6.8,8.5,8.5,8.5,6.2,6.3,6.2,7.7,8.1,8,7.2,7.9,5.6,7.4,8.2,7.4,8.2,7.7,7.4,6.7,7.5,null,7.4,6.8,null,8.2,8.1,6.6,7.1,8.4,8.1,8.1,8.4,null,7.4,7.3,7.8,8,9.1,7.5,6.9,8.1,7.5,7.7,7.3,8,8.4,7.6,6.1,9.2,6.2,6.6,7.6,7.8,null,6.2],"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

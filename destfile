@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Bechdel Test Movie List</title>
+	<link rel="stylesheet" type="text/css" href="/static/btml.css">  <script type="text/javascript" src="/static/js/btml.js"></script>
+	 <link rel="alternate" type="application/rss+xml" title="Bechdel Test Movie List: RSS" href="/rss/">
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies for Google analytics and ads","dismiss":"Got it!","learnMore":"More info","link":"http://bechdeltest.com/privacy/","theme":"dark-bottom"};
+</script>
+
+<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+<!-- End Cookie Consent plugin -->
+
+  </head>
+  <body>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16505174-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>  <!--[if lte IE 6]><script src="/static/ie6/warning.js"></script><script>window.onload=function(){e("/static/ie6/")}</script><![endif]-->
+<div id="top" style="height: 120px;">
+	<h1 style="margin-bottom: 5px"><a href="/" style="text-decoration:none;">Bechdel Test Movie List</a></h1>
+	<div style="margin: 0; float: left; width: 170px; height: 40px; font-family: serif; font-size: 14pt; padding-top: 14px;">
+		<b>/bech&middot;del test/</b> <i>n.</i>
+	</div>
+	<div style="margin: 0; font-family: serif; font-size: 11pt; width: 500px;">
+		<div style="position: relative; left: 0;"><b>1.</b> It has to have at least two [named] women in it</div>
+		<div style="position: relative; left: 25px;"><b>2.</b> Who talk to each other</div>
+		<div style="position: relative; left: 50px;"><b>3.</b> About something besides a man</div>
+	</div>
+</div> <div style="height: 1px;"><br></div>
+<div style="width: 320px; float: left; min-height: 1800px;" class="list">
+<h2>Movie list</h2> <h3><a id="year-2022"></a>2022 <span style="font-size: 10pt; color: gray; font-weight: normal;">(121 movies)</span></h3>   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- movies.tmpl after year -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                      data-ad-client="ca-pub-1658666126988044"
+                           data-ad-slot="8962014212"></ins>
+                           <script>
+                           (adsbygoogle = window.adsbygoogle || []).push({});
+                           </script>    <div class="movie"><a href="https://www.imdb.com/title/tt8356942/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10195" href="/view/10195/the_355/">The 355</a>   <a href="/view/10195/the_355/" onclick="showComments('10195'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10195" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10541410/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10568" href="/view/10568/a_fada_do_lar/">A Fada do Lar</a>   <a href="/view/10568/a_fada_do_lar/" onclick="showComments('10568'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10568" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt2463208/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10263" href="/view/10263/the_adam_project/">The Adam Project</a>   <a href="/view/10263/the_adam_project/" onclick="showComments('10263'); return false;"><img src="/static/comments.png" alt="[6 comment(s) available]"
+				id="comment-img-10263" style="height: 10px; width: 10px;"
+                title="6 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3706352/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10436" href="/view/10436/all_the_old_knives/">All the old knives</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15387742/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10308" href="/view/10308/allra_s&iacute;&eth;asta_vei&eth;ifer&eth;in/">Allra s&iacute;&eth;asta vei&eth;ifer&eth;in</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4998632/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10303" href="/view/10303/ambulance/">Ambulance</a>   <a href="/view/10303/ambulance/" onclick="showComments('10303'); return false;"><img src="/static/comments.png" alt="[3 comment(s) available]"
+				id="comment-img-10303" style="height: 10px; width: 10px;"
+                title="3 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15006566/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10534" href="/view/10534/as_bestas/">As bestas</a>   <a href="/view/10534/as_bestas/" onclick="showComments('10534'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10534" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15445056/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10535" href="/view/10535/athena/">Athena</a>   <a href="/view/10535/athena/" onclick="showComments('10535'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10535" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt19817288/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10582" href="/view/10582/backlash,_misogyny_in_the_digital_age/">Backlash, Misogyny in the Digital Age</a>   <a href="/view/10582/backlash,_misogyny_in_the_digital_age/" onclick="showComments('10582'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10582" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8115900/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10280" href="/view/10280/the_bad_guys/">The Bad Guys</a>   <a href="/view/10280/the_bad_guys/" onclick="showComments('10280'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10280" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11934846/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10400" href="/view/10400/badhaai_do/">Badhaai Do</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11813216/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10620" href="/view/10620/the_banshees_of_inisherin/">The Banshees of Inisherin</a>   <a href="/view/10620/the_banshees_of_inisherin/" onclick="showComments('10620'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10620" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15791034/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10551" href="/view/10551/barbarian/">Barbarian</a>   <a href="/view/10551/barbarian/" onclick="showComments('10551'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10551" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1877830/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10241" href="/view/10241/the_batman_/">The Batman </a>   <a href="/view/10241/the_batman_/" onclick="showComments('10241'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10241" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14145426/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10384" href="/view/10384/beavis_and_butt-head_do_the_universe/">Beavis and Butt-Head do the Universe</a>   <a href="/view/10384/beavis_and_butt-head_do_the_universe/" onclick="showComments('10384'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10384" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9114286/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10609" href="/view/10609/black_panther:_wakanda_forever/">Black Panther: Wakanda Forever</a>   <a href="/view/10609/black_panther:_wakanda_forever/" onclick="showComments('10609'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10609" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8246646/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10461" href="/view/10461/blackbird/">Blackbird</a>   <a href="/view/10461/blackbird/" onclick="showComments('10461'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10461" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14866710/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10428" href="/view/10428/blasted/">Blasted</a>   <a href="/view/10428/blasted/" onclick="showComments('10428'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10428" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1655389/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10517" href="/view/10517/blonde/">Blonde</a>   <a href="/view/10517/blonde/" onclick="showComments('10517'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10517" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt7466442/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10413" href="/view/10413/the_bob&#146;s_burgers_movie/">The Bob&#146;s Burgers Movie</a>   <a href="/view/10413/the_bob&#146;s_burgers_movie/" onclick="showComments('10413'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10413" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8110652/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10445" href="/view/10445/bodies_bodies_bodies/">Bodies Bodies Bodies</a>   <a href="/view/10445/bodies_bodies_bodies/" onclick="showComments('10445'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10445" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13610562/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10278" href="/view/10278/the_bubble/">The Bubble</a>   <a href="/view/10278/the_bubble/" onclick="showComments('10278'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10278" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12593682/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10429" href="/view/10429/bullet_train/">Bullet Train</a>   <a href="/view/10429/bullet_train/" onclick="showComments('10429'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10429" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11727866/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10577" href="/view/10577/catherine_called_birdy/">Catherine Called Birdy</a>   <a href="/view/10577/catherine_called_birdy/" onclick="showComments('10577'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10577" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15248702/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10237" href="/view/10237/catwoman:_hunted/">Catwoman: Hunted</a>   <a href="/view/10237/catwoman:_hunted/" onclick="showComments('10237'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10237" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3513500/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10372" href="/view/10372/chip_&#39;n_dale:_rescue_rangers/">Chip &#39;n Dale: Rescue Rangers</a>   <a href="/view/10372/chip_&#39;n_dale:_rescue_rangers/" onclick="showComments('10372'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10372" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11128440/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10549" href="/view/10549/clerks_iii/">Clerks III</a>   <a href="/view/10549/clerks_iii/" onclick="showComments('10549'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10549" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15438542/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10613" href="/view/10613/code_name_banshee/">Code Name Banshee</a>   <a href="/view/10613/code_name_banshee/" onclick="showComments('10613'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10613" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15096128/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10583" href="/view/10583/crush/">Crush</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10935560/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10484" href="/view/10484/dark_glasses/">Dark Glasses</a>   <a href="/view/10484/dark_glasses/" onclick="showComments('10484'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10484" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14152140/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10500" href="/view/10500/darlings/">Darlings</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt7657566/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10297" href="/view/10297/death_on_the_nile/">Death on the Nile</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10373934/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10554" href="/view/10554/deep_woods/">Deep Woods</a>   <a href="/view/10554/deep_woods/" onclick="showComments('10554'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10554" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1596342/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10621" href="/view/10621/disenchanted/">Disenchanted</a>   <a href="/view/10621/disenchanted/" onclick="showComments('10621'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10621" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13327038/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10487" href="/view/10487/do_revenge/">Do Revenge</a>   <a href="/view/10487/do_revenge/" onclick="showComments('10487'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10487" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9419884/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10314" href="/view/10314/doctor_strange_in_the_multiverse_of_madness/">Doctor Strange in the Multiverse of Madness</a>   <a href="/view/10314/doctor_strange_in_the_multiverse_of_madness/" onclick="showComments('10314'); return false;"><img src="/static/comments.png" alt="[3 comment(s) available]"
+				id="comment-img-10314" style="height: 10px; width: 10px;"
+                title="3 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10731256/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10495" href="/view/10495/don&#39;t_worry_darling/">Don&#39;t Worry Darling</a>   <a href="/view/10495/don&#39;t_worry_darling/" onclick="showComments('10495'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10495" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14614892/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10443" href="/view/10443/dragon_ball_super:_super_hero/">Dragon Ball Super: Super Hero</a>   <a href="/view/10443/dragon_ball_super:_super_hero/" onclick="showComments('10443'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10443" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13932410/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10610" href="/view/10610/el_cuarto_pasajero/">El cuarto pasajero</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3704428/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10386" href="/view/10386/elvis/">Elvis</a>   <a href="/view/10386/elvis/" onclick="showComments('10386'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10386" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13650600/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10421" href="/view/10421/emergency/">Emergency</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15255876/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10447" href="/view/10447/emily_the_criminal/">Emily the Criminal</a>   <a href="/view/10447/emily_the_criminal/" onclick="showComments('10447'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10447" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14641788/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10600" href="/view/10600/enola_holmes_2/">Enola Holmes 2</a>   <a href="/view/10600/enola_holmes_2/" onclick="showComments('10600'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10600" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt6710474/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10304" href="/view/10304/everything_everywhere_all_at_once/">Everything Everywhere All at Once</a>   <a href="/view/10304/everything_everywhere_all_at_once/" onclick="showComments('10304'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10304" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4123432/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10327" href="/view/10327/fantastic_beasts:_the_secrets_of_dumbledore/">Fantastic Beasts: The Secrets of Dumbledore</a>   <a href="/view/10327/fantastic_beasts:_the_secrets_of_dumbledore/" onclick="showComments('10327'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10327" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14317880/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10563" href="/view/10563/final_cut/">Final Cut</a>   <a href="/view/10563/final_cut/" onclick="showComments('10563'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10563" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15218000/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10601" href="/view/10601/fire_island/">Fire Island</a>   <a href="/view/10601/fire_island/" onclick="showComments('10601'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10601" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15010292/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10513" href="/view/10513/flux_gourmet/">Flux Gourmet</a>   <a href="/view/10513/flux_gourmet/" onclick="showComments('10513'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10513" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13403046/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10273" href="/view/10273/fresh/">Fresh</a>   <a href="/view/10273/fresh/" onclick="showComments('10273'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10273" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10083340/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10448" href="/view/10448/gangubai_kathiawadi/">Gangubai Kathiawadi</a>   <a href="/view/10448/gangubai_kathiawadi/" onclick="showComments('10448'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10448" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13352968/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10366" href="/view/10366/good_luck_to_you,_leo_grande/">Good luck to you, Leo Grande</a>   <a href="/view/10366/good_luck_to_you,_leo_grande/" onclick="showComments('10366'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10366" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4273800/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10622" href="/view/10622/the_good_nurse/">The Good Nurse</a>   <a href="/view/10622/the_good_nurse/" onclick="showComments('10622'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10622" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1649418/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10414" href="/view/10414/the_gray_man/">The Gray Man</a>   <a href="/view/10414/the_gray_man/" onclick="showComments('10414'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10414" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10665338/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10564" href="/view/10564/halloween_kills/">Halloween Kills</a>   <a href="/view/10564/halloween_kills/" onclick="showComments('10564'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10564" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11909878/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10502" href="/view/10502/hocus_pocus_2/">Hocus Pocus 2</a>   <a href="/view/10502/hocus_pocus_2/" onclick="showComments('10502'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10502" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11703050/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10397" href="/view/10397/the_house/">The House</a>   <a href="/view/10397/the_house/" onclick="showComments('10397'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10397" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8851148/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10290" href="/view/10290/the_in_between_/">The In Between </a>   <a href="/view/10290/the_in_between_/" onclick="showComments('10290'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10290" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13145534/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10370" href="/view/10370/incroyable_mais_vrai/">Incroyable mais vrai</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12873562/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10518" href="/view/10518/the_invitation/">The Invitation</a>   <a href="/view/10518/the_invitation/" onclick="showComments('10518'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10518" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8041270/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10357" href="/view/10357/jurassic_world_dominion/">Jurassic World Dominion</a>   <a href="/view/10357/jurassic_world_dominion/" onclick="showComments('10357'); return false;"><img src="/static/comments.png" alt="[3 comment(s) available]"
+				id="comment-img-10357" style="height: 10px; width: 10px;"
+                title="3 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14128670/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10339" href="/view/10339/kimi/">Kimi</a>   <a href="/view/10339/kimi/" onclick="showComments('10339'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10339" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14362474/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10581" href="/view/10581/l&#39;autre_rive/">L&#39;autre rive</a>   <a href="/view/10581/l&#39;autre_rive/" onclick="showComments('10581'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10581" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt16953666/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10432" href="/view/10432/la_nuit_du_12/">La nuit du 12</a>   <a href="/view/10432/la_nuit_du_12/" onclick="showComments('10432'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10432" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4139928/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10606" href="/view/10606/the_legend_of_maula_jatt/">The Legend of Maula Jatt</a>   <a href="/view/10606/the_legend_of_maula_jatt/" onclick="showComments('10606'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10606" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10298810/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10371" href="/view/10371/lightyear/">Lightyear</a>   <a href="/view/10371/lightyear/" onclick="showComments('10371'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10371" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14298328/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10464" href="/view/10464/look_both_ways/">Look Both Ways</a>   <a href="/view/10464/look_both_ways/" onclick="showComments('10464'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10464" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13320622/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10299" href="/view/10299/the_lost_city/">The Lost City</a>   <a href="/view/10299/the_lost_city/" onclick="showComments('10299'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10299" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15521050/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10382" href="/view/10382/love_and_gelato/">Love and Gelato</a>   <a href="/view/10382/love_and_gelato/" onclick="showComments('10382'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10382" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15090124/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10444" href="/view/10444/mad_god/">Mad God</a>   <a href="/view/10444/mad_god/" onclick="showComments('10444'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10444" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11671006/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10605" href="/view/10605/the_man_from_toronto/">The Man From Toronto</a>   <a href="/view/10605/the_man_from_toronto/" onclick="showComments('10605'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10605" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14309446/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10596" href="/view/10596/me_time/">Me Time</a>   <a href="/view/10596/me_time/" onclick="showComments('10596'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10596" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13841850/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10325" href="/view/10325/men/">Men</a>   <a href="/view/10325/men/" onclick="showComments('10325'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10325" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9764362/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10515" href="/view/10515/the_menu/">The Menu</a>   <a href="/view/10515/the_menu/" onclick="showComments('10515'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10515" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12141112/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10368" href="/view/10368/metal_lords/">Metal Lords</a>   <a href="/view/10368/metal_lords/" onclick="showComments('10368'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10368" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5113044/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10408" href="/view/10408/minions:_the_rise_of_gru/">Minions: the rise of gru</a>   <a href="/view/10408/minions:_the_rise_of_gru/" onclick="showComments('10408'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10408" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5108870/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10292" href="/view/10292/morbius/">Morbius</a>   <a href="/view/10292/morbius/" onclick="showComments('10292'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10292" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt21848598/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10626" href="/view/10626/the_movie_star/">The Movie Star</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5151570/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10410" href="/view/10410/mrs_harris_goes_to_paris/">Mrs Harris Goes to Paris</a>   <a href="/view/10410/mrs_harris_goes_to_paris/" onclick="showComments('10410'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10410" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11488024/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10615" href="/view/10615/my_grandfather&#39;s_demons/">My Grandfather&#39;s Demons</a>   <a href="/view/10615/my_grandfather&#39;s_demons/" onclick="showComments('10615'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10615" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13139228/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10598" href="/view/10598/my_policeman/">My Policeman</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3726682/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10614" href="/view/10614/nayola/">Nayola</a>   <a href="/view/10614/nayola/" onclick="showComments('10614'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10614" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt7550014/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10242" href="/view/10242/no_exit/">No Exit</a>   <a href="/view/10242/no_exit/" onclick="showComments('10242'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10242" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10954984/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10439" href="/view/10439/nope/">Nope</a>   <a href="/view/10439/nope/" onclick="showComments('10439'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10439" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11138512/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10317" href="/view/10317/the_northman/">The Northman</a>   <a href="/view/10317/the_northman/" onclick="showComments('10317'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10317" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14814040/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10451" href="/view/10451/not_okay/">Not Okay</a>   <a href="/view/10451/not_okay/" onclick="showComments('10451'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10451" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt17146978/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10512" href="/view/10512/the_novelist&#39;s_film_(so-seol-ga-ui_yeong-hwa)/">The Novelist&#39;s Film (So-seol-ga-ui Yeong-hwa)</a>   <a href="/view/10512/the_novelist&#39;s_film_(so-seol-ga-ui_yeong-hwa)/" onclick="showComments('10512'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10512" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13482828/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10616" href="/view/10616/one_fine_morning/">One Fine Morning</a>   <a href="/view/10616/one_fine_morning/" onclick="showComments('10616'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10616" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt16183464/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10627" href="/view/10627/one_piece:_film_red/">One Piece: Film Red</a>   <a href="/view/10627/one_piece:_film_red/" onclick="showComments('10627'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10627" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10623646/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10427" href="/view/10427/paper_girls/">Paper Girls</a>   <a href="/view/10427/paper_girls/" onclick="showComments('10427'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10427" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt18925334/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10516" href="/view/10516/pearl/">Pearl</a>   <a href="/view/10516/pearl/" onclick="showComments('10516'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10516" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4593060/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10501" href="/view/10501/pinocchio/">Pinocchio</a>   <a href="/view/10501/pinocchio/" onclick="showComments('10501'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10501" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11866324/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10433" href="/view/10433/prey/">Prey</a>   <a href="/view/10433/prey/" onclick="showComments('10433'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10433" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15109082/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10510" href="/view/10510/the_quiet_girl_(an_cail&iacute;n_ci&uacute;in)/">The Quiet Girl (An Cail&iacute;n Ci&uacute;in)</a>   <a href="/view/10510/the_quiet_girl_(an_cail&iacute;n_ci&uacute;in)/" onclick="showComments('10510'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10510" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14145004/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10567" href="/view/10567/remains_of_the_wind/">Remains of the Wind</a>   <a href="/view/10567/remains_of_the_wind/" onclick="showComments('10567'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10567" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13989030/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10214" href="/view/10214/the_royal_treatment/">The Royal Treatment</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5500218/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10525" href="/view/10525/samartian/">Samartian</a>   <a href="/view/10525/samartian/" onclick="showComments('10525'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10525" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12048234/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10426" href="/view/10426/save_the_cinema/">Save the Cinema</a>   <a href="/view/10426/save_the_cinema/" onclick="showComments('10426'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10426" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11245972/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10221" href="/view/10221/scream/">Scream</a>   <a href="/view/10221/scream/" onclick="showComments('10221'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10221" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9288046/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10435" href="/view/10435/the_sea_beast/">The Sea Beast</a>   <a href="/view/10435/the_sea_beast/" onclick="showComments('10435'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10435" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5315212/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10323" href="/view/10323/senior_year/">Senior Year</a>   <a href="/view/10323/senior_year/" onclick="showComments('10323'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10323" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15474916/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10532" href="/view/10532/smile/">Smile</a>   <a href="/view/10532/smile/" onclick="showComments('10532'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10532" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12412888/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10279" href="/view/10279/sonic_the_hedgehog_2/">Sonic the Hedgehog 2</a>   <a href="/view/10279/sonic_the_hedgehog_2/" onclick="showComments('10279'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10279" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9783600/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10365" href="/view/10365/spiderhead/">Spiderhead</a>   <a href="/view/10365/spiderhead/" onclick="showComments('10365'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10365" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11897478/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10595" href="/view/10595/the_stranger/">The Stranger</a>   <a href="/view/10595/the_stranger/" onclick="showComments('10595'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10595" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14444726/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10586" href="/view/10586/tar/">Tar</a>   <a href="/view/10586/tar/" onclick="showComments('10586'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10586" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt18250460/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10387" href="/view/10387/teen_titans_go!_&amp;_dc_super_hero_girls:_mayhem_in_the_multiverse/">Teen Titans Go! &amp; DC Super Hero Girls: Mayhem in the Multiverse</a>   <a href="/view/10387/teen_titans_go!_&amp;_dc_super_hero_girls:_mayhem_in_the_multiverse/" onclick="showComments('10387'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10387" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10403420/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10580" href="/view/10580/terrifier_2/">Terrifier 2</a>   <a href="/view/10580/terrifier_2/" onclick="showComments('10580'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10580" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11755740/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10257" href="/view/10257/texas_chainsaw_massacre/">Texas Chainsaw Massacre</a>   <a href="/view/10257/texas_chainsaw_massacre/" onclick="showComments('10257'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10257" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12262116/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10441" href="/view/10441/thirteen_lives/">Thirteen Lives</a>   <a href="/view/10441/thirteen_lives/" onclick="showComments('10441'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10441" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10648342/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10395" href="/view/10395/thor:_love_and_thunder/">Thor: Love and Thunder</a>   <a href="/view/10395/thor:_love_and_thunder/" onclick="showComments('10395'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10395" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1745960/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10333" href="/view/10333/top_gun:_maverick/">Top Gun: Maverick</a>   <a href="/view/10333/top_gun:_maverick/" onclick="showComments('10333'); return false;"><img src="/static/comments.png" alt="[7 comment(s) available]"
+				id="comment-img-10333" style="height: 10px; width: 10px;"
+                title="7 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14913250/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10536" href="/view/10536/tout_le_monde_aime_jeanne/">Tout le monde aime Jeanne</a>   <a href="/view/10536/tout_le_monde_aime_jeanne/" onclick="showComments('10536'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10536" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt7322224/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10508" href="/view/10508/triangle_of_sadness/">Triangle of Sadness</a>   <a href="/view/10508/triangle_of_sadness/" onclick="showComments('10508'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10508" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8097030/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10251" href="/view/10251/turning_red/">Turning Red</a>   <a href="/view/10251/turning_red/" onclick="showComments('10251'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10251" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13235822/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10243" href="/view/10243/umma/">Umma</a>   <a href="/view/10243/umma/" onclick="showComments('10243'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10243" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1464335/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10226" href="/view/10226/uncharted/">Uncharted</a>   <a href="/view/10226/uncharted/" onclick="showComments('10226'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10226" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14817272/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10262" href="/view/10262/the_weekend_away/">The Weekend Away</a>   <a href="/view/10262/the_weekend_away/" onclick="showComments('10262'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10262" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt17076046/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10617" href="/view/10617/weird:_the_al_yankovic_story/">Weird: The Al Yankovic Story</a>   <a href="/view/10617/weird:_the_al_yankovic_story/" onclick="showComments('10617'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10617" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5181830/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10641" href="/view/10641/wendell_&amp;_wild/">Wendell &amp; Wild</a>   <a href="/view/10641/wendell_&amp;_wild/" onclick="showComments('10641'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10641" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8093700/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10561" href="/view/10561/the_woman_king/">The Woman King</a>   <a href="/view/10561/the_woman_king/" onclick="showComments('10561'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10561" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13560574/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10369" href="/view/10369/x/">X</a>   </div>   <h3><a id="year-2021"></a>2021 <span style="font-size: 10pt; color: gray; font-weight: normal;">(79 movies)</span></h3>   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- movies.tmpl after year -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                      data-ad-client="ca-pub-1658666126988044"
+                           data-ad-slot="8962014212"></ins>
+                           <script>
+                           (adsbygoogle = window.adsbygoogle || []).push({});
+                           </script>    <div class="movie"><a href="https://www.imdb.com/title/tt14843560/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10065" href="/view/10065/#nofilter/">#Nofilter</a>   <a href="/view/10065/#nofilter/" onclick="showComments('10065'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10065" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9274670/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10196" href="/view/10196/13_minutes/">13 Minutes</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12877640/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10177" href="/view/10177/a_classic_horror_story/">A Classic Horror Story</a>   <a href="/view/10177/a_classic_horror_story/" onclick="showComments('10177'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10177" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13069986/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10233" href="/view/10233/after_we_fell/">After We Fell</a>   <a href="/view/10233/after_we_fell/" onclick="showComments('10233'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10233" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11742798/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10046" href="/view/10046/afterlife_of_the_party/">Afterlife of the Party</a>   <a href="/view/10046/afterlife_of_the_party/" onclick="showComments('10046'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10046" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14091818/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9667" href="/view/9667/ajeeb_daastaans/">Ajeeb Daastaans</a>   <a href="/view/9667/ajeeb_daastaans/" onclick="showComments('9667'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9667" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt6733874/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-9924" href="/view/9924/america:_the_motion_picture/">America: The Motion Picture</a>   <a href="/view/9924/america:_the_motion_picture/" onclick="showComments('9924'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9924" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt0993840/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10113" href="/view/10113/army_of_the_dead/">Army of the Dead</a>   <a href="/view/10113/army_of_the_dead/" onclick="showComments('10113'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10113" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13024674/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10440" href="/view/10440/army_of_thieves/">Army of Thieves</a>   <a href="/view/10440/army_of_thieves/" onclick="showComments('10440'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10440" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9174578/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10471" href="/view/10471/around_the_world_in_80_days/">Around the World in 80 Days</a>   <a href="/view/10471/around_the_world_in_80_days/" onclick="showComments('10471'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10471" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13575806/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10385" href="/view/10385/back_to_the_outback/">Back to the Outback</a>   <a href="/view/10385/back_to_the_outback/" onclick="showComments('10385'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10385" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3797512/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9713" href="/view/9713/barb_and_star_go_to_vista_del_mar/">Barb and Star Go to Vista Del Mar</a>   <a href="/view/9713/barb_and_star_go_to_vista_del_mar/" onclick="showComments('9713'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9713" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14324650/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10373" href="/view/10373/batman:_the_long_halloween,_part_one/">Batman: The Long Halloween, Part One</a>   <a href="/view/10373/batman:_the_long_halloween,_part_one/" onclick="showComments('10373'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10373" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14402926/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10377" href="/view/10377/batman:_the_long_halloween,_part_two/">Batman: The Long Halloween, Part Two</a>   <a href="/view/10377/batman:_the_long_halloween,_part_two/" onclick="showComments('10377'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10377" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4995540/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10199" href="/view/10199/being_the_ricardos/">Being The Ricardos</a>   <a href="/view/10199/being_the_ricardos/" onclick="showComments('10199'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10199" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt12789558/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10213" href="/view/10213/belfast/">Belfast</a>   <a href="/view/10213/belfast/" onclick="showComments('10213'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-10213" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13651628/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10473" href="/view/10473/belle/">Belle</a>   <a href="/view/10473/belle/" onclick="showComments('10473'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10473" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11621960/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10566" href="/view/10566/bem_bom/">Bem Bom</a>   <a href="/view/10566/bem_bom/" onclick="showComments('10566'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10566" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt6823148/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10367" href="/view/10367/benedetta/">Benedetta</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10341034/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10431" href="/view/10431/black_box/">Black Box</a>   <a href="/view/10431/black_box/" onclick="showComments('10431'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10431" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3480822/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9953" href="/view/9953/black_widow/">Black Widow</a>   <a href="/view/9953/black_widow/" onclick="showComments('9953'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-9953" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11127680/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10200" href="/view/10200/boiling_point/">Boiling Point</a>   <a href="/view/10200/boiling_point/" onclick="showComments('10200'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10200" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5492808/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10120" href="/view/10120/borga/">Borga</a>   <a href="/view/10120/borga/" onclick="showComments('10120'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10120" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13266998/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10454" href="/view/10454/bull/">Bull</a>   <a href="/view/10454/bull/" onclick="showComments('10454'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10454" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11196036/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10360" href="/view/10360/the_card_counter/">The Card Counter</a>   <a href="/view/10360/the_card_counter/" onclick="showComments('10360'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10360" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9130508/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-9571" href="/view/9571/cherry/">Cherry</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10155932/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10036" href="/view/10036/cinderella/">Cinderella</a>   <a href="/view/10036/cinderella/" onclick="showComments('10036'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10036" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10366460/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10076" href="/view/10076/coda/">CODA</a>   <a href="/view/10076/coda/" onclick="showComments('10076'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10076" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt6802400/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9519" href="/view/9519/coming_2_america/">Coming 2 America</a>   <a href="/view/9519/coming_2_america/" onclick="showComments('9519'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9519" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt7069210/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-9914" href="/view/9914/the_conjuring:_the_devil_made_me_do_it/">The Conjuring: The Devil Made Me Do It</a>   <a href="/view/9914/the_conjuring:_the_devil_made_me_do_it/" onclick="showComments('9914'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9914" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10483044/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9647" href="/view/9647/cousins/">Cousins</a>   <a href="/view/9647/cousins/" onclick="showComments('9647'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9647" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt3228774/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9861" href="/view/9861/cruella/">Cruella</a>   <a href="/view/9861/cruella/" onclick="showComments('9861'); return false;"><img src="/static/comments.png" alt="[5 comment(s) available]"
+				id="comment-img-9861" style="height: 10px; width: 10px;"
+                title="5 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8110246/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10309" href="/view/10309/dark_web:_cicada_3301/">Dark Web: Cicada 3301</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9357050/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10224" href="/view/10224/dear_evan_hansen/">Dear Evan Hansen</a>   <a href="/view/10224/dear_evan_hansen/" onclick="showComments('10224'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10224" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11286314/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10168" href="/view/10168/don&#146;t_look_up/">Don&#146;t Look Up</a>   <a href="/view/10168/don&#146;t_look_up/" onclick="showComments('10168'); return false;"><img src="/static/comments.png" alt="[7 comment(s) available]"
+				id="comment-img-10168" style="height: 10px; width: 10px;"
+                title="7 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14039582/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10014" href="/view/10014/drive_my_car/">Drive My Car</a>   <a href="/view/10014/drive_my_car/" onclick="showComments('10014'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10014" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5144174/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-9498" href="/view/9498/the_dry/">The Dry</a>   <a href="/view/9498/the_dry/" onclick="showComments('9498'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9498" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1160419/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10052" href="/view/10052/dune/">Dune</a>   <a href="/view/10052/dune/" onclick="showComments('10052'); return false;"><img src="/static/comments.png" alt="[28 comment(s) available]"
+				id="comment-img-10052" style="height: 10px; width: 10px;"
+                title="28 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt2953050/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10151" href="/view/10151/encanto/">Encanto</a>   <a href="/view/10151/encanto/" onclick="showComments('10151'); return false;"><img src="/static/comments.png" alt="[5 comment(s) available]"
+				id="comment-img-10151" style="height: 10px; width: 10px;"
+                title="5 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9844522/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10043" href="/view/10043/escape_room:_tournament_of_champions/">Escape Room: Tournament of Champions</a>   <a href="/view/10043/escape_room:_tournament_of_champions/" onclick="showComments('10043'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10043" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9032400/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10118" href="/view/10118/eternals/">Eternals</a>   <a href="/view/10118/eternals/" onclick="showComments('10118'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10118" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15943414/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10158" href="/view/10158/every_time_a_bell_rings/">Every Time a Bell Rings</a>   <a href="/view/10158/every_time_a_bell_rings/" onclick="showComments('10158'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10158" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt13086274/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10590" href="/view/10590/everything_will_change/">Everything Will Change</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt15526040/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10132" href="/view/10132/eye_of_the_beholder/">Eye of the Beholder</a>   <a href="/view/10132/eye_of_the_beholder/" onclick="showComments('10132'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10132" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9115530/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10047" href="/view/10047/the_eyes_of_tammy_faye/">The Eyes of Tammy Faye</a>   <a href="/view/10047/the_eyes_of_tammy_faye/" onclick="showComments('10047'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10047" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5433138/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9917" href="/view/9917/f9_-_the_fast_saga/">F9 - The Fast Saga</a>   <a href="/view/9917/f9_-_the_fast_saga/" onclick="showComments('9917'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9917" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4733624/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9913" href="/view/9913/fatherhood/">Fatherhood</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt6566576/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9963" href="/view/9963/fear_street:_part_one_-_1994/">Fear Street: Part One - 1994</a>   <a href="/view/9963/fear_street:_part_one_-_1994/" onclick="showComments('9963'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9963" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9701942/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10006" href="/view/10006/fear_street:_part_three_-_1666/">Fear Street: Part Three - 1666</a>   <a href="/view/10006/fear_street:_part_three_-_1666/" onclick="showComments('10006'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10006" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9701940/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9965" href="/view/9965/fear_street:_part_two_-_1978/">Fear Street: Part Two - 1978</a>   <a href="/view/9965/fear_street:_part_two_-_1978/" onclick="showComments('9965'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9965" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10332588/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9473" href="/view/9473/finding_&#39;ohana/">Finding &#39;Ohana</a>   <a href="/view/9473/finding_&#39;ohana/" onclick="showComments('9473'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9473" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14371426/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10261" href="/view/10261/flashback/">Flashback</a>   <a href="/view/10261/flashback/" onclick="showComments('10261'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10261" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9714030/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10537" href="/view/10537/france/">France</a>   <a href="/view/10537/france/" onclick="showComments('10537'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10537" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt6264654/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10012" href="/view/10012/free_guy/">Free Guy</a>   <a href="/view/10012/free_guy/" onclick="showComments('10012'); return false;"><img src="/static/comments.png" alt="[8 comment(s) available]"
+				id="comment-img-10012" style="height: 10px; width: 10px;"
+                title="8 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8847712/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10115" href="/view/10115/the_french_dispatch/">The French Dispatch</a>   <a href="/view/10115/the_french_dispatch/" onclick="showComments('10115'); return false;"><img src="/static/comments.png" alt="[5 comment(s) available]"
+				id="comment-img-10115" style="height: 10px; width: 10px;"
+                title="5 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14034966/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10355" href="/view/10355/g&ucirc;zen_to_s&ocirc;z&ocirc;_[wheel_of_fortune_and_fantasy]/">G&ucirc;zen to s&ocirc;z&ocirc; [Wheel of Fortune and Fantasy]</a>   <a href="/view/10355/g&ucirc;zen_to_s&ocirc;z&ocirc;_[wheel_of_fortune_and_fantasy]/" onclick="showComments('10355'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10355" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4513678/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10361" href="/view/10361/ghostbusters:_afterlife/">Ghostbusters: Afterlife</a>   <a href="/view/10361/ghostbusters:_afterlife/" onclick="showComments('10361'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10361" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5034838/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10259" href="/view/10259/godzilla_vs_kong/">Godzilla Vs Kong</a>   <a href="/view/10259/godzilla_vs_kong/" onclick="showComments('10259'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10259" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8231668/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10017" href="/view/10017/good_on_paper/">Good on Paper</a>   <a href="/view/10017/good_on_paper/" onclick="showComments('10017'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10017" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14775784/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-10307" href="/view/10307/great_freedom/">Great Freedom</a>   <a href="/view/10307/great_freedom/" onclick="showComments('10307'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10307" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9243804/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10015" href="/view/10015/the_green_knight/">The Green Knight</a>   <a href="/view/10015/the_green_knight/" onclick="showComments('10015'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-10015" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9421570/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10079" href="/view/10079/the_guilty/">The Guilty</a>   <a href="/view/10079/the_guilty/" onclick="showComments('10079'); return false;"><img src="/static/comments.png" alt="[3 comment(s) available]"
+				id="comment-img-10079" style="height: 10px; width: 10px;"
+                title="3 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8368408/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9997" href="/view/9997/gunpowder_milkshake/">Gunpowder Milkshake</a>   <a href="/view/9997/gunpowder_milkshake/" onclick="showComments('9997'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9997" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10696784/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10123" href="/view/10123/the_harder_they_fall/">The Harder They Fall</a>   <a href="/view/10123/the_harder_they_fall/" onclick="showComments('10123'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10123" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8718158/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10520" href="/view/10520/the_hating_game/">The Hating Game</a>   <a href="/view/10520/the_hating_game/" onclick="showComments('10520'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10520" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14371818/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10604" href="/view/10604/hear_me_out/">Hear Me Out</a>   <a href="/view/10604/hear_me_out/" onclick="showComments('10604'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10604" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9286908/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-9500" href="/view/9500/high_ground/">High Ground</a>   <a href="/view/9500/high_ground/" onclick="showComments('9500'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9500" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4552196/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10285" href="/view/10285/hiraeth/">Hiraeth</a>   <a href="/view/10285/hiraeth/" onclick="showComments('10285'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10285" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt8385148/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-9984" href="/view/9984/the_hitman&#39;s_wife&#39;s_bodyguard/">The Hitman&#39;s Wife&#39;s Bodyguard</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt11214590/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-10459" href="/view/10459/house_of_gucci/">House of Gucci</a>   <a href="/view/10459/house_of_gucci/" onclick="showComments('10459'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10459" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt1321510/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-9889" href="/view/9889/in_the_heights/">In the Heights</a>   <a href="/view/9889/in_the_heights/" onclick="showComments('9889'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-9889" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10868922/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"></a>
+		<a id="movie-10023" href="/view/10023/the_influencer/">The Influencer</a>   <a href="/view/10023/the_influencer/" onclick="showComments('10023'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10023" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt5012504/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10380" href="/view/10380/injustice/">Injustice</a>   <a href="/view/10380/injustice/" onclick="showComments('10380'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10380" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt4028464/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10624" href="/view/10624/the_innocents_/">The innocents </a>   <a href="/view/10624/the_innocents_/" onclick="showComments('10624'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10624" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14544192/"><img src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"></a>
+		<a id="movie-9954" href="/view/9954/inside/">Inside</a>   <a href="/view/9954/inside/" onclick="showComments('9954'); return false;"><img src="/static/comments.png" alt="[4 comment(s) available]"
+				id="comment-img-9954" style="height: 10px; width: 10px;"
+                title="4 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt10228134/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-10399" href="/view/10399/jolt/">Jolt</a>   <a href="/view/10399/jolt/" onclick="showComments('10399'); return false;"><img src="/static/comments.png" alt="[1 comment(s) available]"
+				id="comment-img-10399" style="height: 10px; width: 10px;"
+                title="1 comment"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt9784798/"><img src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"></a>
+		<a id="movie-9513" href="/view/9513/judas_and_the_black_messiah/">Judas and The Black Messiah</a>   <a href="/view/9513/judas_and_the_black_messiah/" onclick="showComments('9513'); return false;"><img src="/static/comments.png" alt="[3 comment(s) available]"
+				id="comment-img-9513" style="height: 10px; width: 10px;"
+                title="3 comments"></a>  </div>   <div class="movie"><a href="https://www.imdb.com/title/tt14331144/"><img src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"></a>
+		<a id="movie-10618" href="/view/10618/jujutsu_kaisen_0/">Jujutsu Kaisen 0</a>   </div>   <div class="movie"><a href="https://www.imdb.com/title/tt0870154/"><img src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man, although dubious]"></a>
+		<a id="movie-9996" href="/view/9996/jungle_cruise/">Jungle Cruise</a>   <a href="/view/9996/jungle_cruise/" onclick="showComments('9996'); return false;"><img src="/static/comments.png" alt="[2 comment(s) available]"
+				id="comment-img-9996" style="height: 10px; width: 10px;"
+                title="2 comments"></a>  </div> <div style="border: 2px dashed white; margin-top: 3px; margin-right: 14px; padding: 3px; background-color: #CFE8CC; text-align: center;">    <a href="?page=1" style="position: relative; top: 1px;">continued on next page</a>
+    <a href="?page=1"><img style="vertical-align: middle; padding-left: 10px;" src="/static/next.png" alt="[next page]"></a>   <div style="margin-top: 7px; font-size: 80%;"><a href="/search/">You can also search or list per year</a>, or <a href="?list=all">list all movies</a>.</div>
+</div>
+</div>
+
+<div>
+<h2>About</h2>
+<p>The <b>Bechdel Test</b>, or <b><a href="https://www.independent.co.uk/arts-entertainment/films/news/please-stop-calling-it-the-bechdel-test-says-alison-bechdel-10474730.html">Bechdel-Wallace Test</a></b>, sometimes called the <i>Mo Movie Measure</i> or <i>Bechdel Rule</i> is a simple test which names the following three criteria: (1) it has to have at least two women in it, who (2) who talk to each other, about (3) something besides a man. The test was popularized by <b>Alison Bechdel</b>'s comic, the name of which Google won't let me put on this page for inciting hate, in a 1985 strip called <a href="https://dykestowatchoutfor.com/the-rule/"><i>The Rule</i></a>. For a nice video introduction to the subject please check out <a href="http://www.feministfrequency.com/2009/12/the-bechdel-test-for-women-in-movies/">The Bechdel Test for Women in Movies</a> on <a href="http://www.feministfrequency.com/">feministfrequency.com</a>.</p>
+<p>If you need access to the raw data, check out the <a href="/api/v1/doc">docs for the api</a>.</p>
+
+<h2><a href="/add/" style="text-decoration: none;">Add a movie</a></h2>
+<p>If you want to add a movie to this list, please go to the <a href="/add/" style="text-decoration: underline; font-weight: bold">Add a movie</a> page and fill in the form. If you disagree with a rating, please leave a comment on the appropriate movie page instead.</p>
+<!--
+<h2>Icons</h2>
+<div class="movie"><img src="/static/nowomen.png" alt="[Red cross icon]"> Fewer than two women in this movie</div>
+<div class="movie"><img src="/static/notalk.png" alt="[Mute icon]"> There are two or more women in this movie, but they don't talk to each other</div>
+<div class="movie"><img src="/static/men.png" alt="[Ties icon]"> There are two or more women in this movie, but they only talk to each other about a man</div>
+<div class="movie"><img src="/static/ok.png" alt="[Smiley icon]"> There are two or more women in this movie and they talk to each other about something other than a man<sup>*</sup></div>
+<div class="movie"><img src="/static/comments.png" style="height: 10px; width: 10px; margin: 0 3px 0 3px;" alt="[Talk bubble icon]"> There is a comment for this movie</div>
+<div class="movie"><img src="/static/reviews.png" style="height: 10px; width: 10px; margin: 0 3px 0 3px;" alt="[Article icon]"> There are links to reviews available for this movie</div>
+<p style="font-size: 9pt;">* Please keep in mind that a movie scoring a <img src="/static/ok.png" alt="[Smiley]" style="width: 12px; height:12px;"> does not mean it is at all &quot;good&quot; or feminist friendly, just that it passes all tests.</p>
+<p>If there is an exclamation mark over the icon (eg. <img src="/static/ok-disagree.png" alt="[OK-disagree]" style="height: 12px;">), someone who has left a comment doesn't agree with the rating (and hopefully explains why).</p>
+-->
+
+<h2>Recent activity</h2>
+<p>Currently 9802 movies in the database. The five latest additions:</p>  2022-11-28 23:34: <img  style="width: 10px; height: 10px;" src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"> <a href="/view/10641/wendell_&amp;_wild">Wendell &amp; Wild</a> (2022)<br>  2022-11-28 00:17: <img  style="width: 10px; height: 10px;" src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"> <a href="/view/10639/the_tower">The Tower</a> (2018)<br>  2022-11-27 15:51: <img  style="width: 10px; height: 10px;" src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"> <a href="/view/10638/different_flowers">Different Flowers</a> (2017)<br>  2022-11-27 06:37: <img  style="width: 10px; height: 10px;" src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"> <a href="/view/10637/sidewalk_stories">Sidewalk Stories</a> (1989)<br>  2022-11-27 06:33: <img  style="width: 10px; height: 10px;" src="/static/pass.png" alt="[[3]]" title="[There are two or more women in this movie and they talk to each other about something other than a man]"> <a href="/view/10636/swing_girls">Swing Girls</a> (2004)<br>  <p>The five latest comments were on:</p>  2022-12-04 21:38: <img  style="width: 10px; height: 10px;" src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"> <a href="/view/10648/joe_kidd">Joe Kidd</a> (1972)<br>  2022-12-04 17:37: <img  style="width: 10px; height: 10px;" src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"> <a href="/view/10551/barbarian">Barbarian</a> (2022)<br>  2022-12-04 16:38: <img  style="width: 10px; height: 10px;" src="/static/nopass.png" alt="[[0]]" title="[Fewer than two women in this movie]"> <a href="/view/10551/barbarian">Barbarian</a> (2022)<br>  2022-12-04 09:13: <img  style="width: 10px; height: 10px;" src="/static/nopass.png" alt="[[1]]" title="[There are two or more women in this movie, but they don't talk to each other]"> <a href="/view/2361/dead_poets_society">Dead Poets Society</a> (1989)<br>  2022-12-04 06:14: <img  style="width: 10px; height: 10px;" src="/static/nopass.png" alt="[[2]]" title="[There are two or more women in this movie, but they only talk to each other about a man]"> <a href="/view/10647/zandy&#39;s_bride">Zandy&#39;s Bride</a> (1974)<br>  <h2>The list</h2>
+<p>The list you see to the left of this text consists of an icon with the result of the tests (explained below), the title (clicking it will take you to its <i>details</i> page, where you can find the reviews and comments) and finally two optional icons, also explained below. Clicking the icon before the title will take you to the movie's IMDb page.</p>
+<p>For the sake of practicality, I've taken the liberty to read the first criterion as only <em>named</em> female characters counting.</p>
+<p>There are currently 9802 movies listed. Some <a href="/statistics/">stats and graphs</a> are available. Be sure to check out <a href="http://www.reddit.com/r/dataisbeautiful/comments/1hn1l3/ten_graphics_on_the_bechdel_test_oc/">Ten graphics on the Bechdel test</a> on Reddit for more graphs.</p>
+<p>You can also view the list sorted by  <a href="/sort/title">title</a>, <a href="/sort/added">date added</a> (latest first), <a href="/sort/commentcount">number of comments</a>, <a href="/sort/reviewcount">number of reviews</a> or <a href="/sort/rating">rating</a>.<br>An <a href="/rss/">RSS feed</a><img src="/static/rss.png" alt="[RSS icon]" style="height: 12px; width: 12px; margin-left: 4px;"> is also available, listing the latest 50 movies added to the list.</p>
+<p>You can view just the <a href="/top250/">Movies in the IMDb Top 250</a> and last but not least, you can <a href="/search/">search the list</a>.</p>
+
+<h2>Links</h2>
+
+<h3>About the Bechdel test</h3>
+<p><a href="http://en.wikipedia.org/wiki/Bechdel_test">Wikipedia: Bechdel test</a></p>
+<p><a href="http://squarise.com/2011/09/bechdel-test-is-matters/">The Bechdel Test: What It Is, And Why It Matters</a></p>
+<p><a href="http://tvtropes.org/pmwiki/pmwiki.php/UsefulNotes/TheBechdelTest">TV Tropes Wiki: The Bechdel Test</a></p>
+
+<h3>Articles</h3>
+<p><a href="http://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/">The Dollar-And-Cents Case Against Hollywood's Exclusion of Women</a></p>
+<p><a href="http://www.overthinkingit.com/2010/10/11/female-character-flowchart/">The Female Character Flowchart</a></p>
+<p><a href="http://latimesblogs.latimes.com/movies/2010/02/where-are-the-women-.html">Memo to all women: No half for you in Hollywood</a></p>
+<p><a href="http://socialjusticefeminist.blogspot.com/2008/05/cartoons-are-more-than-just.html">Cartoons are more than just entertainment</a></p>
+<p><a href="http://www.npr.org/templates/story/story.php?storyId=94202522">The 'Bechdel Rule,' Defining Pop-Culture Character</a></p>
+
+<h3>Review sites</h3>
+<p><a href="http://www.womenandhollywood.com/">Women &amp; Hollywood</a></p>
+
+</div>
+
+<div style="clear:both; padding-top: 10px;">
+<hr>
+  <div style="color: gray; font-size: 8pt;">
+	<p>This website is <b>in no way</b> affiliated with <a href="http://dykestowatchoutfor.com/">Alison Bechdel</a>. Icons from Tango Desktop Project.</p>
+    <p>The list and ratings are licensed under under <a href="http://creativecommons.org/licenses/by-nc/3.0/"><img src="/static/by-nc-30-80x15.png" alt="Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)" title="Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)"></a>. Comments on movies are owned by whoever posted them and are not covered by this license.</p>
+  </div>
+</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Bottom Leaderboard -->
+<ins class="adsbygoogle"
+    style="display:inline-block;width:728px;height:90px"
+    data-ad-client="ca-pub-1658666126988044"
+    data-ad-slot="3252357817"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script> <p style="margin: 0; padding: 0;"><a href="/privacy/" style="font-size: 7pt; color: gray;">Privacy policy</a></p>
+  </body>
+</html>
