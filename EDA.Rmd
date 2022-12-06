@@ -4,7 +4,7 @@ output:
   html_document:
     toc: true
     toc_float: true
-    code_folding: "show"
+    code_folding: "hide"
 date: "2022-12-05"
 ---
 
@@ -21,13 +21,14 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
 ## Data Sources and Overview 
-The source of the dataset comes from R for Data Science's Tidy Tuesday Project, which provides weekly releases of raw datasets for users to wrangle and analyze. The data itself originates from FiveThirtyEight, which merges data from several sources:
 
-* IMDB: Provides information about each film, such as year, runtime, genre, language, rating.
-* BechdelTest.com: Provides year, title, and a Bechdel Test score ranging from 0-3.
-* The-Numbers.com: Provides information about budget and revenue of each movie
+The source of the dataset comes from R for Data Science's [Tidy Tuesday Project](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-03-09), which provides weekly releases of raw datasets for users to wrangle and analyze. The data itself originates from FiveThirtyEight, containing movies ranging from 1970 to 2013, and merges data from several sources:
 
-## Import and tidy
+* **[IMDB](imdb.com)**: Provides information about each film, such as year, runtime, genre, language, rating.
+* **[BechdelTest.com](bechdeltest.com)**: Provides year, title, and a Bechdel Test score ranging from 0-3.
+* **[The-Numbers.com](The-Numbers.com)**: Provides information about budget and revenue of each movie.
+
+## Data Import and Cleaning
 
 ```{r load}
 raw_bechdel = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
@@ -35,9 +36,28 @@ raw_bechdel = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytu
 movies = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
 ```
 
-Talk about the 2 datasets here (# obs, vars, etc.)
+The dataset was distributed in two files, `movies.csv`, `raw_bechdel.csv`.
 
-```{r tidy}
+* `movies.csv`: A data file of `r nrow(movies)` observations and `r ncol(movies)` variables, which includes movies from 1970 to 2013, and contains variables for title, IMDB ID, year, Bechdel test (uncleaned, cleaned, binary pass/fail), genres, ratings, budget, domestic and internationl gross revenue, and 2013-adjusted budget and revenues.
+* `raw_bechdel.csv`: A data file of `r nrow(raw_bechdel)` observations and `r ncol(raw_bechdel)` variables, containing movies from 1888 to 2021, and contains variables for title, movie ID, IMDB ID, and raw Bechdel test score (0 to 3).
+
+### Data cleaning
+
+The data cleaning steps involve the following:
+- Converting character to numeric variables for `domgross`, `intgross`, `domgross_2013`, `intgross_2013`
+- Converting the `binary` character variable to a logical variable that indicates whether the movie passes or fails the Bechdel Test
+- Recoding and relevelling the numeric `decade_code` variable into a `decade` factor variable according to the year of release
+- Recoding and relevelling the `clean_test` variable into 4 levels corresponding to the Bechdel Test criteria:
+  - 0 = Less than 2 women
+  - 1 = Women don't talk to each other
+  - 2 = Women only talk about men
+  - 3 = Dubious (uncertain whether it passes Bechdel Test)
+  - 4 = Passes Bechdel Test
+- Creating a `profit` variable, the difference between 2013-adjusted domestic revenue less budget
+- Renaming key variables to relevant names
+
+
+```{r tidy movies}
 movies = movies %>% 
   mutate(test = as.factor(test), 
          clean_test = fct_recode(clean_test, 
@@ -60,13 +80,26 @@ movies = movies %>%
                             year >= 2010 & year < 2020 ~ "2010 - present"),
          decade_code = as.factor(decade_code),
          title = str_replace(title, "&#39;", "'"),
-         title = str_replace(title, "&amp;", "&")) %>% 
+         title = str_replace(title, "&amp;", "&"),
+         title = str_replace(title, "&agrave;", "à"),
+         title = str_replace(title, "&aring;", "å"),
+         title = str_replace(title, "&auml;", "ä"), 
+         profit = (domgross_2013 + intgross_2013) - budget_2013) %>% 
   rename("pass_bechdel" = binary,
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
-  select(-test, -code, -response, -period_code, -released, -type, -poster, -error)
+  select(year, title:pass_bechdel, budget_2013:intgross_2013, decade:rated, imdb_rating, genre:runtime, profit)
 
+head(movies) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_paper("striped", full_width = F) %>% 
+  kableExtra::scroll_box(width = "100%", height = "200px")
+  
 ```
+
+
+Our resulting dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables, indicating information about each movie's Bechdel Test score, budget, revenue, genre, and ratings.
+
 
 ## Exploratory Data Analysis
 
@@ -78,7 +111,8 @@ movies %>%
   summarise(N = n()) %>% 
   mutate(Proportion = N/sum(N)) %>% 
   rename("Bechdel Test Criterion" = bechdel_score) %>% 
-  knitr::kable(digits = 3)
+  knitr::kable(digits = 3) %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped"))
 ```
 
 
@@ -129,4 +163,12 @@ table %>%
 
 
 ### Bechdel Test by IMDB Rating
+
+```{r}
+movies %>% 
+  plot_ly(y = ~imdb_rating, x = ~bechdel_score, type = "scatter", 
+          mode = "markers", marker = list(color = ~imdb_rating)) %>% 
+  layout(yaxis = list(title = list(text = "IMDB Rating", standoff = 5), tickfont = list(size = 10), gridcolor = "white"),
+         xaxis = list(title = "Bechdel Criterion"), tickfont = list(size = 10), gridcolor = "gray")
+```
 
