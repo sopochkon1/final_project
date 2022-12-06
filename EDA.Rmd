@@ -103,9 +103,6 @@ movies = movies %>%
   rename("pass_bechdel" = binary,
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
-
-  select(year, title:pass_bechdel, budget_2013:intgross_2013, decade:rated, imdb_rating, genre:runtime, profit)
-
   select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, genre:runtime, profit, ROI)
 
 
