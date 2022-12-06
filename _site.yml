@@ -11,6 +11,8 @@ navbar:
         href: Data.html
       - text: "Regression"
         href: Regression.html
+      - text: "Exploratory Analysis"
+        href: EDA.html        
     - text: "Superheroes"
       icon: fa-solid fa-bat
       href: Superheroes.html
