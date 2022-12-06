@@ -6,6 +6,10 @@ output:
     toc_float: true
 ---
 <<<<<<< HEAD
+
+```{r setup}
+=======
+<<<<<<< HEAD
 ```{r setup}
 library(tidyverse)
 library(readr)
@@ -29,10 +33,13 @@ movies_df = read_csv("./bechdel/movies.csv") %>%
 
 raw_bechdel <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
 movies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
+>>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982
 
 ```
 
 
+<<<<<<< HEAD
+=======
 ```{r}
 imdb_json <- jsonlite::parse_json(url("https://raw.githubusercontent.com/brianckeegan/Bechdel/master/imdb_data.json"))
 
@@ -53,3 +60,4 @@ all_imdb
 
 =======
 >>>>>>> 151fca5dff1803b1adaf0629d99092b90616b899
+>>>>>>> 18e45d42df489f6544ccbd546bf7df172f88a982

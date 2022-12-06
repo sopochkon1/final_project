@@ -1,7 +1,71 @@
 ---
 title: "Superheroes"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+    theme: sandstone
+runtime: shiny
+
 ---
+
+```{r setup }
+library(tidyverse)
+library(p8105.datasets)
+library(flexdashboard)
+library(plotly)
+library(viridis)
+
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+Superheroes %>% 
+  group_by(universe) %>%  
+  summarise(proportion = sum(binary== "PASS")/n() * 100) %>% 
+plot_ly(x = ~ universe, y = ~proportion, type = "bar",
+          color = ~ universe, alpha = 0.5) %>%
+    layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
+         xaxis = list(title = "Studio"),
+         yaxis = list(title = "% Movies Passing Bechdel Test",
+                      titlefont = list(size = 8.5)),
+         font = list(size = 10)
+         ) %>%
+  animation_opts(
+    1000, easing = "elastic", redraw = FALSE
+  )
+
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
+
+
+
