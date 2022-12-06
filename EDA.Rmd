@@ -181,6 +181,9 @@ movies %>%
 
 ### Distribution of budgets according to Bechdel scores
 
+Next, we want to explore how movie budgets may differ according to the primacy of women's roles in movies. Grouping by Bechdel score, we can compute the median budget, adjusted to 2013 inflation. 
+
+
 ```{r}
 movies %>% 
   group_by(bechdel_score) %>% 
@@ -195,11 +198,34 @@ movies %>%
   layout(yaxis = list(title = "Movie budget ($)", standoff = 10),
          xaxis = list(title = "Bechdel Criterion" ), 
          legend = list(reverse = TRUE))
+
 ```
 
-Testing the claim
+We can  visualize the median budgets with a bar chart to see that movies featuring two women who don't talk to each other appear to have much larger budgets than the rest. Movies that pass the Bechdel test also appear to have slightly smaller budgets than movies that don't pass.
+
+Next steps...
+
+- F-test (ANOVA) of differences in budget
+
 
 ```{r}
+budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Count",
+    y = "Budget ($, 2013-adjusted)",
+    title = "Distribution of movie budgets")
+
+ggplotly(budget_dist_p)
+
+kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped")) %>%
+  kableExtra::kable_styling(font_size = 12)
 
 ```
 
