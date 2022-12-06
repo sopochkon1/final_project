@@ -32,12 +32,15 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
+
 Superheroes %>% 
-plot_ly(x = ~ universe, y = ~binary, type = "bar",
+  group_by(universe) %>%  
+  summarise(proportion = sum(binary== "PASS")/n() * 100) %>% 
+plot_ly(x = ~ universe, y = ~proportion, type = "bar",
           color = ~ universe, alpha = 0.5) %>%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
          xaxis = list(title = "Studio"),
-         yaxis = list(title = "Bechdel Result",
+         yaxis = list(title = "% Movies Passing Bechdel Test",
                       titlefont = list(size = 8.5)),
          font = list(size = 10)
          ) %>%
