@@ -1,0 +1,119 @@
+---
+title: "Exploratory Data Analysis"
+output: html_document
+date: "2022-12-05"
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(readr)
+library(plotly)
+
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE,
+  fig.dim = c(12, 7))
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+## Data Sources and Overview 
+The source of the dataset comes from R for Data Science's Tidy Tuesday Project, which provides weekly releases of raw datasets for users to wrangle and analyze. The data itself originates from FiveThirtyEight, which merges data from several sources:
+
+* IMDB: Provides information about each film, such as year, runtime, genre, language, rating.
+* BechdelTest.com: Provides year, title, and a Bechdel Test score ranging from 0-3.
+* The-Numbers.com: Provides information about budget and revenue of each movie
+
+## Import and tidy
+
+```{r load}
+raw_bechdel <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
+
+movies <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
+```
+
+Talk about the 2 datasets here (# obs, vars, etc.)
+
+```{r tidy}
+movies = movies %>% 
+  mutate(test = as.factor(test), 
+         clean_test = fct_recode(clean_test, 
+                                 "Less than 2 women" = "nowomen", 
+                                 "Don't talk to each other" = "notalk",
+                                 "Only talk about men" = "men", 
+                                 "Dubious" = "dubious",
+                                 "Passes Bechdel" = "ok"),
+         clean_test = fct_relevel(clean_test, c("Less than 2 women", "Don't talk to each other", 
+                                                "Only talk about men", "Dubious", "Passes Bechdel")),
+         binary = ifelse(binary == "PASS", TRUE, FALSE), 
+         domgross = as.numeric(domgross),
+         intgross = as.numeric(intgross),
+         domgross_2013 = as.numeric(domgross_2013),
+         intgross_2013 = as.numeric(intgross_2013),
+         decade_code = ifelse(year >= 1970 & year < 1980, 5, decade_code),
+         decade_code = ifelse(year >= 1980 & year < 1990, 4, decade_code)) %>% 
+  rename("pass_bechdel" = binary,
+         "bechdel_score" = clean_test) %>% 
+  select(-test, -code, -response, -released, -type, -poster, -error)
+```
+
+## Exploratory Data Analysis
+
+### Distribution of Bechdel Test Scores
+
+```{r}
+movies %>% 
+  group_by(bechdel_score) %>% 
+  summarise(N = n()) %>% 
+  mutate(Proportion = N/sum(N)) %>% 
+  rename("Bechdel Test Criterion" = bechdel_score) %>% 
+  knitr::kable(digits = 3)
+```
+
+
+### Bechdel Test Scores by decade
+
+```{r}
+less2_df = movies %>% 
+  filter(bechdel_score == "Less than 2 women") %>% 
+  group_by(decade_code, bechdel_score) %>% 
+  summarise(n = n()) 
+
+notalk_df = movies %>% 
+  filter(bechdel_score == "Don't talk to each other") %>% 
+  group_by(decade_code, bechdel_score) %>% 
+  summarise(n = n()) 
+
+talkmen_df = movies %>% 
+  filter(bechdel_score == "Only talk about men") %>% 
+  group_by(decade_code, bechdel_score) %>% 
+  summarise(n = n()) 
+
+dubious_df = movies %>% 
+  filter(bechdel_score == "Dubious") %>% 
+  group_by(decade_code, bechdel_score) %>% 
+  summarise(n = n()) 
+
+pass_df = movies %>% 
+  filter(bechdel_score == "Passes Bechdel") %>% 
+  group_by(decade_code, bechdel_score) %>% 
+  summarise(n = n()) 
+
+table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df, .name_repair = "unique")
+
+table %>% 
+  plot_ly(x = ~decade_code...1, y = ~n...3, type = "bar", name = "Critical",
+          marker = list(color = "3f4585ff")) %>% 
+  add_trace(y = ~n...3, name = "", marker = list(color = "22958bff")) %>% 
+  add_trace(y = ~n...6, name = "") %>% 
+  layout(barmode = "stack",
+         xaxis = list(title = "Decade"),
+         yaxis = list(title = "Count"))
+```
+
+
+### Bechdel Test Scores by genre
+
+
+### Bechdel Test by IMDB Rating
+
