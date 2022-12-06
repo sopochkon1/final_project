@@ -16,10 +16,9 @@ knitr::opts_chunk$set(
   warning = FALSE, 
   message = FALSE,
   fig.align = 'center')
-<<<<<<< HEAD
-=======
 
->>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
+
+
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
