@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
   warning = FALSE, 
   message = FALSE,
   fig.align = 'center')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
@@ -55,9 +59,17 @@ The data cleaning steps involve the following:
   - 2 = Women only talk about men
   - 3 = Dubious (uncertain whether it passes Bechdel Test)
   - 4 = Passes Bechdel Test
+<<<<<<< HEAD
 
 - Creating a `profit` variable, the difference between 2013-adjusted domestic revenue less budget
 
+=======
+
+- Creating variables for profit and ROI for each movie. For this, we will use worldwide box office revenue instead of domestic revenue.
+  - `profit` = `intgross_2013 – budget_2013`
+  - `ROI` = `profit / budget_2013`
+
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 - Renaming key variables to relevant names
 
 
@@ -80,7 +92,7 @@ movies = movies %>%
          decade_code = case_when(year >= 1970 & year < 1980 ~ "1970-1979",
                             year >= 1980 & year < 1990 ~ "1980-1989",
                             year >= 1990 & year < 2000 ~ "1990-1999",
-                            year >= 2000 & year < 2010 ~ "2009-2009",
+                            year >= 2000 & year < 2010 ~ "2000-2009",
                             year >= 2010 & year < 2020 ~ "2010 - present"),
          decade_code = as.factor(decade_code),
          title = str_replace(title, "&#39;", "'"),
@@ -88,25 +100,34 @@ movies = movies %>%
          title = str_replace(title, "&agrave;", "à"),
          title = str_replace(title, "&aring;", "å"),
          title = str_replace(title, "&auml;", "ä"), 
-         profit = (domgross_2013 + intgross_2013) - budget_2013) %>% 
+         profit = intgross_2013 - budget_2013,
+         ROI = profit/budget_2013) %>% 
   rename("pass_bechdel" = binary,
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
+<<<<<<< HEAD
   select(year, title:pass_bechdel, budget_2013:intgross_2013, decade:rated, imdb_rating, genre:runtime, profit)
+=======
+  select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, genre:runtime, profit, ROI)
+
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 head(movies) %>% 
   kableExtra::kbl() %>% 
-  kableExtra::kable_paper("striped", full_width = F) %>% 
-  kableExtra::scroll_box(width = "100%", height = "200px")
+  kableExtra::kable_paper("striped", "hover", full_width = F) %>% 
+  kableExtra::scroll_box(width = "100%", height = "300px")
   
 ```
-
 
 Our resulting dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables, indicating information about each movie's Bechdel Test score, budget, revenue, genre, and ratings.
 
 
+<<<<<<< HEAD
 
 ## Exploratory Data Analysis
 
+=======
+## Exploratory Data Analysis
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 
 ### Distribution of Bechdel Test Scores
 
@@ -117,9 +138,8 @@ movies %>%
   mutate(Proportion = N/sum(N)) %>% 
   rename("Bechdel Test Criterion" = bechdel_score) %>% 
   knitr::kable(digits = 3) %>% 
-  kableExtra::kable_styling(bootstrap_options = c("striped"))
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 ```
-
 
 ### Bechdel Test Scores by decade
 
@@ -193,11 +213,45 @@ movies %>%
 ```
 
 We can  visualize the median budgets with a bar chart to see that movies featuring two women who don't talk to each other appear to have much larger budgets than the rest. Movies that pass the Bechdel test also appear to have slightly smaller budgets than movies that don't pass.
+<<<<<<< HEAD
+=======
 
 Next steps...
 
 - F-test (ANOVA) of differences in budget
 
+
+```{r}
+budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Count",
+    y = "Budget ($, 2013-adjusted)",
+    title = "Distribution of movie budgets")
+
+ggplotly(budget_dist_p)
+```
+
+It appears that budget is heavily right-skewed. For this, we will need to run a Kruskal-Wallace test in place of an F-test. Below are the results:
+
+```{r}
+kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+```
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
+
+Next steps...
+
+- F-test (ANOVA) of differences in budget
+
+<<<<<<< HEAD
 
 ```{r}
 budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
@@ -216,3 +270,5 @@ kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>%
   kableExtra::kable_styling(bootstrap_options = c("striped")) %>%
   kableExtra::kable_styling(font_size = 12)
 ```
+=======
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d

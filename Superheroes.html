@@ -24,7 +24,11 @@ window.FlexDashboardComponents = [];
 <script id="flexdashboard-navbar" type="application/json">
 [{"title":"Source Code","icon":"fa-code","href":"source_embed","align":"right"}]
 </script>
+<<<<<<< HEAD
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+=======
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet" />
@@ -1915,8 +1919,13 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
+<<<<<<< HEAD
 <div id="htmlwidget-0f60f1ab5be832690c73" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
 <script type="application/json" data-for="htmlwidget-0f60f1ab5be832690c73">{"x":{"visdat":{"1347a91ac832":["function () ","plotlyVisDat"]},"cur_data":"1347a91ac832","attrs":{"1347a91ac832":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":9.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+=======
+<div id="htmlwidget-c205907617bc42d46702" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c205907617bc42d46702">{"x":{"visdat":{"153d5cacc30d":["function () ","plotlyVisDat"]},"cur_data":"153d5cacc30d","attrs":{"153d5cacc30d":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":8.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 </div>
 </div>
 <div id="section-column-2" class="section level2" data-width="350">
@@ -2012,21 +2021,30 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
+Superheroes = readxl::read_excel("./bechdel/Superheroes.xlsx")
+
 Superheroes %&gt;% 
   group_by(universe) %&gt;%  
+<<<<<<< HEAD
   summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;%
+=======
+  summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;% 
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
           color = ~ universe, alpha = 0.5) %&gt;%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
          xaxis = list(title = "Studio"),
          yaxis = list(title = "% Movies Passing Bechdel Test",
+<<<<<<< HEAD
                       titlefont = list(size = 9.5)),
+=======
+                      titlefont = list(size = 8.5)),
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
          font = list(size = 10)
          ) %&gt;%
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
   )
-
 
 ```
 

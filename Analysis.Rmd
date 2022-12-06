@@ -4,5 +4,32 @@ output:
   html_document:
     toc: true
     toc_float: true
+    code_folding: "hide"
 ---
 
+<<<<<<< HEAD
+=======
+```{r setup}
+library(tidyverse)
+library(readr)
+
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE,
+  fig.dim = c(12, 7))
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+```
+
+
+# Import and tidy
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+>>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
