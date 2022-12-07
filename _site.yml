@@ -4,7 +4,11 @@ navbar:
   title: "Home"
   right:
     - text: "About"
-      href: about.html
+      menu:
+      - text: "The Project"
+        href: about.html
+      - text: "Us"
+        href: About_Us.html
     - text: "Project Report"
       href: report.html
     - text: "Analysis"

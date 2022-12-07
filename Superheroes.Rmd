@@ -21,7 +21,9 @@ library(shiny)
 Superheroes = 
   readxl::read_excel("bechdel/Superheroes.xlsx")
 
-
+Superheroes_binary = 
+  Superheroes %>% 
+  select(title, binary)
 
 
 ```
@@ -30,35 +32,39 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-studio = Superheroes %>% distinct(universe) 
+titles = Superheroes %>%  distinct(title) %>% pull()
 
 selectInput(
-  inputId = "studio_choice",
-  label = h3("Studio"),
-  choices = studio
+  inputId = "movie_choice",
+  label = h3("Title"),
+  choices = titles
 )
 
-fluidPage(
+#fluidPage(
   # Copy the line below to make a text input box
-  textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
-  hr(),
-  fluidRow(column(3, verbatimTextOutput("value"))))
-      
+  #textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
+ # hr(),
+ # fluidRow(column(3, verbatimTextOutput("value"))))
 
+
+studios = Superheroes %>% distinct(universe) 
+
+radioButtons(
+  inputId = "Studio_choice",
+  label = h3("Universe"),
+  choices = studios,
+  selected = "MCU"
+)
 
 ```
 
-Column {data-width=650}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
 ### Chart A
 
 ```{r}
-<<<<<<< HEAD
-=======
-Superheroes = readxl::read_excel("./bechdel/Superheroes.xlsx")
 
->>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 Superheroes %>% 
   group_by(universe) %>%  
   summarise(proportion = sum(binary== "PASS")/n() * 100) %>%
@@ -74,6 +80,7 @@ plot_ly(x = ~ universe, y = ~proportion, type = "bar",
     1000, easing = "elastic", redraw = FALSE
   )
 
+
 ```
 
 Column {data-width=350}
@@ -83,12 +90,15 @@ Column {data-width=350}
 
 ```{r}
 
-function(input, output) {
-  # You can access the value of the widget with input$text, e.g.
-  output$value <- renderPrint({ input$text })
-}
+renderPrint({
+  Superheroes %>% 
+  filter(movie == input[["movie_choice"]]) %>% 
+  select(binary)
+})
 
-
+renderPrint({
+  input[["movie_choice"]]
+})
 
 
 

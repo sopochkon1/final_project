@@ -24,17 +24,22 @@ window.FlexDashboardComponents = [];
 <script id="flexdashboard-navbar" type="application/json">
 [{"title":"Source Code","icon":"fa-code","href":"source_embed","align":"right"}]
 </script>
-<<<<<<< HEAD
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
-=======
-<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
->>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-<link href="site_libs/bootstrap-3.4.1/accessibility/css/bootstrap-accessibility.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.4.1/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.4.1/accessibility/js/bootstrap-accessibility.min.js"></script>
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -1886,46 +1891,77 @@ window.FlexDashboardComponents.push({
 
 </div>
 <div class="form-group shiny-input-container">
-<label class="control-label" id="studio_choice-label" for="studio_choice">
-<h3>Studio</h3>
+<label class="control-label" id="movie_choice-label" for="movie_choice">
+<h3>Title</h3>
 </label>
 <div>
-<select id="studio_choice"><optgroup label="universe">
-<option value="MCU" selected>MCU</option>
-<option value="DCEU">DCEU</option>
-</optgroup></select>
-<script type="application/json" data-for="studio_choice" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+<select id="movie_choice"><option value="Iron Man" selected>Iron Man</option>
+<option value="The Incredible Hulk">The Incredible Hulk</option>
+<option value="Captain America: The First Avenger">Captain America: The First Avenger</option>
+<option value="The Avengers">The Avengers</option>
+<option value="Thor: The Dark World">Thor: The Dark World</option>
+<option value="Iron Man 2">Iron Man 2</option>
+<option value="Thor">Thor</option>
+<option value="Iron Man Three">Iron Man Three</option>
+<option value="Captain America: The Winter Soldier">Captain America: The Winter Soldier</option>
+<option value="Guardians of the Galaxy">Guardians of the Galaxy</option>
+<option value="Avengers: Age of Ultron">Avengers: Age of Ultron</option>
+<option value="Ant-Man">Ant-Man</option>
+<option value="Captain America: Civil War">Captain America: Civil War</option>
+<option value="Doctor Strange">Doctor Strange</option>
+<option value="Guardians of the Galaxy Vol. 2">Guardians of the Galaxy Vol. 2</option>
+<option value="Spider-Man: Homecoming">Spider-Man: Homecoming</option>
+<option value="Thor: Ragnarok">Thor: Ragnarok</option>
+<option value="Black Panther">Black Panther</option>
+<option value="Avengers: Infinity War">Avengers: Infinity War</option>
+<option value="Ant-Man and the Wasp">Ant-Man and the Wasp</option>
+<option value="Captain Marvel">Captain Marvel</option>
+<option value="Avengers: Endgame">Avengers: Endgame</option>
+<option value="Spider-Man: Far from Home">Spider-Man: Far from Home</option>
+<option value="Black Widow">Black Widow</option>
+<option value="Shang-Chi and the Legend of the Ten Rings">Shang-Chi and the Legend of the Ten Rings</option>
+<option value="Eternals">Eternals</option>
+<option value="Spider-Man: No Way Home">Spider-Man: No Way Home</option>
+<option value="Doctor Strange in the Multiverse of Madness">Doctor Strange in the Multiverse of Madness</option>
+<option value="Thor: Love and Thunder">Thor: Love and Thunder</option>
+<option value="Black Panther: Wakanda Forever">Black Panther: Wakanda Forever</option>
+<option value="Man of Steel">Man of Steel</option>
+<option value="Batman v Superman: Dawn of Justice">Batman v Superman: Dawn of Justice</option>
+<option value="Suicide Squad">Suicide Squad</option>
+<option value="Wonder Woman">Wonder Woman</option>
+<option value="Justice League">Justice League</option>
+<option value="Aquaman">Aquaman</option>
+<option value="Shazam!">Shazam!</option>
+<option value="Birds of Prey">Birds of Prey</option>
+<option value="Wonder Woman 1984">Wonder Woman 1984</option>
+<option value="The Suicide Squad">The Suicide Squad</option>
+<option value="Black Adam">Black Adam</option></select>
+<script type="application/json" data-for="movie_choice" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
 </div>
-<div class="container-fluid">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="search_bar-label" for="search_bar">
-<h3>Search Movie</h3>
+<div id="Studio_choice" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="Studio_choice-label">
+<label class="control-label" id="Studio_choice-label" for="Studio_choice">
+<h3>Universe</h3>
 </label>
-<input id="search_bar" type="text" class="form-control" value="i.e. Iron Man..."/>
-</div>
-<hr/>
-<div class="row">
-<div class="col-sm-3">
-<pre class="shiny-text-output noplaceholder" id="value"></pre>
-</div>
-</div>
+<div class="shiny-options-group">
+<div class="radio">
+<label>
+<input type="radio" name="Studio_choice" value="list(MCU = &quot;MCU&quot;, DCEU = &quot;DCEU&quot;)"/>
+<span>universe</span>
+</label>
 </div>
 </div>
-<div id="section-column-1" class="section level2" data-width="650">
+</div>
+</div>
+<div id="section-column-1" class="section level2" data-width="550">
 <h2>Column</h2>
 <div id="section-chart-a" class="section level3">
 <h3>Chart A</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<<<<<<< HEAD
-<div id="htmlwidget-0f60f1ab5be832690c73" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0f60f1ab5be832690c73">{"x":{"visdat":{"1347a91ac832":["function () ","plotlyVisDat"]},"cur_data":"1347a91ac832","attrs":{"1347a91ac832":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":9.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-=======
-<div id="htmlwidget-c205907617bc42d46702" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c205907617bc42d46702">{"x":{"visdat":{"153d5cacc30d":["function () ","plotlyVisDat"]},"cur_data":"153d5cacc30d","attrs":{"153d5cacc30d":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":8.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
->>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
+<div id="htmlwidget-16d90d5cd38aaf158095" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-16d90d5cd38aaf158095">{"x":{"visdat":{"b6b6829324c":["function () ","plotlyVisDat"]},"cur_data":"b6b6829324c","attrs":{"b6b6829324c":{"x":{},"y":{},"color":{},"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":9.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[81.8181818181818],"type":"bar","name":"DCEU","marker":{"color":"rgba(102,194,165,0.5)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,0.5)"},"error_y":{"color":"rgba(102,194,165,0.5)"},"error_x":{"color":"rgba(102,194,165,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"type":"bar","name":"MCU","marker":{"color":"rgba(141,160,203,0.5)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,0.5)"},"error_y":{"color":"rgba(141,160,203,0.5)"},"error_x":{"color":"rgba(141,160,203,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="section-column-2" class="section level2" data-width="350">
@@ -1935,10 +1971,8 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<pre><code>function(input, output) {
-  # You can access the value of the widget with input$text, e.g.
-  output$value &lt;- renderPrint({ input$text })
-}</code></pre>
+<pre class="shiny-text-output noplaceholder" id="out293a89f7a1373238"></pre>
+<pre class="shiny-text-output noplaceholder" id="out6fd47793d1c11aa9"></pre>
 </div>
 <div id="section-chart-c" class="section level3">
 <h3>Chart C</h3>
@@ -1988,7 +2022,9 @@ library(shiny)
 Superheroes = 
   readxl::read_excel("bechdel/Superheroes.xlsx")
 
-
+Superheroes_binary = 
+  Superheroes %&gt;% 
+  select(title, binary)
 
 
 ```
@@ -1997,54 +2033,54 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-studio = Superheroes %&gt;% distinct(universe) 
+titles = Superheroes %&gt;%  distinct(title) %&gt;% pull()
 
 selectInput(
-  inputId = "studio_choice",
-  label = h3("Studio"),
-  choices = studio
+  inputId = "movie_choice",
+  label = h3("Title"),
+  choices = titles
 )
 
-fluidPage(
+#fluidPage(
   # Copy the line below to make a text input box
-  textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
-  hr(),
-  fluidRow(column(3, verbatimTextOutput("value"))))
-      
+  #textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
+ # hr(),
+ # fluidRow(column(3, verbatimTextOutput("value"))))
 
+
+studios = Superheroes %&gt;% distinct(universe) 
+
+radioButtons(
+  inputId = "Studio_choice",
+  label = h3("Universe"),
+  choices = studios,
+  selected = "MCU"
+)
 
 ```
 
-Column {data-width=650}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
 ### Chart A
 
 ```{r}
-Superheroes = readxl::read_excel("./bechdel/Superheroes.xlsx")
 
 Superheroes %&gt;% 
   group_by(universe) %&gt;%  
-<<<<<<< HEAD
   summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;%
-=======
-  summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;% 
->>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
           color = ~ universe, alpha = 0.5) %&gt;%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
          xaxis = list(title = "Studio"),
          yaxis = list(title = "% Movies Passing Bechdel Test",
-<<<<<<< HEAD
                       titlefont = list(size = 9.5)),
-=======
-                      titlefont = list(size = 8.5)),
->>>>>>> 4a1f04ec0f5c1169201596437afc905d015aae7d
          font = list(size = 10)
          ) %&gt;%
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
   )
+
 
 ```
 
@@ -2055,12 +2091,15 @@ Column {data-width=350}
 
 ```{r}
 
-function(input, output) {
-  # You can access the value of the widget with input$text, e.g.
-  output$value &lt;- renderPrint({ input$text })
-}
+renderPrint({
+  Superheroes %&gt;% 
+  filter(movie == input[["movie_choice"]]) %&gt;% 
+  select(binary)
+})
 
-
+renderPrint({
+  input[["movie_choice"]]
+})
 
 
 
