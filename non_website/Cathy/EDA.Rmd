@@ -51,8 +51,7 @@ The data cleaning steps involve the following:
 - Recoding and relevelling the numeric `decade_code` variable into a `decade` factor variable according to the decade of release
 - Creating an `award_winner` variable that is `TRUE` if the movie has won at least 1 Oscar, Golden Globe, or BAFTA award
 - Splitting the `genre` character variable into dummy-coded variables indicating whether the movie falls under one of 20 different genres
-- Renaming key variables to relevant names
-- Recoding and relevelling the `clean_test` variable into 4 levels corresponding to the Bechdel Test criteria:
+- Creating a `bechdel_score` categorical variable of 4 levels corresponding to the Bechdel Test criteria:
   - 0 = Less than 2 women
   - 1 = Women don't talk to each other
   - 2 = Women only talk about men
@@ -61,6 +60,8 @@ The data cleaning steps involve the following:
 - Creating variables for profit and ROI for each movie, adjusted to 2013 inflation. For this, we will use worldwide box office revenue instead of domestic revenue.
   - `profit` = `intgross_2013 – budget_2013`
   - `ROI` = `profit / budget_2013`
+- Renaming key variables to relevant names
+
 
 ```{r tidy movies}
 movies_df = movies %>% 
