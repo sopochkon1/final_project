@@ -45,29 +45,25 @@ The dataset was distributed in two files, `movies.csv`, `raw_bechdel.csv`.
 ### Data cleaning
 
 The data cleaning steps involve the following:
-- Converting character to numeric variables for `domgross`, `intgross`, `domgross_2013`, `intgross_2013`
 
-- Converting the `binary` character variable to a logical variable that indicates whether the movie passes or fails the Bechdel Test
-
-- Recoding and relevelling the numeric `decade_code` variable into a `decade` factor variable according to the year of release
-
+- Converting character to numeric variables for `domgross`, `intgross`, `domgross_2013`, `intgross_2013`, and `runtime`
+- Converting the `binary` character variable to a logical variable `pass_bechdel` that indicates whether the movie passes or fails the Bechdel Test
+- Recoding and relevelling the numeric `decade_code` variable into a `decade` factor variable according to the decade of release
+- Creating an `award_winner` variable that is `TRUE` if the movie has won at least 1 Oscar, Golden Globe, or BAFTA award
+- Splitting the `genre` character variable into dummy-coded variables indicating whether the movie falls under one of 20 different genres
+- Renaming key variables to relevant names
 - Recoding and relevelling the `clean_test` variable into 4 levels corresponding to the Bechdel Test criteria:
-
   - 0 = Less than 2 women
   - 1 = Women don't talk to each other
   - 2 = Women only talk about men
   - 3 = Dubious (uncertain whether it passes Bechdel Test)
   - 4 = Passes Bechdel Test
-
-- Creating variables for profit and ROI for each movie. For this, we will use worldwide box office revenue instead of domestic revenue.
+- Creating variables for profit and ROI for each movie, adjusted to 2013 inflation. For this, we will use worldwide box office revenue instead of domestic revenue.
   - `profit` = `intgross_2013 – budget_2013`
   - `ROI` = `profit / budget_2013`
 
-- Renaming key variables to relevant names
-
-
 ```{r tidy movies}
-movies = movies %>% 
+movies_df = movies %>% 
   mutate(test = as.factor(test), 
          clean_test = fct_recode(clean_test, 
                                  "Less than 2 women" = "nowomen", 
@@ -93,29 +89,56 @@ movies = movies %>%
          title = str_replace(title, "&agrave;", "à"),
          title = str_replace(title, "&aring;", "å"),
          title = str_replace(title, "&auml;", "ä"), 
+         runtime = as.numeric(str_replace(runtime, " min", "")),
+         award_winner = ifelse(str_detect(awards, "Won") & (str_detect(awards, "Golden Globe") | 
+                                                              str_detect(awards, "Oscar") | str_detect(awards, "BAFTA")), T, F), 
          profit = intgross_2013 - budget_2013,
          ROI = profit/budget_2013) %>% 
+  separate(genre, into = c("g1", "g2", "g3"), sep = ", ") %>% 
   rename("pass_bechdel" = binary,
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
-  select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, genre:runtime, profit, ROI)
+  mutate(
+    action = ifelse(g1 == "Action" | g1 == "Action" | g1 == "Action", TRUE, FALSE),
+    adventure = ifelse(g1 == "Adventure" | g1 == "Adventure" | g1 == "Adventure", TRUE, FALSE),
+    animation = ifelse(g1 == "Animation" | g1 == "Animation" | g1 == "Animation", TRUE, FALSE),
+    biography = ifelse(g1 == "Biography" | g1 == "Biography" | g1 == "Biography", TRUE, FALSE),
+    comedy = ifelse(g1 == "Comedy" | g1 == "Comedy" | g1 == "Comedy", TRUE, FALSE),
+    crime = ifelse(g1 == "Crime" | g1 == "Crime" | g1 == "Crime", TRUE, FALSE),
+    documentary = ifelse(g1 == "Documentary" | g1 == "Documentary" | g1 == "Documentary", TRUE, FALSE),
+    drama = ifelse(g1 == "Drama" | g1 == "Drama" | g1 == "Drama", TRUE, FALSE),
+    family = ifelse(g1 == "Family" | g1 == "Family" | g1 == "Family", TRUE, FALSE),
+    fantasy = ifelse(g1 == "Fantasy" | g1 == "Fantasy" | g1 == "Fantasy", TRUE, FALSE),
+    history = ifelse(g1 == "History" | g1 == "History" | g1 == "History", TRUE, FALSE),
+    horror = ifelse(g1 == "Horror" | g1 == "Horror" | g1 == "Horror", TRUE, FALSE),
+    music = ifelse(g1 == "Music" | g1 == "Music" | g1 == "Music", TRUE, FALSE),
+    musical = ifelse(g1 == "Musical" | g1 == "Musical" | g1 == "Musical", TRUE, FALSE),
+    mystery = ifelse(g1 == "Mystery" | g1 == "Mystery" | g1 == "Mystery", TRUE, FALSE),
+    romance = ifelse(g1 == "Romance" | g1 == "Romance" | g1 == "Romance", TRUE, FALSE),
+    sci_fi = ifelse(g1 == "Sci-Fi" | g1 == "Sci-Fi" | g1 == "Sci-Fi", TRUE, FALSE),
+    sport = ifelse(g1 == "Sport" | g1 == "Sport" | g1 == "Sport", TRUE, FALSE),
+    thriller = ifelse(g1 == "Thriller" | g1 == "Thriller" | g1 == "Thriller", TRUE, FALSE),
+    war = ifelse(g1 == "War" | g1 == "War" | g1 == "War", TRUE, FALSE),
+    western = ifelse(g1 == "Western" | g1 == "Western" | g1 == "Western", TRUE, FALSE)
+  ) %>% 
+  select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, award_winner, runtime, profit, ROI, action:western) 
 
-head(movies) %>% 
+readr::write_csv(movies_df, "./movies_df")
+
+head(movies_df) %>% 
   kableExtra::kbl() %>% 
   kableExtra::kable_paper("striped", "hover", full_width = F) %>% 
   kableExtra::scroll_box(width = "100%", height = "300px")
-  
 ```
 
-Our resulting dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables, indicating information about each movie's Bechdel Test score, budget, revenue, genre, and ratings.
-
+Our resulting dataset contains `r nrow(movies_df)` observations and `r ncol(movies_df)` variables, indicating information basic information about the movie's decade, genre, and runtime, whether it passes the Bechdel Test, and information about its budget, revenue, and ratings.
 
 ## Exploratory Data Analysis
 
 ### Distribution of Bechdel Test Scores
 
 ```{r}
-movies %>% 
+movies_df %>% 
   group_by(bechdel_score) %>% 
   summarise(N = n()) %>% 
   mutate(Proportion = N/sum(N)) %>% 
@@ -127,27 +150,27 @@ movies %>%
 ### Bechdel Test Scores by decade
 
 ```{r}
-less2_df = movies %>% 
+less2_df = movies_df %>% 
   filter(bechdel_score == "Less than 2 women") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
 
-notalk_df = movies %>% 
+notalk_df = movies_df %>% 
   filter(bechdel_score == "Don't talk to each other") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
 
-talkmen_df = movies %>% 
+talkmen_df = movies_df %>% 
   filter(bechdel_score == "Only talk about men") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
 
-dubious_df = movies %>% 
+dubious_df = movies_df %>% 
   filter(bechdel_score == "Dubious") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
 
-pass_df = movies %>% 
+pass_df = movies_df %>% 
   filter(bechdel_score == "Passes Bechdel") %>% 
   group_by(decade, bechdel_score) %>% 
   summarise(n = n()) 
@@ -172,7 +195,7 @@ table %>%
 ### Bechdel Test by IMDB Rating
 
 ```{r}
-movies %>% 
+movies_df %>% 
   plot_ly(y = ~imdb_rating, x = ~bechdel_score, type = "scatter", 
           mode = "markers", marker = list(color = ~imdb_rating)) %>% 
   layout(yaxis = list(title = list(text = "IMDB Rating", standoff = 5), tickfont = list(size = 10), gridcolor = "white"),
@@ -187,7 +210,7 @@ Next, we want to explore how movie budgets may differ according to the primacy o
 
 
 ```{r}
-movies %>% 
+movies_df %>% 
   group_by(bechdel_score) %>% 
   summarise(median_budget = median(budget_2013)) %>% 
   plot_ly(x = ~median_budget, y = ~bechdel_score, type = "bar", color = ~bechdel_score, colors = "YlGn") %>% 
@@ -195,7 +218,7 @@ movies %>%
          xaxis = list(title = "Median movie budget ($)"), 
          legend = list(reverse = TRUE))
 
-movies %>% 
+movies_df %>% 
   plot_ly(x = ~bechdel_score, y = ~budget_2013, type = "box", text = ~title) %>% 
   layout(yaxis = list(title = "Movie budget ($)", standoff = 10),
          xaxis = list(title = "Bechdel Criterion" ), 
@@ -210,7 +233,7 @@ Next steps...
 
 
 ```{r}
-budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
+budget_dist_p = movies_df %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
   labs(
     x = "Count",
     y = "Budget ($, 2013-adjusted)",
@@ -222,7 +245,7 @@ ggplotly(budget_dist_p)
 It appears that budget is heavily right-skewed. For this, we will need to run a Kruskal-Wallace test in place of an F-test. Below are the results:
 
 ```{r}
-kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>% 
+kruskal.test(budget_2013 ~ bechdel_score, data = movies_df) %>% 
   broom::tidy() %>% 
   rename("Test statistic" = statistic,
          "p-value" = p.value, 
