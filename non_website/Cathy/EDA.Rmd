@@ -123,7 +123,7 @@ movies_df = movies %>%
   ) %>% 
   select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, award_winner, runtime, profit, ROI, action:western) 
 
-readr::write_csv(movies_df, "./movies_df")
+readr::write_csv(movies_df, "./movies_df.csv")
 
 head(movies_df) %>% 
   kableExtra::kbl() %>% 
