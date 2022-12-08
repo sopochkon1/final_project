@@ -55,7 +55,7 @@ The data cleaning steps involve the following:
   - 0 = Less than 2 women
   - 1 = Women don't talk to each other
   - 2 = Women only talk about men
-  - 3 = Dubious (uncertain whether it passes Bechdel Test)
+  - 3 = Dubious (Passes Bechdel Test, but is disputed)
   - 4 = Passes Bechdel Test
 - Creating variables for profit and ROI for each movie, adjusted to 2013 inflation. For this, we will use worldwide box office revenue instead of domestic revenue.
   - `profit` = `intgross_2013 – budget_2013`
@@ -74,7 +74,7 @@ movies_df = movies %>%
                                  "Passes Bechdel" = "ok"),
          clean_test = fct_relevel(clean_test, c("Less than 2 women", "Don't talk to each other", 
                                                 "Only talk about men", "Dubious", "Passes Bechdel")),
-         binary = ifelse(binary == "PASS", TRUE, FALSE), 
+         binary = ifelse(clean_test == "Dubious" | clean_test == "Passes Bechdel", TRUE, FALSE), 
          domgross = as.numeric(domgross),
          intgross = as.numeric(intgross),
          domgross_2013 = as.numeric(domgross_2013),
