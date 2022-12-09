@@ -202,7 +202,6 @@ Testing association of meta score with categorical bechdel scores using linear r
 meta = movies_df %>% 
   lm(metascore~bechdel_score, data=.)
 
-
 summary(meta)
 
 ```
