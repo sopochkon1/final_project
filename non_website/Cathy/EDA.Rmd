@@ -100,28 +100,29 @@ movies_df = movies %>%
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
   mutate(
-    action = ifelse(g1 == "Action" | g1 == "Action" | g1 == "Action", TRUE, FALSE),
-    adventure = ifelse(g1 == "Adventure" | g1 == "Adventure" | g1 == "Adventure", TRUE, FALSE),
-    animation = ifelse(g1 == "Animation" | g1 == "Animation" | g1 == "Animation", TRUE, FALSE),
-    biography = ifelse(g1 == "Biography" | g1 == "Biography" | g1 == "Biography", TRUE, FALSE),
-    comedy = ifelse(g1 == "Comedy" | g1 == "Comedy" | g1 == "Comedy", TRUE, FALSE),
-    crime = ifelse(g1 == "Crime" | g1 == "Crime" | g1 == "Crime", TRUE, FALSE),
-    documentary = ifelse(g1 == "Documentary" | g1 == "Documentary" | g1 == "Documentary", TRUE, FALSE),
-    drama = ifelse(g1 == "Drama" | g1 == "Drama" | g1 == "Drama", TRUE, FALSE),
-    family = ifelse(g1 == "Family" | g1 == "Family" | g1 == "Family", TRUE, FALSE),
-    fantasy = ifelse(g1 == "Fantasy" | g1 == "Fantasy" | g1 == "Fantasy", TRUE, FALSE),
-    history = ifelse(g1 == "History" | g1 == "History" | g1 == "History", TRUE, FALSE),
-    horror = ifelse(g1 == "Horror" | g1 == "Horror" | g1 == "Horror", TRUE, FALSE),
-    music = ifelse(g1 == "Music" | g1 == "Music" | g1 == "Music", TRUE, FALSE),
-    musical = ifelse(g1 == "Musical" | g1 == "Musical" | g1 == "Musical", TRUE, FALSE),
-    mystery = ifelse(g1 == "Mystery" | g1 == "Mystery" | g1 == "Mystery", TRUE, FALSE),
-    romance = ifelse(g1 == "Romance" | g1 == "Romance" | g1 == "Romance", TRUE, FALSE),
-    sci_fi = ifelse(g1 == "Sci-Fi" | g1 == "Sci-Fi" | g1 == "Sci-Fi", TRUE, FALSE),
-    sport = ifelse(g1 == "Sport" | g1 == "Sport" | g1 == "Sport", TRUE, FALSE),
-    thriller = ifelse(g1 == "Thriller" | g1 == "Thriller" | g1 == "Thriller", TRUE, FALSE),
-    war = ifelse(g1 == "War" | g1 == "War" | g1 == "War", TRUE, FALSE),
-    western = ifelse(g1 == "Western" | g1 == "Western" | g1 == "Western", TRUE, FALSE)
+    action = ifelse(g1 == "Action" | g2 == "Action" | g3 == "Action", TRUE, FALSE),
+    adventure = ifelse(g1 == "Adventure" | g2 == "Adventure" | g3 == "Adventure", TRUE, FALSE),
+    animation = ifelse(g1 == "Animation" | g2 == "Animation" | g3 == "Animation", TRUE, FALSE),
+    biography = ifelse(g1 == "Biography" | g2 == "Biography" | g3 == "Biography", TRUE, FALSE),
+    comedy = ifelse(g1 == "Comedy" | g2 == "Comedy" | g3 == "Comedy", TRUE, FALSE),
+    crime = ifelse(g1 == "Crime" | g2 == "Crime" | g3 == "Crime", TRUE, FALSE),
+    documentary = ifelse(g1 == "Documentary" | g2 == "Documentary" | g3 == "Documentary", TRUE, FALSE),
+    drama = ifelse(g1 == "Drama" | g2 == "Drama" | g3 == "Drama", TRUE, FALSE),
+    family = ifelse(g1 == "Family" | g2 == "Family" | g3 == "Family", TRUE, FALSE),
+    fantasy = ifelse(g1 == "Fantasy" | g2 == "Fantasy" | g3 == "Fantasy", TRUE, FALSE),
+    history = ifelse(g1 == "History" | g2 == "History" | g3 == "History", TRUE, FALSE),
+    horror = ifelse(g1 == "Horror" | g2 == "Horror" | g3 == "Horror", TRUE, FALSE),
+    music = ifelse(g1 == "Music" | g2 == "Music" | g3 == "Music", TRUE, FALSE),
+    musical = ifelse(g1 == "Musical" | g2 == "Musical" | g3 == "Musical", TRUE, FALSE),
+    mystery = ifelse(g1 == "Mystery" | g2 == "Mystery" | g3 == "Mystery", TRUE, FALSE),
+    romance = ifelse(g1 == "Romance" | g2 == "Romance" | g3 == "Romance", TRUE, FALSE),
+    sci_fi = ifelse(g1 == "Sci-Fi" | g2 == "Sci-Fi" | g3 == "Sci-Fi", TRUE, FALSE),
+    sport = ifelse(g1 == "Sport" | g2 == "Sport" | g3 == "Sport", TRUE, FALSE),
+    thriller = ifelse(g1 == "Thriller" | g2 == "Thriller" | g3 == "Thriller", TRUE, FALSE),
+    war = ifelse(g1 == "War" | g2 == "War" | g3 == "War", TRUE, FALSE),
+    western = ifelse(g1 == "Western" | g2 == "Western" | g3 == "Western", TRUE, FALSE)
   ) %>% 
+  mutate(across(action:western, ~replace_na(., FALSE))) %>%
   select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, metascore, imdb_rating, award_winner, runtime, profit, ROI, action:western) 
 
 readr::write_csv(movies_df, "./movies_df.csv")
