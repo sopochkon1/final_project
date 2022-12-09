@@ -39,5 +39,10 @@ They say you should never meet your Sheroes, but our dream team of Columbia MPH 
 
 <br></br>
 
+# <img src="images/Shivangi.jpeg" alt="Avatar" width="300" height="300" style="border:2px solid orange"> Shivangi Mewada
 
+
+<br></br>
+
+# <img src="images/Cathy.jpeg" alt="Avatar" width="300" height="300" style="border:2px solid orange"> Cathy Yang
 

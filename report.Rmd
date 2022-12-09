@@ -4,5 +4,57 @@ output:
   html_document:
     toc: true
     toc_float: true
-    code_folding: "hide"
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Female Representation in Film: Does Girl Power Translate to Profit?
+
+### Topic
+Analysis of movies that pass Bechdel’s test and looking at their association with movie budget and profit.
+
+### Motivation
+The **Bechdel test** is an _indicator of the active presence of women_ in the entire field of _film_ and other fiction, and calls attention to _gender inequality_ in fiction. Some studies indicate that films that pass the test perform better financially while receiving a lower budget, compared to those that do not. Thus, through this project, we intend:
+
+* To examine the number of movies that pass the Bechdel test over time (2000 - 2017)
+* To examine the relationship between representation in movies and movie budget/profit
+* To examine this correlation with key time points in film history
+
+### Related work/ Inspiration
+Female representation is growing by day in every sector, and so is in the movies. All of us, being huge fans of fictional movies and TV shows, wanted to look for progressive movies that signify higher representation of females or are completely centralized to females. The Bechdel Test has been a simple and popular measure of feminism in works of fiction. The rules of the test were first defined back in 1985 in a comic strip featuring two queer women who could not find a movie that
+
+* Has at least two women in it
+* who talk to each other,
+* about something other than a man.
+
+We came across articles talking about the importance of these tests in the industry, and some previous studies that used this test to determine if the movie had a significant representation of female character(s). Using this information, we further wanted to explore the budget of these movies and see if the movies that passed the test made profits at the box office.
+
+### Initial Questions
+*  Number of movies that pass the Bechdel’s test (from 2000-2017).
+*  Association between the movies that pass the Bechdel’s test and the movie budget
+*  Association between the movies that pass the Bechdel’s test and the movie profit
+
+_Other questions that we are considering in the analysis are:_
+
+*  Stratifying the movies that pass the Bechdel’s test by genre.
+*  Association between the movies that pass the Bechdel’s test and their IMDB rating
+ 
+### Data Sources
+* **FiveThirtyEight**:
+The _FiveThirtyEight Bechdel dataset_ contains data about 1794 films released from 1970 to 2013. We used this data to examine the relationship between the prominence of women in a film and that film’s budget and gross profits for films released between 2000-2013 (?). The dataset consists of important variables like `name of the film`, `year of release`, `film budget`, `domestic and international gross box office earnings`, `test criteria` to see if the film passes Bechdel’s test, film’s `pass/fail status`, etc. 
+
+* **Bechdel Test**:
+This database consists of a list of 9802 movies released between 1874 and 2022 (as of Dec 8th, 2022), and results for whether they pass or fail the Bechdel’s test. The important variables include `title of the film`, `date` when the film was added, `reviews and comments`, and their `IMDB ratings`. The data was accessed through API.
+
+* **The-Numbers**: 
+This is a film industry data website that tracks box office revenue in a systematic and algorithmic way. We accounted for the `budget` and `revenue` variables for the movies using this website. The data can be accessed through API.
+
+* **IMDb**:
+The _Internet Movie Database_ (IMDb) is an online database containing information and statistics about movies, TV shows and video games as well as actors, directors and other film industry professionals. We used the information about the `year of release`, `runtime`, `genre`, `language` and `rating` of the films.
+
+* **Tidy Tuesday Project**:
+This is the _main source for our dataset_ which provides weekly releases of raw datasets for users to wrangle and analyse. The data itself _originates from FiveThirtyEight_ that contains movies ranging from 1970 to 2013, and _merges data from the other sources: IMDb, The-Numbers.com, and BechdelTest.com_. 
+

@@ -33,7 +33,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -229,9 +228,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -396,14 +392,6 @@ div.tocify {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore">Project Report</h1>
@@ -411,7 +399,113 @@ div.tocify {
 </div>
 
 
-
+<div id="project-report" class="section level2">
+<h2>Project Report</h2>
+</div>
+<div
+id="female-representation-in-film-does-girl-power-translate-to-profit"
+class="section level1">
+<h1>Female Representation in Film: Does Girl Power Translate to
+Profit?</h1>
+<div id="topic" class="section level3">
+<h3>Topic</h3>
+<p>Analysis of movies that pass Bechdel’s test and looking at their
+association with movie budget and profit.</p>
+</div>
+<div id="motivation" class="section level3">
+<h3>Motivation</h3>
+<p>The <strong>Bechdel test</strong> is an <em>indicator of the active
+presence of women</em> in the entire field of <em>film</em> and other
+fiction, and calls attention to <em>gender inequality</em> in fiction.
+Some studies indicate that films that pass the test perform better
+financially while receiving a lower budget, compared to those that do
+not. Thus, through this project, we intend:</p>
+<ul>
+<li>To examine the number of movies that pass the Bechdel test over time
+(2000 - 2017)</li>
+<li>To examine the relationship between representation in movies and
+movie budget/profit</li>
+<li>To examine this correlation with key time points in film
+history</li>
+</ul>
+</div>
+<div id="related-work-inspiration" class="section level3">
+<h3>Related work/ Inspiration</h3>
+<p>Female representation is growing by day in every sector, and so is in
+the movies. All of us, being huge fans of fictional movies and TV shows,
+wanted to look for progressive movies that signify higher representation
+of females or are completely centralized to females. The Bechdel Test
+has been a simple and popular measure of feminism in works of fiction.
+The rules of the test were first defined back in 1985 in a comic strip
+featuring two queer women who could not find a movie that</p>
+<ul>
+<li>Has at least two women in it</li>
+<li>who talk to each other,</li>
+<li>about something other than a man.</li>
+</ul>
+<p>We came across articles talking about the importance of these tests
+in the industry, and some previous studies that used this test to
+determine if the movie had a significant representation of female
+character(s). Using this information, we further wanted to explore the
+budget of these movies and see if the movies that passed the test made
+profits at the box office.</p>
+</div>
+<div id="initial-questions" class="section level3">
+<h3>Initial Questions</h3>
+<ul>
+<li>Number of movies that pass the Bechdel’s test (from 2000-2017).</li>
+<li>Association between the movies that pass the Bechdel’s test and the
+movie budget</li>
+<li>Association between the movies that pass the Bechdel’s test and the
+movie profit</li>
+</ul>
+<p><em>Other questions that we are considering in the analysis
+are:</em></p>
+<ul>
+<li>Stratifying the movies that pass the Bechdel’s test by genre.</li>
+<li>Association between the movies that pass the Bechdel’s test and
+their IMDB rating</li>
+</ul>
+</div>
+<div id="data-sources" class="section level3">
+<h3>Data Sources</h3>
+<ul>
+<li><p><strong>FiveThirtyEight</strong>: The <em>FiveThirtyEight Bechdel
+dataset</em> contains data about 1794 films released from 1970 to 2013.
+We used this data to examine the relationship between the prominence of
+women in a film and that film’s budget and gross profits for films
+released between 2000-2013 (?). The dataset consists of important
+variables like <code>name of the film</code>,
+<code>year of release</code>, <code>film budget</code>,
+<code>domestic and international gross box office earnings</code>,
+<code>test criteria</code> to see if the film passes Bechdel’s test,
+film’s <code>pass/fail status</code>, etc.</p></li>
+<li><p><strong>Bechdel Test</strong>: This database consists of a list
+of 9802 movies released between 1874 and 2022 (as of Dec 8th, 2022), and
+results for whether they pass or fail the Bechdel’s test. The important
+variables include <code>title of the film</code>, <code>date</code> when
+the film was added, <code>reviews and comments</code>, and their
+<code>IMDB ratings</code>. The data was accessed through API.</p></li>
+<li><p><strong>The-Numbers</strong>: This is a film industry data
+website that tracks box office revenue in a systematic and algorithmic
+way. We accounted for the <code>budget</code> and <code>revenue</code>
+variables for the movies using this website. The data can be accessed
+through API.</p></li>
+<li><p><strong>IMDb</strong>: The <em>Internet Movie Database</em>
+(IMDb) is an online database containing information and statistics about
+movies, TV shows and video games as well as actors, directors and other
+film industry professionals. We used the information about the
+<code>year of release</code>, <code>runtime</code>, <code>genre</code>,
+<code>language</code> and <code>rating</code> of the films.</p></li>
+<li><p><strong>Tidy Tuesday Project</strong>: This is the <em>main
+source for our dataset</em> which provides weekly releases of raw
+datasets for users to wrangle and analyse. The data itself
+<em>originates from FiveThirtyEight</em> that contains movies ranging
+from 1970 to 2013, and <em>merges data from the other sources: IMDb,
+The-Numbers.com, and BechdelTest.com</em>.</p></li>
+</ul>
+</div>
+</div>
 
 
 
@@ -448,11 +542,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
 <script>
 $(document).ready(function ()  {

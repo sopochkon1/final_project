@@ -1,0 +1,69 @@
+---
+title: "Sophia"
+author: "Sophia Chkonia"
+date: "2022-12-09"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+library(flexdashboard)
+library(plotly)
+library(viridis)
+library(shiny)
+library(readr)
+library(writexl)
+
+Superheroes = 
+  readxl::read_excel("bechdel/Superheroes.xlsx") 
+ 
+
+movies_df <- read_csv("non_website/Cathy/movies_df.csv")
+
+View(movies_df)
+```
+
+
+## gathering additional dc movies from the movies_df dataframe
+
+```{r}
+DC_additional = 
+  movies_df %>% 
+  filter(title == "The Dark Knight" | title == "The Dark Knight Rises" | title == "Green Lantern" | title == "Batman Begins" | title == "Batman & Robin" | title == "Batman Forever" | title == "Batman Returns" ) %>% 
+  mutate(
+    domgross = domgross_2013,
+    intgross = intgross_2013, 
+    budget = budget_2013,
+    totalgross = domgross_2013 + intgross_2013,
+    universe = "DCEU",
+    binary = pass_bechdel,
+    binary = as.character(binary)
+  ) %>% 
+  select(title, year, domgross, intgross, budget, totalgross, binary, universe)
+
+
+# combine with DCEU dataset
+
+Superheroes_finally = bind_rows(Superheroes, DC_additional) %>% 
+  mutate(binary = case_when(binary == "TRUE" ~ "PASS"))
+  
+write_xlsx(Superheroes_finally,path = "~/Desktop/Mailman/Semester 3/data science/final_project/non_website/Sophia\\Superheroes_final.xlsx")
+
+
+```
+
+
+
+```{r}
+
+Superheroes_finally %>% 
+  
+
+
+
+
+```
+
+
+
