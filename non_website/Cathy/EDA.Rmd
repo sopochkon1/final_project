@@ -232,8 +232,8 @@ movies_df %>%
   plot_ly(x = ~budget_2013, y = ~bechdel_score, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
   layout(xaxis = list(title = "Movie budget ($)"),
          yaxis = list(title = "Bechdel Criterion"),
-         showlegend = FALSE)
-
+         showlegend = FALSE, 
+         title = "Movie budgets (2013-adjusted) stratified by Bechdel Test criteria")
 ```
 
 This chart shows the range of movie budgets stratified by criteria of the Bechdel Test. Movies that pass the Bechdel Test  appear to have slightly smaller budgets than movies that don't pass when we stratify on a binary basis. Meanwhile, when stratifying by the categorical Bechdel score, the budgets are not significantly different from each other, however, it appears that the interquartile range for movies that firmly pass the Bechdel Test is slightly lower than movies that don't firmly pass the Bechdel Test. These numbers may suggest that Hollywood puts more money behind male-only films than films in which women talk to each other, however, this will be further explored in subsequent analyses
@@ -245,22 +245,17 @@ Additionally, we want to explore how movie revenues may vary according to the pr
 
 #### Profits
 
-Starting with `profit`, which is the difference between `intgross_2013` (2013-adjusted international gross revenue) and `budget_2013` (2013-adjusted budget), we can plot the range of profits for each movie, stratified by their Bechdel Test criteria.
+Starting with `profit`, which is the difference between `intgross_2013` (2013-adjusted international gross revenue) and `budget_2013` (2013-adjusted budget), we can plot the range of profits for each movie, stratified by their Bechdel Test criteria.  
 
 ```{r profits}
 movies_df %>% 
   mutate(pass_bechdel = ifelse(pass_bechdel == TRUE, "Pass", "Fail")) %>% 
-  plot_ly(x = ~profit, y = ~pass_bechdel, type = "box", text = ~title, color = ~pass_bechdel, colors = c("red4", "green4")) %>% 
-  layout(xaxis = list(title = "Movie Profit ($)"),
-         yaxis = list(title = "Bechdel Test"),
-         showlegend = FALSE)
-
-movies_df %>% 
-  plot_ly(x = ~profit, y = ~bechdel_score, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
-  layout(xaxis = list(title = "Movie Profit ($)", range = list(-3e+08,3.1e+09 )),
+  plot_ly(x = ~profit, y = ~pass_bechdel, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
+  layout(boxmode = "group", 
+         xaxis = list(title = "Profit ($)"),
          yaxis = list(title = "Bechdel Criterion"),
-         showlegend = FALSE)
-
+         showlegend = FALSE,
+         title = "Movie profits stratified by Bechdel Test criteria")
 ```
 
 Looking at the resulting plot, we see that the distribution of profits between movies passing vs. failing the Bechdel test are quite similar, with movies that fail the Bechdel Test reeling in slightly higher profits. The profits overall appear quite right-skewed, with some outliers bringing in similar amounts of profit (e.g. Star Wars and the Titanic). When we stratify further by each dimension of the Bechdel Test, there are no notable differences in the profits between Bechdel criteria. 
@@ -269,21 +264,15 @@ Looking at the resulting plot, we see that the distribution of profits between m
 
 Next, let's examine `ROI`, which is the ratio of `profit` to `budget_2013`. Because ROI is heavily right-skewed, we will log-transform this variable to better visualize differences in the ROI distribution between movies of differing Bechdel criteria. 
 
-
 ```{r roi}
-movies_df %>% 
-  plot_ly(x = ~log(ROI), y = ~bechdel_score, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
-  layout(xaxis = list(title = "Log(Return on Investment)"),
-         yaxis = list(title = "Bechdel Criterion"),
-         showlegend = FALSE)
-
 movies_df %>% 
   mutate(pass_bechdel = ifelse(pass_bechdel == TRUE, "Pass", "Fail")) %>% 
   plot_ly(x = ~log(ROI), y = ~pass_bechdel, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
   layout(boxmode = "group", 
          xaxis = list(title = "Log(Return on Investment)"),
          yaxis = list(title = "Bechdel Criterion"),
-         showlegend = FALSE)
+         showlegend = FALSE,
+         title = "Movie ROI stratified by Bechdel Test criteria")
 ```
 
 Examining the `log(ROI)` across Bechdel dimensions, the range of financial performance does not appear to differ substantially, as the median and IQR are approximately the same across all categories. Therefore, despite having slightly lower budgets, we can see that the primacy of women's roles in movies do not negatively impact movies' financial performance, and therefore refutes claims that films with stronger female characters perform any worse at the box office than films without them.
@@ -306,8 +295,20 @@ Based on the scatterplot, we do not see any discernable clusters that indicate m
 
 ### Tests of association
 
+Here I run some tests of association between `bechdel_score` and outcome variables. I run a Kruskal-Walllis test to account for the distribution of outcomes that are not normal.
+
 ```{r}
 kruskal.test(imdb_rating ~ bechdel_score, data = movies_df) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+kruskal.test(metascore ~ bechdel_score, data = movies_df) %>% 
   broom::tidy() %>% 
   rename("Test statistic" = statistic,
          "p-value" = p.value, 
