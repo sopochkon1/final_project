@@ -26,7 +26,7 @@ The source of the dataset comes from R for Data Science's [Tidy Tuesday Project]
 
 * **[IMDB](https://imdb.com)**: Provides information about each film, such as year, runtime, genres, accolades, fan and critic ratings.
 * **[BechdelTest.com](http://bechdeltest.com)**: The site is user-operated database where fans can rate films based on the criteria of the Bechdel Test. The site has detailed, coded information about the year, title, and whether it passes each level of the Bechdel Test requirements (see [Data Cleaning](Data_Sources.html#Data_cleaning) for further information about scoring).
-* **[The-Numbers.com](https://The-Numbers.com)**: Contains financial information for films, including the budget and gross domestic and international revenues.
+* **[The-Numbers.com](https://The-Numbers.com)**: Contains financial information for films, including the budget and gross domestic and international revenues. 
 
 ## Data Import and Cleaning
 
@@ -41,7 +41,7 @@ head(movies) %>%
   kableExtra::scroll_box(width = "100%", height = "300px")
 ```
   
-\n 
+<br>
 
 The `movies.csv` dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables. Each observation corresponds to a film, and contains variables for title, IMDB ID, year, genres, ratings, budget, domestic and international gross revenue, and 2013-adjusted budget and revenues. The variables `clean_test` categorizes movies according to the different Bechdel Test criteria whether it passes the Bechdel Test (based on qualitative scores and a binary pass/fail),
 
@@ -148,6 +148,6 @@ summary(movies_df) %>%
 ```
 
   
-\p
+<br>
 
 Our resulting dataset contains `r nrow(movies_df)` observations and `r ncol(movies_df)` variables, with information about the movie's decade, genre, and runtime, a Bechdel Test categorical variable, a binary Bechdel Test variable, and information about its budget, revenue, and ratings. This cleaned and aggregated data will serve the basis of our exploratory and formal analyses.
