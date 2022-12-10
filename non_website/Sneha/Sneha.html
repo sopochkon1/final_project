@@ -1582,8 +1582,9 @@ border-radius: 0px;
 </div>
 
 
-<p>##Using Stepwise Selection for Linear Regression: Is the Bechdel test
-a significant predictor of movie success?</p>
+<div id="using-stepwise-selection-for-linear-regression-is-the-bechdel-test-a-significant-predictor-of-movie-success" class="section level2">
+<h2>Using Stepwise Selection for Linear Regression: Is the Bechdel test
+a significant predictor of movie success?</h2>
 <p>In order to assess whether a movie passing the Bechdel test is a
 significant predictor of that movie’s success, we utilized a stepwise
 selection algorithm. The <code>stepAIC</code> command from the
@@ -1592,19 +1593,22 @@ optimizing AIC.</p>
 <p>The setup of the regression models here follows the methodology
 outlined previously including log-transforming variables like
 <code>profit</code> and <code>budget_2013</code> to enforce a normal
-distribution.</p>
+distribution. Additionally, the binary Bechdel test variable was applied
+in these models to optimize degrees of freedom.</p>
+<p>We assessed movie success based on three factors:
+<code>profit</code>, <code>imdb_rating</code>, and
+<code>budget_2013</code>.</p>
 <div id="profit" class="section level3">
 <h3>Profit</h3>
 <p>We first assessed the Bechdel test as a potential predictor of
 <code>profit</code>. Other potential predictors included in the model
 were <code>budget_2013</code>, <code>imdb_rating</code>, and all genre
-variables. Additionally, the binary Bechdel test variable was applied in
-these models to optimize degrees of freedom.</p>
-<pre class="r"><code># Stepwise regression for Profit
+variables.</p>
+<pre class="r"><code># Stepwise regression for profit
 ## logProfit ~ Bechdel (binary) + logBudget + IMDB + Genre
-model11 = lm(log(profit +1) ~ pass_bechdel + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
-step11 &lt;- stepAIC(model11, direction = &quot;both&quot;, trace = FALSE) %&gt;% broom::tidy()
-knitr::kable(step11, digits = 3)</code></pre>
+modelprofit = lm(log(profit +1) ~ pass_bechdel + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepprofit &lt;- stepAIC(modelprofit, direction = &quot;both&quot;, trace = FALSE) %&gt;% broom::tidy()
+knitr::kable(stepprofit, digits = 3)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1701,17 +1705,176 @@ western as influential predictors of a movie’s profit.
 <code>pass_bechdel</code> was not selected as an influential
 predictor.</p>
 </div>
+<div id="imdb-ratings" class="section level3">
+<h3>IMDB Ratings</h3>
+<p>The second metric we assessed as a measure of movie success was movie
+reviews as measured by <code>imdb_rating</code>. Other potential
+predictors we included in the model were budget, <code>runtime</code>,
+<code>profit</code>, <code>award_winner</code>, and all genre
+variables.</p>
+<pre class="r"><code># Stepwise regression for imdb ratings
+## IMDB ~ Bechdel (binary) + logBudget + runtime + award_winner + profit + Genre
+modelIMDB = lm(imdb_rating ~ pass_bechdel + log(budget_2013) + profit + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepIMDB &lt;- stepAIC(modelIMDB, direction = &quot;both&quot;, trace = FALSE) %&gt;% broom::tidy()
+knitr::kable(stepIMDB, digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">8.427</td>
+<td align="right">0.312</td>
+<td align="right">26.991</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">pass_bechdelTRUE</td>
+<td align="right">-0.255</td>
+<td align="right">0.043</td>
+<td align="right">-5.943</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">log(budget_2013)</td>
+<td align="right">-0.080</td>
+<td align="right">0.018</td>
+<td align="right">-4.450</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">profit</td>
+<td align="right">0.000</td>
+<td align="right">0.000</td>
+<td align="right">14.631</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">actionTRUE</td>
+<td align="right">-0.418</td>
+<td align="right">0.060</td>
+<td align="right">-6.930</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">adventureTRUE</td>
+<td align="right">-0.212</td>
+<td align="right">0.065</td>
+<td align="right">-3.266</td>
+<td align="right">0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">animationTRUE</td>
+<td align="right">0.320</td>
+<td align="right">0.092</td>
+<td align="right">3.477</td>
+<td align="right">0.001</td>
+</tr>
+<tr class="even">
+<td align="left">biographyTRUE</td>
+<td align="right">0.336</td>
+<td align="right">0.102</td>
+<td align="right">3.299</td>
+<td align="right">0.001</td>
+</tr>
+<tr class="odd">
+<td align="left">comedyTRUE</td>
+<td align="right">-0.412</td>
+<td align="right">0.055</td>
+<td align="right">-7.490</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">crimeTRUE</td>
+<td align="right">0.140</td>
+<td align="right">0.062</td>
+<td align="right">2.268</td>
+<td align="right">0.023</td>
+</tr>
+<tr class="odd">
+<td align="left">dramaTRUE</td>
+<td align="right">0.199</td>
+<td align="right">0.056</td>
+<td align="right">3.526</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">familyTRUE</td>
+<td align="right">-0.462</td>
+<td align="right">0.089</td>
+<td align="right">-5.218</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">fantasyTRUE</td>
+<td align="right">-0.116</td>
+<td align="right">0.070</td>
+<td align="right">-1.655</td>
+<td align="right">0.098</td>
+</tr>
+<tr class="even">
+<td align="left">horrorTRUE</td>
+<td align="right">-0.684</td>
+<td align="right">0.081</td>
+<td align="right">-8.438</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">musicTRUE</td>
+<td align="right">-0.236</td>
+<td align="right">0.139</td>
+<td align="right">-1.703</td>
+<td align="right">0.089</td>
+</tr>
+<tr class="even">
+<td align="left">romanceTRUE</td>
+<td align="right">-0.139</td>
+<td align="right">0.065</td>
+<td align="right">-2.138</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">thrillerTRUE</td>
+<td align="right">-0.242</td>
+<td align="right">0.063</td>
+<td align="right">-3.834</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">warTRUE</td>
+<td align="right">0.233</td>
+<td align="right">0.156</td>
+<td align="right">1.499</td>
+<td align="right">0.134</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm selected the Bechdel test, budget, profit, and the
+genre variables of action, adventure, animation, biography, comedy,
+crime, drama, family, fantasy, horror, music, romance, thriller, and war
+as influential variables of a movie’s IMDB rating. The p-value of
+<code>pass_bechdel</code> is significant at 5% and, on average, movies
+that pass the Bechdel test have a 0.255 point lower rating on IMDB than
+movies that do not pass.</p>
+</div>
 <div id="budget" class="section level3">
 <h3>Budget</h3>
-<p>As budget is a significant predictor of movie success (as assessed by
-profit - see table above), we also assessed whether passing the Bechdel
-test is an influential predictor of a movie’s budget. Other potential
-predictors we included in the model are <code>runtime</code> and all
-genre variables.</p>
-<pre class="r"><code>## logBudget ~ Bechdel (binary) + runtime + Genre
-model19 = lm(log(budget_2013) ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
-step19 &lt;- stepAIC(model19, direction = &quot;both&quot;, trace = FALSE) %&gt;%  broom::tidy()
-knitr::kable(step19, digits = 3)</code></pre>
+<p>As budget is a significant predictor of both profit and IMDB ratings,
+we also assessed whether passing the Bechdel test is an influential
+predictor of a movie’s budget. Other potential predictors we included in
+the model were <code>runtime</code> and all genre variables.</p>
+<pre class="r"><code># Stepwise regression for budget
+## logBudget ~ Bechdel (binary) + runtime + Genre
+modelbudget = lm(log(budget_2013) ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepbudget &lt;- stepAIC(modelbudget, direction = &quot;both&quot;, trace = FALSE) %&gt;%  broom::tidy()
+knitr::kable(stepbudget, digits = 3)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1854,11 +2017,16 @@ knitr::kable(step19, digits = 3)</code></pre>
 <p>The algorithm selected <code>runtime</code> and the genre variables
 of action, adventure, animation, biography, comedy, crime, documentary,
 drama, family, fantasy, musical, mystery, romance, sci-fi, sport, and
-thrill. <code>pass_bechdel</code> was not selected as an influential
+thriller. <code>pass_bechdel</code> was not selected as an influential
 predictor.</p>
 <p>In conclusion, based on our data, whether or not a movie passes the
 Bechdel test is not a significant predictor of that movie’s potential
-for success based on the criteria of profit and budget.</p>
+for success based on the criteria of profit and budget. It is a
+significant predictor of a movie’s IMDB ratings where movies that pass
+have, on average, a lower rating than movies that do not pass.
+Therefore, passing the Bechdel test can be considered detrimental to a
+movie’s success.</p>
+</div>
 </div>
 <div id="scrap-code" class="section level2">
 <h2>Scrap Code</h2>
