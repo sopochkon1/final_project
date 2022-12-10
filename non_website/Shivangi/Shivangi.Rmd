@@ -53,8 +53,8 @@ This database consists of a list of 9802 movies released between 1874 and 2022 (
 This is a film industry data website that tracks box office revenue in a systematic and algorithmic way. We accounted for the `budget` and `revenue` variables for the movies using this website. The data can be accessed through API.
 
 * **IMDb**:
-The _Internet Movie Database_ (IMDb) is an online database containing information and statistics about movies, TV shows and video games as well as actors, directors and other film industry professionals. We used the information about the `year of release`, `runtime`, `genre`, `language` and `rating` of the films.
+The _Internet Movie Database_ (IMDb) is an online database containing information and statistics about movies, TV shows and video games as well as actors, directors and other film industry professionals. We used the information about the `year of release`, `runtime`, `genre`, `language` and `rating` of the films. 
+The _Superheroes_ dataset was obtained using the CSS selector extension in order to pull information on Marvel and DC Universe Superheroes movies. 
 
 * **Tidy Tuesday Project**:
 This is the _main source for our dataset_ which provides weekly releases of raw datasets for users to wrangle and analyse. The data itself _originates from FiveThirtyEight_ that contains movies ranging from 1970 to 2013, and _merges data from the other sources: IMDb, The-Numbers.com, and BechdelTest.com_. 
-
