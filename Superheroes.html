@@ -27,7 +27,7 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -43,18 +43,29 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-<link href="site_libs/value-box-accent-static-0.6.0/theme-sandstone-value-box.css" rel="stylesheet" />
+<link href="site_libs/value-box-accent-static-0.6.0/theme-simplex-value-box.css" rel="stylesheet" />
 <link href="site_libs/featherlight-1.3.5/featherlight.min.css" rel="stylesheet" />
 <script src="site_libs/featherlight-1.3.5/featherlight.min.js"></script>
 <link href="site_libs/prism-1.4.1/prism.css" rel="stylesheet" />
 <script src="site_libs/prism-1.4.1/prism.js"></script>
 <link href="site_libs/flexdashboard-css-0.6.0/flexdashboard.min.css" rel="stylesheet" />
-<link href="site_libs/flexdashboard-css-0.6.0/theme-sandstone.css" rel="stylesheet" />
-<link href="site_libs/selectize-0.12.4/css/selectize.bootstrap3.css" rel="stylesheet" />
-<script src="site_libs/selectize-0.12.4/js/selectize.min.js"></script>
-<script src="site_libs/selectize-0.12.4/accessibility/js/selectize-plugin-a11y.min.js"></script>
+<link href="site_libs/flexdashboard-css-0.6.0/theme-simplex.css" rel="stylesheet" />
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.26/datatables.js"></script>
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <style type="text/css">
 /*
   CSS for flexdashboard.js' use of Sly(). The sizing/position of this CSS needs to be
@@ -1877,130 +1888,47 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
 <div id="section-column" class="section level2 sidebar">
 <h2 class="sidebar">Column</h2>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
+<p>Data Scientists, <em>Assemble!</em></p>
+<p>Welcome to the Superheroes dashboard. Here you can explore the
+comparison of the Marvel Cinematic Universe with the DC Universe. See if
+your favorite superhero movies pass the Bechdel test, what proportion of
+movies from each studio pass the Bechdel test, and how the distribution
+of movies passing the Bechdel test from each studio changed over the
+years.</p>
 </div>
-<div class="form-group shiny-input-container">
-<label class="control-label" id="movie_choice-label" for="movie_choice">
-<h3>Title</h3>
-</label>
-<div>
-<select id="movie_choice"><option value="Iron Man">Iron Man</option>
-<option value="The Incredible Hulk">The Incredible Hulk</option>
-<option value="Captain America: The First Avenger">Captain America: The First Avenger</option>
-<option value="The Avengers">The Avengers</option>
-<option value="Thor: The Dark World">Thor: The Dark World</option>
-<option value="Iron Man 2">Iron Man 2</option>
-<option value="Thor" selected>Thor</option>
-<option value="Iron Man Three">Iron Man Three</option>
-<option value="Captain America: The Winter Soldier">Captain America: The Winter Soldier</option>
-<option value="Guardians of the Galaxy">Guardians of the Galaxy</option>
-<option value="Avengers: Age of Ultron">Avengers: Age of Ultron</option>
-<option value="Ant-Man">Ant-Man</option>
-<option value="Captain America: Civil War">Captain America: Civil War</option>
-<option value="Doctor Strange">Doctor Strange</option>
-<option value="Guardians of the Galaxy Vol. 2">Guardians of the Galaxy Vol. 2</option>
-<option value="Spider-Man: Homecoming">Spider-Man: Homecoming</option>
-<option value="Thor: Ragnarok">Thor: Ragnarok</option>
-<option value="Black Panther">Black Panther</option>
-<option value="Avengers: Infinity War">Avengers: Infinity War</option>
-<option value="Ant-Man and the Wasp">Ant-Man and the Wasp</option>
-<option value="Captain Marvel">Captain Marvel</option>
-<option value="Avengers: Endgame">Avengers: Endgame</option>
-<option value="Spider-Man: Far from Home">Spider-Man: Far from Home</option>
-<option value="Black Widow">Black Widow</option>
-<option value="Shang-Chi and the Legend of the Ten Rings">Shang-Chi and the Legend of the Ten Rings</option>
-<option value="Eternals">Eternals</option>
-<option value="Spider-Man: No Way Home">Spider-Man: No Way Home</option>
-<option value="Doctor Strange in the Multiverse of Madness">Doctor Strange in the Multiverse of Madness</option>
-<option value="Thor: Love and Thunder">Thor: Love and Thunder</option>
-<option value="Black Panther: Wakanda Forever">Black Panther: Wakanda Forever</option>
-<option value="Man of Steel">Man of Steel</option>
-<option value="Batman v Superman: Dawn of Justice">Batman v Superman: Dawn of Justice</option>
-<option value="Suicide Squad">Suicide Squad</option>
-<option value="Wonder Woman">Wonder Woman</option>
-<option value="Justice League">Justice League</option>
-<option value="Aquaman">Aquaman</option>
-<option value="Shazam!">Shazam!</option>
-<option value="Birds of Prey">Birds of Prey</option>
-<option value="Wonder Woman 1984">Wonder Woman 1984</option>
-<option value="The Suicide Squad">The Suicide Squad</option>
-<option value="Black Adam">Black Adam</option>
-<option value="The Dark Knight Rises">The Dark Knight Rises</option>
-<option value="Green Lantern">Green Lantern</option>
-<option value="The Dark Knight">The Dark Knight</option>
-<option value="Batman Begins">Batman Begins</option>
-<option value="Batman &amp; Robin">Batman &amp; Robin</option>
-<option value="Batman Forever">Batman Forever</option>
-<option value="Batman Returns">Batman Returns</option></select>
-<script type="application/json" data-for="movie_choice" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
-</div>
-</div>
-<div id="Studio_choice" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="Studio_choice-label">
-<label class="control-label" id="Studio_choice-label" for="Studio_choice">
-<h3>Universe</h3>
-</label>
-<div class="shiny-options-group">
-<div class="checkbox">
-<label>
-<input type="checkbox" name="Studio_choice" value="MCU" checked="checked"/>
-<span>MCU</span>
-</label>
-</div>
-<div class="checkbox">
-<label>
-<input type="checkbox" name="Studio_choice" value="DCEU"/>
-<span>DCEU</span>
-</label>
-</div>
-</div>
-</div>
-</div>
-<div id="section-column-1" class="section level2" data-width="550">
+<div id="section-column-1" class="section level2" data-width="650">
 <h2>Column</h2>
-<div id="section-chart-a" class="section level3">
-<h3>Chart A</h3>
+<div
+id="section-whoever-passes-the-bechdel-test-if-he-be-worthy-shall-possess-the-power-of-thor."
+class="section level3">
+<h3>Whoever passes the Bechdel Test, if he be worthy, shall possess the
+power of Thor.</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<div id="out3a48b8aa0079dc8a" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size shiny-report-theme"></div>
+<div id="htmlwidget-eebb8db27e4b57c561c7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eebb8db27e4b57c561c7">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","fillContainer":true,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48"],["Iron Man","The Incredible Hulk","Captain America: The First Avenger","The Avengers","Thor: The Dark World","Iron Man 2","Thor","Iron Man Three","Captain America: The Winter Soldier","Guardians of the Galaxy","Avengers: Age of Ultron","Ant-Man","Captain America: Civil War","Doctor Strange","Guardians of the Galaxy Vol. 2","Spider-Man: Homecoming","Thor: Ragnarok","Black Panther","Avengers: Infinity War","Ant-Man and the Wasp","Captain Marvel","Avengers: Endgame","Spider-Man: Far from Home","Black Widow","Shang-Chi and the Legend of the Ten Rings","Eternals","Spider-Man: No Way Home","Doctor Strange in the Multiverse of Madness","Thor: Love and Thunder","Black Panther: Wakanda Forever","Man of Steel","Batman v Superman: Dawn of Justice","Suicide Squad","Wonder Woman","Justice League","Aquaman","Shazam!","Birds of Prey","Wonder Woman 1984","The Suicide Squad","Black Adam","The Dark Knight Rises","Green Lantern","The Dark Knight","Batman Begins","Batman &amp; Robin","Batman Forever","Batman Returns"],["FAIL","FAIL","PASS","PASS","FAIL","FAIL","PASS","FAIL","PASS","PASS","PASS","FAIL","PASS","FAIL","PASS","PASS","FAIL","PASS","PASS","PASS","PASS","PASS","FAIL","PASS","PASS","PASS","PASS","PASS","PASS","PASS","PASS","FAIL","PASS","PASS","PASS","PASS","PASS","PASS","PASS","PASS","FAIL","FAIL","FAIL","PASS","FAIL","FAIL","FAIL","FAIL"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>title<\/th>\n      <th>bechdel<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<div id="section-column-2" class="section level2" data-width="450">
-<h2>Column</h2>
-<div id="section-chart-b" class="section level3">
-<h3>Chart B</h3>
+<div id="section-row" class="section level2">
+<h2>Row</h2>
+<div id="section-proportion-passing" class="section level3">
+<h3>Proportion Passing</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<pre><code># A tibble: 48 × 2
-   title                               binary
-   &lt;chr&gt;                               &lt;lgl&gt; 
- 1 Iron Man                            FALSE 
- 2 The Incredible Hulk                 FALSE 
- 3 Captain America: The First Avenger  TRUE  
- 4 The Avengers                        TRUE  
- 5 Thor: The Dark World                FALSE 
- 6 Iron Man 2                          FALSE 
- 7 Thor                                TRUE  
- 8 Iron Man Three                      FALSE 
- 9 Captain America: The Winter Soldier TRUE  
-10 Guardians of the Galaxy             TRUE  
-# … with 38 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
-<div id="out0ff1d8180d8cd1c4" class="shiny-html-output"></div>
+<div id="htmlwidget-c4d8972cbd9c56d3ac9f" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c4d8972cbd9c56d3ac9f">{"x":{"visdat":{"c174557c3bc6":["function () ","plotlyVisDat"]},"cur_data":"c174557c3bc6","attrs":{"c174557c3bc6":{"x":{},"y":{},"text":{},"color":{},"colors":["blue","red"],"alpha":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Marvel Cinematic Universe vs DC Extended Universe","xaxis":{"domain":[0,1],"automargin":true,"title":"Studio","type":"category","categoryorder":"array","categoryarray":["DCEU","MCU"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"% Movies Passing Bechdel Test","titlefont":{"size":9.5}},"font":{"size":10},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["DCEU"],"y":[55.5555555555556],"text":"55.5555555555556%","type":"bar","name":"DCEU","marker":{"color":"rgba(0,0,255,0.5)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,0.5)"},"error_y":{"color":"rgba(0,0,255,0.5)"},"error_x":{"color":"rgba(0,0,255,0.5)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["MCU"],"y":[70],"text":"70%","type":"bar","name":"MCU","marker":{"color":"rgba(255,0,0,0.5)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,0.5)"},"error_y":{"color":"rgba(255,0,0,0.5)"},"error_x":{"color":"rgba(255,0,0,0.5)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="section-chart-c" class="section level3">
-<h3>Chart C</h3>
+<div id="section-bechdel-test-over-the-years" class="section level3">
+<h3>Bechdel Test Over the Years</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<div id="out5833368f9271e6ca" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size shiny-report-theme"></div>
+<div id="htmlwidget-6565a050aecc7004b453" style="width:576px;height:460.8px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6565a050aecc7004b453">{"x":{"visdat":{"c174241bbf0":["function () ","plotlyVisDat"]},"cur_data":"c174241bbf0","attrs":{"c174241bbf0":{"x":{},"y":{},"mode":"markers","color":{},"colors":["blue","red"],"alpha":0.9,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Superhero Movies that Pass the Bechdel Test over the Years","titlefont":{"size":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Movie","showticklabels":false,"type":"category","categoryorder":"array","categoryarray":["Ant-Man and the Wasp","Aquaman","Avengers: Age of Ultron","Avengers: Endgame","Avengers: Infinity War","Birds of Prey","Black Panther","Black Panther: Wakanda Forever","Black Widow","Captain America: Civil War","Captain America: The First Avenger","Captain America: The Winter Soldier","Captain Marvel","Doctor Strange in the Multiverse of Madness","Eternals","Guardians of the Galaxy","Guardians of the Galaxy Vol. 2","Justice League","Man of Steel","Shang-Chi and the Legend of the Ten Rings","Shazam!","Spider-Man: Homecoming","Spider-Man: No Way Home","Suicide Squad","The Avengers","The Dark Knight","The Suicide Squad","Thor","Thor: Love and Thunder","Wonder Woman","Wonder Woman 1984"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[2013,2016,2017,2017,2018,2019,2020,2020,2021,2008],"y":["Man of Steel","Suicide Squad","Wonder Woman","Justice League","Aquaman","Shazam!","Birds of Prey","Wonder Woman 1984","The Suicide Squad","The Dark Knight"],"mode":"markers","type":"scatter","name":"DCEU","marker":{"color":"rgba(0,0,255,0.9)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,0.9)"},"error_y":{"color":"rgba(0,0,255,0.9)"},"error_x":{"color":"rgba(0,0,255,0.9)"},"line":{"color":"rgba(0,0,255,0.9)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2010,2011,2013,2014,2014,2015,2016,2017,2017,2018,2018,2018,2019,2019,2021,2021,2021,2021,2022,2022,2022],"y":["Captain America: The First Avenger","The Avengers","Thor","Captain America: The Winter Soldier","Guardians of the Galaxy","Avengers: Age of Ultron","Captain America: Civil War","Guardians of the Galaxy Vol. 2","Spider-Man: Homecoming","Black Panther","Avengers: Infinity War","Ant-Man and the Wasp","Captain Marvel","Avengers: Endgame","Black Widow","Shang-Chi and the Legend of the Ten Rings","Eternals","Spider-Man: No Way Home","Doctor Strange in the Multiverse of Madness","Thor: Love and Thunder","Black Panther: Wakanda Forever"],"mode":"markers","type":"scatter","name":"MCU","marker":{"color":"rgba(255,0,0,0.9)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,0.9)"},"error_y":{"color":"rgba(255,0,0,0.9)"},"error_x":{"color":"rgba(255,0,0,0.9)"},"line":{"color":"rgba(255,0,0,0.9)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -2028,91 +1956,77 @@ output:
     orientation: columns
     vertical_layout: fill
     source: embed
-    theme: sandstone
+    theme: simplex
 runtime: shiny
 
 ---
 
-```{r setup }
+```{r setup, include = FALSE}
 library(tidyverse)
-library(flexdashboard)
 library(plotly)
-library(viridis)
-library(shiny)
-library(png)
-library(magrittr)
-library(imager)
-library(magick)
+library(flexdashboard)
+library(DT)
+
 
 
 Superheroes = 
-  readxl::read_excel("bechdel/Superheroes_finally.xlsx")
+  readxl::read_excel("bechdel/Superheroes_finally.xlsx") %&gt;% 
+  mutate(
+    binary = recode(binary, `FALSE` = "FAIL", `TRUE` = "PASS", `PASS` = "PASS"),
+    bechdel = binary,
+    title = recode(title, `Iron Man Three` = "Iron Man 3")) 
+  
 
 
 Superheroes_binary = 
-  Superheroes %&gt;% 
-  select(title, binary) 
+  Superheroes %&gt;%  
+  select(title, bechdel) 
 
 
-
-
-imageA &lt;- image_read("images/PASS.png") 
-imageB &lt;- image_read("images/FAIL.jpg")
-
-pass_fail &lt;- c(imageA, imageB)
 
 ```
 
 Column {.sidebar}
 -----------------------------------------------------------------------
 
+Data Scientists, _Assemble!_
+
+Welcome to the Superheroes dashboard. 
+Here you can explore the comparison of the Marvel Cinematic Universe with the DC 
+Universe. See if your favorite superhero movies pass the Bechdel test, what 
+proportion of movies from each studio pass the Bechdel test, and how the 
+distribution of movies passing the Bechdel test from each studio changed over 
+the years.
+
+
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Whoever passes the Bechdel Test, if he be worthy, shall possess the power of Thor. 
+
 ```{r}
-titles = Superheroes %&gt;%  distinct(title) %&gt;% pull()
 
-selectInput(
-  inputId = "movie_choice",
-  label = h3("Title"),
-  choices = titles,
-  selected = "Thor"
-)
-
-
-#fluidPage(
-  # Copy the line below to make a text input box
-  #textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
- # hr(),
- # fluidRow(column(3, verbatimTextOutput("value"))))
-
-
-studios = Superheroes %&gt;% distinct(universe) %&gt;% pull()
-
-checkboxGroupInput(
-    inputId = "Studio_choice", 
-    label = h3("Universe"), 
-    choices = studios,
-    selected = "MCU")
-  
-
+datatable(Superheroes_binary, filter ='top')
 
 ```
 
-Column {data-width=550}
+Row
 -----------------------------------------------------------------------
-
-### Chart A
+### Proportion Passing
 
 ```{r}
+pal &lt;- c("blue", "red")
 
-renderPlotly({
 Superheroes %&gt;% 
   group_by(universe) %&gt;%  
   summarise(proportion = sum(binary== "PASS")/n() * 100) %&gt;%
   mutate(
     text_label = str_c(proportion,"%")
   ) %&gt;% 
-    filter(universe == input[["Studio_choice"]]) %&gt;% 
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
-          color = ~ universe, alpha = 0.5, text = ~ text_label) %&gt;%
+          color = ~ universe,colors = pal, alpha = 0.5, text = ~ text_label) %&gt;%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
          xaxis = list(title = "Studio"),
          yaxis = list(title = "% Movies Passing Bechdel Test",
@@ -2121,64 +2035,29 @@ plot_ly(x = ~ universe, y = ~proportion, type = "bar",
          ) %&gt;%
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
-  )})
+  )
 
 
 ```
 
-Column {data-width=450}
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-Superheroes_binary %&gt;% 
-  mutate(binary = case_when(binary == "PASS" ~ TRUE, binary == "FAIL" ~ FALSE))
-
-renderUI({
-Superheroes_binary %&gt;% 
-    filter(title == "Thor") %&gt;%
-  select(-title) %&gt;% 
-    if_else(binary == "TRUE", print("1"), print("2"))
- })
-
-#library(imager)
-#
-#plot(im)
-# filter(if(FILTER_BY_DAYS_USED) Days_Used &gt;= 5 else n() &gt;= 3)
-
-
-
-```
-
-### Chart C
+### Bechdel Test Over the Years
 
 ```{r}
 
 pal &lt;- c("blue", "red")
 
-renderPlotly({
 Superheroes %&gt;% 
   filter(binary == "PASS") %&gt;% 
      mutate(
     text_label = str_c("Title:", title)
   ) %&gt;% 
-    filter(universe == input[["Studio_choice"]]) %&gt;% 
   plot_ly(x = ~ year, y = ~ title, type = "scatter", mode = "markers",
           color = ~ universe, colors = pal, alpha = 0.9) %&gt;%
     layout(title = "Superhero Movies that Pass the Bechdel Test over the Years",
            titlefont = list(size = 10),
          xaxis = list(title = "Year"),
          yaxis = list(title = "Movie",
-                      showticklabels = F)) %&gt;%
-  animation_opts(
-    1000, easing = "elastic", redraw = FALSE
-  ) })
-
-# filter(if(FILTER_BY_DAYS_USED) Days_Used &gt;= 5 else n() &gt;= 3)
-
-# filter(if(FILTER_BY_DAYS_USED) Days_Used &gt;= 5 else n() &gt;= 3)
+                      showticklabels = F)) 
 
 ```
 
