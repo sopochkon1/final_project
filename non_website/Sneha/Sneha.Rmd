@@ -1,97 +1,177 @@
 ---
 title: "Stepwise Regression"
-output: github_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(MASS)
 knitr::opts_chunk$set(echo = TRUE)
+# Read in dataset
+movies_df <- read_csv("../Cathy/movies_df.csv")
 ```
 
-## Using Stepwise Selection for Linear Regression: Is the Bechtel test a significant predictor of movie success?
+##Using Stepwise Selection for Linear Regression: Is the Bechdel test a significant predictor of movie success?
 
-```{r profit}
-# Read in dataset
-movies_df <- read_csv("non_website/Cathy/movies_df.csv")
+In order to assess whether a movie passing the Bechdel test is a significant predictor of that movie's success, we utilized a stepwise selection algorithm. The `stepAIC` command from the `MASS` package performs stepwise model selection by optimizing AIC.
 
+The setup of the regression models here follows the methodology outlined previously including log-transforming variables like `profit` and `budget_2013` to enforce a normal distribution.
+
+### Profit
+
+We first assessed the Bechdel test as a potential predictor of `profit`. Other potential predictors included in the model were `budget_2013`, `imdb_rating`, and all genre variables. Additionally, the binary Bechdel test variable was applied in these models to optimize degrees of freedom.
+
+```{r profit log transfrom, warning=FALSE}
+# Stepwise regression for Profit
+## logProfit ~ Bechdel (binary) + logBudget + IMDB + Genre
+model11 = lm(log(profit +1) ~ pass_bechdel + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step11 <- stepAIC(model11, direction = "both", trace = FALSE) %>% broom::tidy()
+knitr::kable(step11, digits = 3)
+```
+The algorithm selected budget, IMDB rating, and the genre variables of adventure, biography, drama, horror, music, romance, sci-fi, and western as influential predictors of a movie's profit. `pass_bechdel` was not selected as an influential predictor.
+
+### Budget
+
+As budget is a significant predictor of movie success (as assessed by profit - see table above), we also assessed whether passing the Bechdel test is an influential predictor of a movie's budget. Other potential predictors we included in the model are `runtime` and all genre variables.
+
+```{r budget log transform}
+## logBudget ~ Bechdel (binary) + runtime + Genre
+model19 = lm(log(budget_2013) ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step19 <- stepAIC(model19, direction = "both", trace = FALSE) %>%  broom::tidy()
+knitr::kable(step19, digits = 3)
+```
+The algorithm selected `runtime` and the genre variables of action, adventure, animation, biography, comedy, crime, documentary, drama, family, fantasy, musical, mystery, romance, sci-fi, sport, and thrill. `pass_bechdel` was not selected as an influential predictor.
+
+
+In conclusion, based on our data, whether or not a movie passes the Bechdel test is not a significant predictor of that movie's potential for success based on the criteria of profit and budget.
+
+
+## Scrap Code
+
+```{r profit, include=FALSE}
 # Stepwise regression for Profit
  
 ## Profit ~ Bechdel (binary) + budget + IMDB + Genre
 model1 = lm(profit ~ pass_bechdel + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
 step1 <- stepAIC(model1, direction = "both", trace = TRUE)
-step1
 summary(step1)
 ### bechdel selected, not significant
 
 ## Profit ~ Bechdel (binary) + budget + metascore + Genre
 model2 = lm(profit ~ pass_bechdel + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
 step2 <- stepAIC(model2, direction = "both", trace = TRUE)
-step2
 summary(step2)
 ### bechdel not selected 
 
 ## Profit ~ Bechdel (categorical) + budget + IMDB + Genre
 model3 = lm(profit ~ bechdel_score + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
 step3 <- stepAIC(model3, direction = "both", trace = TRUE)
-step3
 summary(step3)
 ### bechdel not selected
 
 ## Profit ~ Bechdel (categorical) + budget + metascore + Genre
 model4 = lm(profit ~ bechdel_score + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
 step4 <- stepAIC(model4, direction = "both", trace = TRUE)
-step4
 summary(step4)
 ### bechdel not selected
-```
 
-```{r roi}
-# Stepwise Regression for Return on Investment (ROI)
+## logProfit ~ Bechdel (binary) + logBudget + metascore + Genre
+model12 = lm(log(profit+1) ~ pass_bechdel + log(budget_2013) + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step12 <- stepAIC(model12, direction = "both", trace = TRUE)
+summary(step12)
+### bechdel not selected 
 
-## ROI ~ Bechdel (binary) + budget + IMDB + Genre
-model5 = lm(ROI ~ pass_bechdel + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
-step5 <- stepAIC(model5, direction = "both", trace = TRUE)
-step5
-summary(step5)
-### bechdel selected, significant at 5%
-
-## ROI ~ Bechdel (binary) + budget + metascore + Genre
-model6 = lm(ROI ~ pass_bechdel + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
-step6 <- stepAIC(model6, direction = "both", trace = TRUE)
-step6
-summary(step6)
-### bechdel selected, not significant 
-
-## ROI ~ Bechdel (categorical) + budget + IMDB + Genre
-model7 = lm(ROI ~ bechdel_score + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
-step7 <- stepAIC(model7, direction = "both", trace = TRUE)
-step7
-summary(step7)
-### bechdel selected, not significant
-
-## ROI ~ Bechdel (categorical) + budget + metascore + Genre
-model8 = lm(ROI ~ bechdel_score + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
-step8 <- stepAIC(model8, direction = "both", trace = TRUE)
-step8
-summary(step8)
+## logProfit ~ Bechdel (categorical) + logBudget + IMDB + Genre
+model13 = lm(log(profit +1) ~ bechdel_score + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step13 <- stepAIC(model13, direction = "both", trace = TRUE)
+summary(step13)
 ### bechdel not selected
 
+## logProfit ~ Bechdel (categorical) + logBudget + metascore + Genre
+model14 = lm(log(profit +1) ~ bechdel_score + log(budget_2013) + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step14 <- stepAIC(model14, direction = "both", trace = TRUE)
+summary(step14)
+### bechdel not selected
 ```
 
-```{r budget}
+```{r budget, include=FALSE}
 ## Budget ~ Bechdel (binary) + runtime + Genre
 model9 = lm(budget_2013 ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
 step9 <- stepAIC(model9, direction = "both", trace = TRUE)
-step9
 summary(step9)
 ### bechdel selected, not significant
 
 ## Budget ~ Bechdel (categorical) + runtime + Genre
 model10 = lm(budget_2013 ~ bechdel_score + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
 step10 <- stepAIC(model10, direction = "both", trace = TRUE)
-step10
 summary(step10)
+### bechdel not selected
+
+## Budget ~ Bechdel (categorical) + runtime + Genre
+model101 = lm(log(budget_2013) ~ bechdel_score + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step101 <- stepAIC(model101, direction = "both", trace = TRUE)
+summary(step101)
 ### bechdel not selected
 ```
 
+```{r roi, include=FALSE}
+# Stepwise Regression for Return on Investment (ROI)
+
+## ROI ~ Bechdel (binary) + budget + IMDB + Genre
+model5 = lm(ROI ~ pass_bechdel + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step5 <- stepAIC(model5, direction = "both", trace = TRUE)
+summary(step5)
+### bechdel not selected
+
+## ROI ~ Bechdel (binary) + budget + metascore + Genre
+model6 = lm(ROI ~ pass_bechdel + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step6 <- stepAIC(model6, direction = "both", trace = TRUE)
+summary(step6)
+### bechdel not selected
+
+## ROI ~ Bechdel (categorical) + budget + IMDB + Genre
+model7 = lm(ROI ~ bechdel_score + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step7 <- stepAIC(model7, direction = "both", trace = TRUE)
+summary(step7)
+### bechdel not selected
+
+## ROI ~ Bechdel (categorical) + budget + metascore + Genre
+model8 = lm(ROI ~ bechdel_score + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step8 <- stepAIC(model8, direction = "both", trace = TRUE)
+summary(step8)
+### bechdel not selected
+
+```
+
+```{r log transform roi, include=FALSE}
+# Stepwise Regression for Return on Investment (ROI)
+
+## logROI ~ Bechdel (binary) + budget + IMDB + Genre
+model15 = lm(log(ROI+1) ~ pass_bechdel + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step15 <- stepAIC(model15, direction = "both", trace = TRUE)
+step15 = step15 %>% broom::tidy()
+knitr::kable(step15, digits = 3)
+### bechdel not selected
+
+## ROI ~ Bechdel (binary) + budget + metascore + Genre
+model6 = lm(ROI ~ pass_bechdel + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step6 <- stepAIC(model6, direction = "both", trace = TRUE)
+summary(step6)
+### bechdel not selected
+
+## ROI ~ Bechdel (categorical) + budget + IMDB + Genre
+model7 = lm(ROI ~ bechdel_score + budget_2013 + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step7 <- stepAIC(model7, direction = "both", trace = TRUE)
+summary(step7)
+### bechdel not selected
+
+## ROI ~ Bechdel (categorical) + budget + metascore + Genre
+model8 = lm(ROI ~ bechdel_score + budget_2013 + metascore + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+step8 <- stepAIC(model8, direction = "both", trace = TRUE)
+summary(step8)
+### bechdel not selected
+```
