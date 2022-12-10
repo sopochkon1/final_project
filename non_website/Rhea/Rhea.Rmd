@@ -32,7 +32,8 @@ movies = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday
 
 
 
-```{r tidy movies, echo =FALSE}
+
+```{r tidy movies, echo=FALSE}
 movies_df = movies %>% 
   mutate(test = as.factor(test), 
          clean_test = fct_recode(clean_test, 
@@ -52,7 +53,7 @@ movies_df = movies %>%
                             year >= 1980 & year < 1990 ~ "1980-1989",
                             year >= 1990 & year < 2000 ~ "1990-1999",
                             year >= 2000 & year < 2010 ~ "2000-2009",
-                            year >= 2010 & year < 2020 ~ "2010 - present"),
+                            year >= 2010 & year < 2020 ~ "2010-2013"),
          decade_code = as.factor(decade_code),
          title = str_replace(title, "&#39;", "'"),
          title = str_replace(title, "&amp;", "&"),
@@ -69,34 +70,35 @@ movies_df = movies %>%
          "bechdel_score" = clean_test,
          "decade" = decade_code) %>% 
   mutate(
-    action = ifelse(g1 == "Action" | g1 == "Action" | g1 == "Action", TRUE, FALSE),
-    adventure = ifelse(g1 == "Adventure" | g1 == "Adventure" | g1 == "Adventure", TRUE, FALSE),
-    animation = ifelse(g1 == "Animation" | g1 == "Animation" | g1 == "Animation", TRUE, FALSE),
-    biography = ifelse(g1 == "Biography" | g1 == "Biography" | g1 == "Biography", TRUE, FALSE),
-    comedy = ifelse(g1 == "Comedy" | g1 == "Comedy" | g1 == "Comedy", TRUE, FALSE),
-    crime = ifelse(g1 == "Crime" | g1 == "Crime" | g1 == "Crime", TRUE, FALSE),
-    documentary = ifelse(g1 == "Documentary" | g1 == "Documentary" | g1 == "Documentary", TRUE, FALSE),
-    drama = ifelse(g1 == "Drama" | g1 == "Drama" | g1 == "Drama", TRUE, FALSE),
-    family = ifelse(g1 == "Family" | g1 == "Family" | g1 == "Family", TRUE, FALSE),
-    fantasy = ifelse(g1 == "Fantasy" | g1 == "Fantasy" | g1 == "Fantasy", TRUE, FALSE),
-    history = ifelse(g1 == "History" | g1 == "History" | g1 == "History", TRUE, FALSE),
-    horror = ifelse(g1 == "Horror" | g1 == "Horror" | g1 == "Horror", TRUE, FALSE),
-    music = ifelse(g1 == "Music" | g1 == "Music" | g1 == "Music", TRUE, FALSE),
-    musical = ifelse(g1 == "Musical" | g1 == "Musical" | g1 == "Musical", TRUE, FALSE),
-    mystery = ifelse(g1 == "Mystery" | g1 == "Mystery" | g1 == "Mystery", TRUE, FALSE),
-    romance = ifelse(g1 == "Romance" | g1 == "Romance" | g1 == "Romance", TRUE, FALSE),
-    sci_fi = ifelse(g1 == "Sci-Fi" | g1 == "Sci-Fi" | g1 == "Sci-Fi", TRUE, FALSE),
-    sport = ifelse(g1 == "Sport" | g1 == "Sport" | g1 == "Sport", TRUE, FALSE),
-    thriller = ifelse(g1 == "Thriller" | g1 == "Thriller" | g1 == "Thriller", TRUE, FALSE),
-    war = ifelse(g1 == "War" | g1 == "War" | g1 == "War", TRUE, FALSE),
-    western = ifelse(g1 == "Western" | g1 == "Western" | g1 == "Western", TRUE, FALSE)
+    action = ifelse(g1 == "Action" | g2 == "Action" | g3 == "Action", TRUE, FALSE),
+    adventure = ifelse(g1 == "Adventure" | g2 == "Adventure" | g3 == "Adventure", TRUE, FALSE),
+    animation = ifelse(g1 == "Animation" | g2 == "Animation" | g3 == "Animation", TRUE, FALSE),
+    biography = ifelse(g1 == "Biography" | g2 == "Biography" | g3 == "Biography", TRUE, FALSE),
+    comedy = ifelse(g1 == "Comedy" | g2 == "Comedy" | g3 == "Comedy", TRUE, FALSE),
+    crime = ifelse(g1 == "Crime" | g2 == "Crime" | g3 == "Crime", TRUE, FALSE),
+    documentary = ifelse(g1 == "Documentary" | g2 == "Documentary" | g3 == "Documentary", TRUE, FALSE),
+    drama = ifelse(g1 == "Drama" | g2 == "Drama" | g3 == "Drama", TRUE, FALSE),
+    family = ifelse(g1 == "Family" | g2 == "Family" | g3 == "Family", TRUE, FALSE),
+    fantasy = ifelse(g1 == "Fantasy" | g2 == "Fantasy" | g3 == "Fantasy", TRUE, FALSE),
+    history = ifelse(g1 == "History" | g2 == "History" | g3 == "History", TRUE, FALSE),
+    horror = ifelse(g1 == "Horror" | g2 == "Horror" | g3 == "Horror", TRUE, FALSE),
+    music = ifelse(g1 == "Music" | g2 == "Music" | g3 == "Music", TRUE, FALSE),
+    musical = ifelse(g1 == "Musical" | g2 == "Musical" | g3 == "Musical", TRUE, FALSE),
+    mystery = ifelse(g1 == "Mystery" | g2 == "Mystery" | g3 == "Mystery", TRUE, FALSE),
+    romance = ifelse(g1 == "Romance" | g2 == "Romance" | g3 == "Romance", TRUE, FALSE),
+    sci_fi = ifelse(g1 == "Sci-Fi" | g2 == "Sci-Fi" | g3 == "Sci-Fi", TRUE, FALSE),
+    sport = ifelse(g1 == "Sport" | g2 == "Sport" | g3 == "Sport", TRUE, FALSE),
+    thriller = ifelse(g1 == "Thriller" | g2 == "Thriller" | g3 == "Thriller", TRUE, FALSE),
+    war = ifelse(g1 == "War" | g2 == "War" | g3 == "War", TRUE, FALSE),
+    western = ifelse(g1 == "Western" | g2 == "Western" | g3 == "Western", TRUE, FALSE)
   ) %>% 
-  select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, award_winner, runtime, profit, ROI, action:western) 
+  mutate(across(action:western, ~replace_na(., FALSE))) %>%
+  select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, metascore, imdb_rating, award_winner, runtime, profit, ROI, action:western) 
 
 readr::write_csv(movies_df, "./movies_df.csv")
 
-
 ```
+
 
 
 
@@ -121,20 +123,20 @@ budget_dist_p = movies_df %>% ggplot(aes(x = budget_2013)) + geom_histogram(alph
 ggplotly(budget_dist_p)
 ```
 
-Since budget was heavily right skewed, we log-transformed the data instead to enforce more normal distributions. We quantitatively tested the association of log of budget with categorical Bechdel score by regressing budget against the categories. 
+Since budget was heavily `right skewed`, we log-transformed it to enforce more normal distributions. We quantitatively tested the association of log of budget with categorical Bechdel score by regressing budget against the categories. 
 
 ```{r budget}
 
 log_budget= movies_df %>%
-  lm(log(budget_2013)~bechdel_score, data=.) %>% 
-  broom::tidy()
+  lm(log(budget_2013)~bechdel_score, data=.) 
+  
 
-log_budget
+summary(log_budget)
 
 
 ```
-Based on parameter estimate of -0.31003 with a p value of 0.01, 
-Passing all 3 Bechdel dimensions had a significant effect and a negative relationship with the Budget of the movies.
+Based on parameter estimate of -0.31 with a p value of 0.01, 
+Passing all 3 Bechdel dimensions had a negative relationship with the Budget of the movies. Movies that passed all 3 Bechdel dimensions had a lower budget than movies that failed every Bechdel dimension.
 
 Movies that failed every Bechdel dimension had an average budget of $33,963,942
 Movies that passed all 3 Bechdel dimensions had an average budget of $24,910,750
@@ -152,7 +154,7 @@ ggplotly(profit_dist)
 ```
 
 
-In the graph, profit appears to be heavily right skewed. Thus we log-transformed the data to enforce more normal distributions. Additionally, before the logarithm is applied, 1 was added to the base value to prevent applying a logarithm to a 0 value. This will be subtracted while calculating the results.
+In the graph, profit appears to be heavily `right skewed.` Thus we log-transformed the data to enforce more normal distributions. Additionally, before the logarithm is applied, 1 was added to the base value to prevent applying a logarithm to a 0 value. This will be subtracted while calculating the results.
 
 We quantitatively tested the association of profit with categorical Bechdel score by regressing profit against the categories adjusting for budget
 
@@ -160,13 +162,14 @@ We quantitatively tested the association of profit with categorical Bechdel scor
 ```{r}
 
 profit = movies_df %>% 
-  lm(log(profit+1)~bechdel_score+log(budget_2013), data =.)
+  lm(log(profit+1)~bechdel_score+log(budget_2013), data =.) 
+
 
 summary(profit)
 
 ```
 Based on the parameter estimate of -0.044, 
-Bechdel scores don't significantly influence Profit and passing all 3 dimensions of the Bechdel test had a negative relationship with Profit. However since the p-value is 0.7 > 0.05, the difference was found to be statistically insignificant
+Profits of movies that passed all 3 dimensions of the Bechdel test had slightly lower profits than movies that failed all dimensions of the Bechdel test. However since the p-value is 0.7 > 0.05, the difference was not found to be statistically significant
 
 
 ### Linear regression of IMDB rating vs. categorical Bechdel score
@@ -181,7 +184,7 @@ imdb = movies_df %>% ggplot(aes(x = imdb_rating)) + geom_histogram(alpha = 0.8, 
 
 ggplotly(imdb)
 ```
-The graph shows an approximately normal distribution.
+The graph shows an approximately `normal distribution.`
 
 Testing association of IMDB rating with categorical Bechdel scores using linear regression
 
@@ -192,8 +195,9 @@ imdb = movies_df %>%
 summary(imdb)
 ```
 
-Based on the Parameter estimate of -0.344 with a p value of 0.00019,
-movies that pass all the dimensions of Bechdel test received 0.34 point lower IMDB rating than movies that fail all the dimensions of a Bechdel test.
+Based on the Parameter estimate of -0.344 with a p value of 0.00019, movies that passed all 3 dimesions of bechdel test had a negative relationship with IMDB ratings.
+
+Movies that pass all the dimensions of Bechdel test received 0.34 point lower IMDB rating than movies that fail all the dimensions of a Bechdel test.
 
 ### Linear regression of Meta score vs. categorical Bechdel score
 
@@ -206,7 +210,7 @@ meta = movies_df %>% ggplot(aes(x = metascore)) + geom_histogram(alpha = 0.8, co
 
 ggplotly(meta)
 ```
-The graph shows an approximately normal distribution.
+The graph shows an approximately `normal distribution.`
 
 Testing association of meta score with categorical Bechdel scores using linear regression
 
@@ -217,7 +221,7 @@ meta = movies_df %>%
 summary(meta)
 
 ```
-Based on the parameter estimate -0.4642,  movies that pass all dimensions of the Bechdel test had a negative relationship with Meta scores. However since the p-value 0.7 > 0.05, the difference was found to be statistically insignificant
+Based on the parameter estimate -0.4642,  movies that pass all dimensions of the Bechdel test had a negative relationship with Meta scores. However since the p-value 0.7 > 0.05, the difference was not statistically significant
 
 Movies that pass all the dimensions of Bechdel test received 0.46 points less in meta scores than movies that fail all the dimensions of a Bechdel test.
 
