@@ -15,12 +15,11 @@ navbar:
       menu: 
       - text: "Data Sources"
         href: Data.html
-      - text: "Regression"
-        href: Regression.html
       - text: "Exploratory Analysis"
         href: EDA.html        
+      - text: "Regression"
+        href: Regression.html
     - text: "Superheroes"
-      icon: fa-solid fa-bat
       href: Superheroes.html
     - icon: fa-envelope fa-lg
       href: mailto:<sc4934@cumc.columbia.edu>

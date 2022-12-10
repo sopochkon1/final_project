@@ -5,129 +5,46 @@ output:
     toc: true
     toc_float: true
     code_folding: "hide"
-date: "2022-12-05"
 ---
 
 ```{r setup, include = FALSE}
 library(tidyverse)
 library(readr)
 library(plotly)
+
 knitr::opts_chunk$set(
   warning = FALSE, 
   message = FALSE,
   fig.align = 'center')
 
-
-
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
-## Data Sources and Overview 
+Now that we have our tidied dataset, we can conduct some exploratory analyses to answer the 3 following questions:
 
-The source of the dataset comes from R for Data Science's [Tidy Tuesday Project](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-03-09), which provides weekly releases of raw datasets for users to wrangle and analyze. The data itself originates from FiveThirtyEight, containing movies ranging from 1970 to 2013, and merges data from several sources:
+* How has the distribution of movies that pass the Bechdel Test changed over time?
+* How do movies who pass differing levels of each Bechdel Test vary in terms of their budget?
+* How do movies who pass differing levels of each Bechdel Test vary in terms of their revenue (profit and ROI)?
+* Do movies that pass vs. fail the Bechdel Test differ in terms of fan or critic ratings?
 
-* **[IMDB](https://imdb.com)**: Provides information about each film, such as year, runtime, genre, language, rating.
-* **[BechdelTest.com](http://bechdeltest.com)**: Provides year, title, and a Bechdel Test score ranging from 0-3.
-* **[The-Numbers.com](https://The-Numbers.com)**: Provides information about budget and revenue of each movie.
-
-## Data Import and Cleaning
-
-```{r load}
-raw_bechdel = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
-movies = read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/movies.csv')
+```{r load data, include=FALSE}
+movies_df = movies = read_csv("bechdel/movies_df.csv")
 ```
-
-The dataset was distributed in two files, `movies.csv`, `raw_bechdel.csv`.
-
-* `movies.csv`: A data file of `r nrow(movies)` observations and `r ncol(movies)` variables, which includes movies from 1970 to 2013, and contains variables for title, IMDB ID, year, Bechdel test (uncleaned, cleaned, binary pass/fail), genres, ratings, budget, domestic and international gross revenue, and 2013-adjusted budget and revenues.
-* `raw_bechdel.csv`: A data file of `r nrow(raw_bechdel)` observations and `r ncol(raw_bechdel)` variables, containing movies from 1888 to 2021, and contains variables for title, movie ID, IMDB ID, and raw Bechdel test score (0 to 3).
-
-### Data cleaning
-
-The data cleaning steps involve the following:
-- Converting character to numeric variables for `domgross`, `intgross`, `domgross_2013`, `intgross_2013`
-
-- Converting the `binary` character variable to a logical variable that indicates whether the movie passes or fails the Bechdel Test
-
-- Recoding and relevelling the numeric `decade_code` variable into a `decade` factor variable according to the year of release
-
-- Recoding and relevelling the `clean_test` variable into 4 levels corresponding to the Bechdel Test criteria:
-
-  - 0 = Less than 2 women
-  - 1 = Women don't talk to each other
-  - 2 = Women only talk about men
-  - 3 = Dubious (uncertain whether it passes Bechdel Test)
-  - 4 = Passes Bechdel Test
-
-- Creating a `profit` variable, the difference between 2013-adjusted domestic revenue less budget
-
-=======
-
-- Creating variables for profit and ROI for each movie. For this, we will use worldwide box office revenue instead of domestic revenue.
-  - `profit` = `intgross_2013 – budget_2013`
-  - `ROI` = `profit / budget_2013`
-
-
-- Renaming key variables to relevant names
-
-
-```{r tidy movies}
-movies = movies %>% 
-  mutate(test = as.factor(test), 
-         clean_test = fct_recode(clean_test, 
-                                 "Less than 2 women" = "nowomen", 
-                                 "Don't talk to each other" = "notalk",
-                                 "Only talk about men" = "men", 
-                                 "Dubious" = "dubious",
-                                 "Passes Bechdel" = "ok"),
-         clean_test = fct_relevel(clean_test, c("Less than 2 women", "Don't talk to each other", 
-                                                "Only talk about men", "Dubious", "Passes Bechdel")),
-         binary = ifelse(binary == "PASS", TRUE, FALSE), 
-         domgross = as.numeric(domgross),
-         intgross = as.numeric(intgross),
-         domgross_2013 = as.numeric(domgross_2013),
-         intgross_2013 = as.numeric(intgross_2013),
-         decade_code = case_when(year >= 1970 & year < 1980 ~ "1970-1979",
-                            year >= 1980 & year < 1990 ~ "1980-1989",
-                            year >= 1990 & year < 2000 ~ "1990-1999",
-                            year >= 2000 & year < 2010 ~ "2000-2009",
-                            year >= 2010 & year < 2020 ~ "2010 - present"),
-         decade_code = as.factor(decade_code),
-         title = str_replace(title, "&#39;", "'"),
-         title = str_replace(title, "&amp;", "&"),
-         title = str_replace(title, "&agrave;", "à"),
-         title = str_replace(title, "&aring;", "å"),
-         title = str_replace(title, "&auml;", "ä"), 
-         profit = intgross_2013 - budget_2013,
-         ROI = profit/budget_2013) %>% 
-  rename("pass_bechdel" = binary,
-         "bechdel_score" = clean_test,
-         "decade" = decade_code) %>% 
-  select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, language, metascore, imdb_rating, genre:runtime, profit, ROI)
-
-
-  head(movies) %>% 
-  kableExtra::kbl() %>% 
-  kableExtra::kable_paper("striped", "hover", full_width = F) %>% 
-  kableExtra::scroll_box(width = "100%", height = "300px")
-  
-```
-
-Our resulting dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables, indicating information about each movie's Bechdel Test score, budget, revenue, genre, and ratings.
-
-
-
-
-## Exploratory Data Analysis
-
-=======
-## Exploratory Data Analysis
-
 
 ### Distribution of Bechdel Test Scores
 
-```{r}
-movies %>% 
+First, we want to examine the distribution of movies according to Bechdel Test dimension. The code chunk below summarizes the proportion of movies in `movies_df` according to their Bechdel Test Score, as well as the proportion of movies that pass or fail the Bechdel test.
+
+```{r bechdel distribution}
+movies_df %>% 
+  group_by(pass_bechdel) %>% 
+  summarise(N = n()) %>% 
+  mutate(Proportion = N/sum(N)) %>% 
+  rename("Passes Bechdel Test" = pass_bechdel) %>% 
+  knitr::kable(digits = 3) %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+
+movies_df %>% 
   group_by(bechdel_score) %>% 
   summarise(N = n()) %>% 
   mutate(Proportion = N/sum(N)) %>% 
@@ -136,131 +53,129 @@ movies %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
+The tables indicate slightly over half of the movies in the data pass the Bechdel Test, with 52.7% of movies passing and 47.3% of movies failing. Examining these categories in more detail, we can see that among those movies that don't pass the Bechdel Test, most movies have women that don't talk to each other. Among movies that pass the Bechdel Test, we can see only a small proportion of these movies have a "dubious" or debatable pass. 
+
 ### Bechdel Test Scores by decade
 
-```{r}
-less2_df = movies %>% 
-  filter(bechdel_score == "Less than 2 women") %>% 
+Next, we want to explore whether the number of movies passing the Bechdel Test have increased over time. The code chunk below plots the distribution of movies according to their Bechdel score by decade.
+
+```{r decades}
+seventies_df = movies_df %>% 
+  filter(decade == "1970-1979") %>% 
   group_by(decade, bechdel_score) %>% 
-  summarise(n = n()) 
-notalk_df = movies %>% 
-  filter(bechdel_score == "Don't talk to each other") %>% 
+  summarise(N = n()) %>% 
+  mutate(Proportion = N/sum(N))
+
+eighties_df = movies_df %>% 
+  filter(decade == "1980-1989") %>% 
   group_by(decade, bechdel_score) %>% 
-  summarise(n = n()) 
-talkmen_df = movies %>% 
-  filter(bechdel_score == "Only talk about men") %>% 
+  summarise(N = n()) %>% 
+  mutate(Proportion = N/sum(N)) 
+
+nineties_df = movies_df %>% 
+  filter(decade == "1990-1999") %>% 
   group_by(decade, bechdel_score) %>% 
-  summarise(n = n()) 
-dubious_df = movies %>% 
-  filter(bechdel_score == "Dubious") %>% 
+  summarise(N = n()) %>% 
+  mutate(Proportion = N/sum(N))
+
+thousands_df = movies_df %>% 
+  filter(decade == "2000-2009") %>% 
   group_by(decade, bechdel_score) %>% 
-  summarise(n = n()) 
-pass_df = movies %>% 
-  filter(bechdel_score == "Passes Bechdel") %>% 
-  group_by(decade, bechdel_score) %>% 
-  summarise(n = n()) 
-table = bind_cols(less2_df, notalk_df, talkmen_df, dubious_df, pass_df)
-table %>% 
-  plot_ly(x = ~decade...1, y = ~n...3, type = "bar", name = "Less than 2 women",
-          marker = list(color = "darkred")) %>% 
-  add_trace(y = ~n...6, name = "Don't talk to each other", marker = list(color = "red")) %>% 
-  add_trace(y = ~n...9, name = "Only talk about men", marker = list(color = "darkorange")) %>% 
-  add_trace(y = ~n...12, name = "Dubious", marker = list(color = "yellow")) %>% 
-  add_trace(y = ~n...15, name = "Passes Bechdel", marker = list(color = "lightgreen")) %>% 
+  summarise(N = n()) %>% 
+  mutate(Proportion = N/sum(N))
+
+tens_df = movies_df %>% 
+  filter(decade == "2010-2013") %>% 
+  group_by(decade, bechdel_score) %>%  
+  summarise(N = n()) %>%
+  mutate(Proportion = N/sum(N))
+
+decades = bind_rows(seventies_df, eighties_df, nineties_df, thousands_df, tens_df)
+
+decades %>% 
+  plot_ly(x = ~decade, y = ~Proportion*100, type = "bar", color = ~bechdel_score, colors = "RdYlGn") %>% 
   layout(barmode = "stack",
+         title = "Distribution of movies passing Bechdel Test Criteria by decade",
          xaxis = list(title = "Decade"),
-         yaxis = list(title = "Count"))
+         yaxis = list(title = "Percentage (%)"))
 ```
 
-### Bechdel Test Scores by genre
+This chart shows the breakdown of our sample of films stratified by decade. Looking at the plot, we can see that since 1970, an increasing proportion of movies pass the Bechdel Test, however this level has seemed to plateau around 54-55% since the 2000's. This may be partially attributed to a smaller sample of films in the 2010s. Despite this, the proportion of movies that decisively pass the Bechdel Test ('Dubious' means contributors were skeptical about whether the films in question passed the test) remains under 50%.
 
+### Distribution of budgets according to Bechdel criteria
+
+Next, we want to explore how movie budgets may vary according to the primacy of women's roles in movies. Grouping by Bechdel Test score, we can compute the distribution of movie budget, adjusted to 2013 inflation. 
+
+```{r budgets}
+movies_df %>% 
+  mutate(pass_bechdel = ifelse(pass_bechdel == TRUE, "Pass", "Fail")) %>% 
+  plot_ly(x = ~budget_2013, y = ~pass_bechdel, type = "box", text = ~title, color = ~pass_bechdel, colors = c("red4", "green4")) %>% 
+  layout(xaxis = list(title = "Movie budget ($)"),
+         yaxis = list(title = "Bechdel Test"), 
+         showlegend = FALSE)
+
+movies_df %>% 
+  plot_ly(x = ~budget_2013, y = ~bechdel_score, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
+  layout(xaxis = list(title = "Movie budget ($)"),
+         yaxis = list(title = "Bechdel Criterion"),
+         showlegend = FALSE, 
+         title = "Movie budgets (2013-adjusted) stratified by Bechdel Test criteria")
+```
+
+This chart shows the range of movie budgets stratified by criteria of the Bechdel Test. Movies that pass the Bechdel Test  appear to have slightly smaller budgets than movies that don't pass when we stratify on a binary basis. We notice that film budgets are fairly right-skewed, indicating we will need to log-transform this variable in subsequent analyses. When stratifying by the categorical Bechdel score, the budgets are not significantly different from each other, however, it appears that the interquartile range for movies that firmly pass the Bechdel Test is slightly lower than movies that don't firmly pass the Bechdel Test. These numbers may suggest that Hollywood puts more money behind male-only films than films in which women talk to each other, however, this will be further explored in subsequent analyses
+
+### Distribution of revenue according to Bechdel criteria
+
+Additionally, we want to explore how movie revenues may vary according to the primacy of women's roles in movies. We can examine this using the `profit` and `ROI` variables in our data. 
+
+
+#### Profits
+
+Starting with `profit`, which is the difference between `intgross_2013` (2013-adjusted international gross revenue) and `budget_2013` (2013-adjusted budget), we can plot the range of profits for each movie, stratified by their Bechdel Test criteria.  
+
+```{r profits}
+movies_df %>% 
+  mutate(pass_bechdel = ifelse(pass_bechdel == TRUE, "Pass", "Fail")) %>% 
+  plot_ly(x = ~profit, y = ~pass_bechdel, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
+  layout(boxmode = "group", 
+         xaxis = list(title = "Profit ($)"),
+         yaxis = list(title = "Bechdel Criterion"),
+         showlegend = FALSE,
+         title = "Movie profits stratified by Bechdel Test criteria")
+```
+
+Looking at the resulting plot, we see that the distribution of profits between movies passing vs. failing the Bechdel test are quite similar, with movies that fail the Bechdel Test reeling in slightly higher profits. The profits overall appear quite right-skewed, with some outliers bringing in similar amounts of profit (e.g. Star Wars and the Titanic). Given the skewed-ness of this outcome, we will need to log-transform this variable in subsequent analyses. When we stratify further by each dimension of the Bechdel Test, there are no notable differences in the profits between Bechdel criteria. 
+
+#### ROI
+
+Next, let's examine `ROI`, which is the ratio of `profit` to `budget_2013`. Because ROI is heavily right-skewed, we will log-transform this variable to better visualize differences in the ROI distribution between movies of differing Bechdel criteria. 
+
+```{r roi}
+movies_df %>% 
+  mutate(pass_bechdel = ifelse(pass_bechdel == TRUE, "Pass", "Fail")) %>% 
+  plot_ly(x = ~log(ROI), y = ~pass_bechdel, type = "box", text = ~title, color = ~bechdel_score, colors = c("darkred","orange1", "green4")) %>% 
+  layout(boxmode = "group", 
+         xaxis = list(title = "Log(Return on Investment)"),
+         yaxis = list(title = "Bechdel Criterion"),
+         showlegend = FALSE,
+         title = "Movie ROI stratified by Bechdel Test criteria")
+```
+
+Examining the `log(ROI)` across Bechdel dimensions, the range of financial performance does not appear to differ substantially, as the median and IQR are approximately the same across all categories. Therefore, despite having slightly lower budgets, we can see that the primacy of women's roles in movies do not negatively impact movies' financial performance, and therefore refutes claims that films with stronger female characters perform any worse at the box office than films without them.
 
 ### Bechdel Test by IMDB Rating
 
-```{r}
-movies %>% 
-  plot_ly(y = ~imdb_rating, x = ~bechdel_score, type = "scatter", 
-          mode = "markers", marker = list(color = ~imdb_rating)) %>% 
-  layout(yaxis = list(title = list(text = "IMDB Rating", standoff = 5), tickfont = list(size = 10), gridcolor = "white"),
-         xaxis = list(title = "Bechdel Criterion"), tickfont = list(size = 10), gridcolor = "gray")
+Although financial performance is an important indicator of success for films, we may also want to consider how well movies are received by fans and critics depending on the primacy of female roles. We can plot IMDB ratings (fan ratings) against Metacritic Scores (aggregate scores based on critic reviews) and stratify by Bechdel Score.
+
+```{r ratings}
+movies_df %>% 
+  plot_ly(x = ~imdb_rating, y = ~metascore/10, color = ~bechdel_score, type = "scatter", 
+          mode = "markers", colors = c("darkred","orange1", "green4"), text = ~title, alpha = 0.6) %>% 
+  layout(yaxis = list(title = list(text = "Metascore", standoff = 5), gridcolor = "lightgray"),
+         xaxis = list(title = "IMDB Rating"), gridcolor = "gray",
+         title = "Movie IMDB and Metacritic Scores stratified by Bechdel Test criteria")
 ```
 
+Based on the scatterplot, we do not see any discernable clusters that indicate movies that pass the Bechdel test perform better or worse than movies that do not pass the Bechdel Test. However, we do notice that there films with high outlying fan and critic scores appear to fail the Bechdel Test. Additionally, we see that there are more films passing the Bechdel Test with higher critic ratings relative to fan ratings, and more films that fail the Bechdel Test with lower critic ratings relative to fan ratings. This could perhaps be inherent biases held by fans to be more critical of films with female-dominant roles, while critics may be more likely to isolate their own biases while judging films.
 
-
-### Distribution of budgets according to Bechdel scores
-
-Next, we want to explore how movie budgets may differ according to the primacy of women's roles in movies. Grouping by Bechdel score, we can compute the median budget, adjusted to 2013 inflation. 
-
-
-```{r}
-movies %>% 
-  group_by(bechdel_score) %>% 
-  summarise(median_budget = median(budget_2013)) %>% 
-  plot_ly(x = ~median_budget, y = ~bechdel_score, type = "bar", color = ~bechdel_score, colors = "YlGn") %>% 
-  layout(yaxis = list(title = "Bechdel Criterion", standoff = 10),
-         xaxis = list(title = "Median movie budget ($)"), 
-         legend = list(reverse = TRUE))
-movies %>% 
-  plot_ly(x = ~bechdel_score, y = ~budget_2013, type = "box", text = ~title) %>% 
-  layout(yaxis = list(title = "Movie budget ($)", standoff = 10),
-         xaxis = list(title = "Bechdel Criterion" ), 
-         legend = list(reverse = TRUE))
-```
-
-We can  visualize the median budgets with a bar chart to see that movies featuring two women who don't talk to each other appear to have much larger budgets than the rest. Movies that pass the Bechdel test also appear to have slightly smaller budgets than movies that don't pass.
-=======
-
-Next steps...
-
-- F-test (ANOVA) of differences in budget
-
-
-```{r}
-budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
-  labs(
-    x = "Count",
-    y = "Budget ($, 2013-adjusted)",
-    title = "Distribution of movie budgets")
-
-ggplotly(budget_dist_p)
-```
-
-It appears that budget is heavily right-skewed. For this, we will need to run a Kruskal-Wallace test in place of an F-test. Below are the results:
-
-```{r}
-kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>% 
-  broom::tidy() %>% 
-  rename("Test statistic" = statistic,
-         "p-value" = p.value, 
-         "Parameter (df)" = parameter,
-         "Method" = method) %>% 
-  kableExtra::kbl() %>% 
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
-  kableExtra::kable_styling(font_size = 12)
-
-```
-
-Next steps...
-
-- F-test (ANOVA) of differences in budget
-
-
-
-```{r}
-budget_dist_p = movies %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
-  labs(
-    x = "Count",
-    y = "Budget ($, 2013-adjusted)",
-    title = "Distribution of movie budgets")
-ggplotly(budget_dist_p)
-kruskal.test(budget_2013 ~ bechdel_score, data = movies) %>% 
-  broom::tidy() %>% 
-  rename("Test statistic" = statistic,
-         "p-value" = p.value, 
-         "Parameter (df)" = parameter,
-         "Method" = method) %>% 
-  kableExtra::kbl() %>% 
-  kableExtra::kable_styling(bootstrap_options = c("striped")) %>%
-  kableExtra::kable_styling(font_size = 12)
-```
 

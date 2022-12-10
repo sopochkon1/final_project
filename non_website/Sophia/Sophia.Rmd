@@ -8,12 +8,13 @@ output: html_document
 
 ```{r}
 library(tidyverse)
-library(flexdashboard)
 library(plotly)
 library(viridis)
 library(shiny)
 library(readr)
 library(writexl)
+install.packages('rsconnect')
+library(rsconnect)
 
 Superheroes = 
   readxl::read_excel("bechdel/Superheroes.xlsx") 
@@ -57,7 +58,10 @@ write_xlsx(Superheroes_finally,path = "~/Desktop/Mailman/Semester 3/data science
 
 ```{r}
 
-
+    
+Superheroes_binary %>% 
+  filter(title == "Thor") %>% 
+  ifelse(binary == TRUE, plot(imageA), plot(imageB))
 
 
 
@@ -65,4 +69,27 @@ write_xlsx(Superheroes_finally,path = "~/Desktop/Mailman/Semester 3/data science
 ```
 
 
+## previous dashboard graveyard
+
+```{r}
+titles = Superheroes %>%  distinct(title) %>% pull()
+
+selectInput(
+  inputId = "movie_choice",
+  label = h3("Title"),
+  choices = titles,
+  selected = "Thor",
+  
+)
+
+
+studios = Superheroes %>% distinct(universe) %>% pull()
+
+checkboxGroupInput(
+    inputId = "Studio_choice", 
+    label = h3("Universe"), 
+    choices = studios,
+    selected = "MCU")
+  
+```
 

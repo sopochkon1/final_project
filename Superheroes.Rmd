@@ -5,91 +5,77 @@ output:
     orientation: columns
     vertical_layout: fill
     source: embed
-    theme: sandstone
+    theme: simplex
 runtime: shiny
 
 ---
 
-```{r setup }
+```{r setup, include = FALSE}
 library(tidyverse)
-library(flexdashboard)
 library(plotly)
-library(viridis)
-library(shiny)
-library(png)
-library(magrittr)
-library(imager)
-library(magick)
+library(flexdashboard)
+library(DT)
+
 
 
 Superheroes = 
-  readxl::read_excel("bechdel/Superheroes_finally.xlsx")
+  readxl::read_excel("bechdel/Superheroes_finally.xlsx") %>% 
+  mutate(
+    binary = recode(binary, `FALSE` = "FAIL", `TRUE` = "PASS", `PASS` = "PASS"),
+    bechdel = binary,
+    title = recode(title, `Iron Man Three` = "Iron Man 3")) 
+  
 
 
 Superheroes_binary = 
-  Superheroes %>% 
-  select(title, binary) 
+  Superheroes %>%  
+  select(title, bechdel) 
 
 
-
-
-imageA <- image_read("images/PASS.png") 
-imageB <- image_read("images/FAIL.jpg")
-
-pass_fail <- c(imageA, imageB)
 
 ```
 
 Column {.sidebar}
 -----------------------------------------------------------------------
 
+Data Scientists, _Assemble!_
+
+Welcome to the Superheroes dashboard. 
+Here you can explore the comparison of the Marvel Cinematic Universe with the DC 
+Universe. See if your favorite superhero movies pass the Bechdel test, what 
+proportion of movies from each studio pass the Bechdel test, and how the 
+distribution of movies passing the Bechdel test from each studio changed over 
+the years.
+
+
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Whoever passes the Bechdel Test, if he be worthy, shall possess the power of Thor. 
+
 ```{r}
-titles = Superheroes %>%  distinct(title) %>% pull()
 
-selectInput(
-  inputId = "movie_choice",
-  label = h3("Title"),
-  choices = titles,
-  selected = "Thor"
-)
-
-
-#fluidPage(
-  # Copy the line below to make a text input box
-  #textInput("search_bar", label = h3("Search Movie"), value = "i.e. Iron Man..."),
- # hr(),
- # fluidRow(column(3, verbatimTextOutput("value"))))
-
-
-studios = Superheroes %>% distinct(universe) %>% pull()
-
-checkboxGroupInput(
-    inputId = "Studio_choice", 
-    label = h3("Universe"), 
-    choices = studios,
-    selected = "MCU")
-  
-
+datatable(Superheroes_binary, filter ='top')
 
 ```
 
-Column {data-width=550}
+Row
 -----------------------------------------------------------------------
-
-### Chart A
+### Proportion Passing
 
 ```{r}
+pal <- c("blue", "red")
 
-renderPlotly({
 Superheroes %>% 
   group_by(universe) %>%  
   summarise(proportion = sum(binary== "PASS")/n() * 100) %>%
   mutate(
     text_label = str_c(proportion,"%")
   ) %>% 
-    filter(universe == input[["Studio_choice"]]) %>% 
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
-          color = ~ universe, alpha = 0.5, text = ~ text_label) %>%
+          color = ~ universe,colors = pal, alpha = 0.5, text = ~ text_label) %>%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
          xaxis = list(title = "Studio"),
          yaxis = list(title = "% Movies Passing Bechdel Test",
@@ -98,64 +84,29 @@ plot_ly(x = ~ universe, y = ~proportion, type = "bar",
          ) %>%
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
-  )})
+  )
 
 
 ```
 
-Column {data-width=450}
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-Superheroes_binary %>% 
-  mutate(binary = case_when(binary == "PASS" ~ TRUE, binary == "FAIL" ~ FALSE))
-
-renderUI({
-Superheroes_binary %>% 
-    filter(title == "Thor") %>%
-  select(-title) %>% 
-    if_else(binary == "TRUE", print("1"), print("2"))
- })
-
-#library(imager)
-#
-#plot(im)
-# filter(if(FILTER_BY_DAYS_USED) Days_Used >= 5 else n() >= 3)
-
-
-
-```
-
-### Chart C
+### Bechdel Test Over the Years
 
 ```{r}
 
 pal <- c("blue", "red")
 
-renderPlotly({
 Superheroes %>% 
   filter(binary == "PASS") %>% 
      mutate(
     text_label = str_c("Title:", title)
   ) %>% 
-    filter(universe == input[["Studio_choice"]]) %>% 
   plot_ly(x = ~ year, y = ~ title, type = "scatter", mode = "markers",
           color = ~ universe, colors = pal, alpha = 0.9) %>%
     layout(title = "Superhero Movies that Pass the Bechdel Test over the Years",
            titlefont = list(size = 10),
          xaxis = list(title = "Year"),
          yaxis = list(title = "Movie",
-                      showticklabels = F)) %>%
-  animation_opts(
-    1000, easing = "elastic", redraw = FALSE
-  ) })
-
-# filter(if(FILTER_BY_DAYS_USED) Days_Used >= 5 else n() >= 3)
-
-# filter(if(FILTER_BY_DAYS_USED) Days_Used >= 5 else n() >= 3)
+                      showticklabels = F)) 
 
 ```
 
