@@ -1,0 +1,67 @@
+---
+title: "leftover_code"
+output: html_document
+date: "2022-12-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Tests of association
+
+Here I run some tests of association between `bechdel_score` and outcome variables. I run a Kruskal-Walllis test to account for the distribution of outcomes that are not normal.
+
+```{r}
+kruskal.test(imdb_rating ~ bechdel_score, data = movies_df) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+kruskal.test(metascore ~ bechdel_score, data = movies_df) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+kruskal.test(budget_2013 ~ bechdel_score, data = movies_df) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+kruskal.test(profit ~ bechdel_score, data = movies_df) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+kruskal.test(ROI ~ bechdel_score, data = movies_df) %>% 
+  broom::tidy() %>% 
+  rename("Test statistic" = statistic,
+         "p-value" = p.value, 
+         "Parameter (df)" = parameter,
+         "Method" = method) %>% 
+  kableExtra::kbl() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  kableExtra::kable_styling(font_size = 12)
+
+```
