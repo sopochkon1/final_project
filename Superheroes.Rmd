@@ -16,6 +16,10 @@ library(flexdashboard)
 library(plotly)
 library(viridis)
 library(shiny)
+library(png)
+library(magrittr)
+library(imager)
+library(magick)
 
 
 Superheroes = 
@@ -24,8 +28,15 @@ Superheroes =
 
 Superheroes_binary = 
   Superheroes %>% 
-  select(title, binary)
+  select(title, binary) 
 
+
+
+
+imageA <- image_read("images/PASS.png") 
+imageB <- image_read("images/FAIL.jpg")
+
+pass_fail <- c(imageA, imageB)
 
 ```
 
@@ -38,8 +49,10 @@ titles = Superheroes %>%  distinct(title) %>% pull()
 selectInput(
   inputId = "movie_choice",
   label = h3("Title"),
-  choices = titles
+  choices = titles,
+  selected = "Thor"
 )
+
 
 #fluidPage(
   # Copy the line below to make a text input box
@@ -48,17 +61,14 @@ selectInput(
  # fluidRow(column(3, verbatimTextOutput("value"))))
 
 
-studios = Superheroes %>% distinct(universe) 
+studios = Superheroes %>% distinct(universe) %>% pull()
 
-radioButtons(
-  inputId = "Studio_choice",
-  label = h3("Universe"),
-  choices = studios,
-  selected = "MCU"
-)
-
-
-
+checkboxGroupInput(
+    inputId = "Studio_choice", 
+    label = h3("Universe"), 
+    choices = studios,
+    selected = "MCU")
+  
 
 
 ```
@@ -70,12 +80,14 @@ Column {data-width=550}
 
 ```{r}
 
+renderPlotly({
 Superheroes %>% 
   group_by(universe) %>%  
   summarise(proportion = sum(binary== "PASS")/n() * 100) %>%
   mutate(
     text_label = str_c(proportion,"%")
   ) %>% 
+    filter(universe == input[["Studio_choice"]]) %>% 
 plot_ly(x = ~ universe, y = ~proportion, type = "bar",
           color = ~ universe, alpha = 0.5, text = ~ text_label) %>%
     layout(title = "Marvel Cinematic Universe vs DC Extended Universe",
@@ -86,7 +98,7 @@ plot_ly(x = ~ universe, y = ~proportion, type = "bar",
          ) %>%
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
-  )
+  )})
 
 
 ```
@@ -98,15 +110,20 @@ Column {data-width=450}
 
 ```{r}
 
-# renderPrint({
-  # Superheroes %>% 
-  # filter(movie == input[["movie_choice"]]) %>% 
- #  select(binary)
-# })
+Superheroes_binary %>% 
+  mutate(binary = case_when(binary == "PASS" ~ TRUE, binary == "FAIL" ~ FALSE))
 
-# renderPrint({
- #  input[["movie_choice"]]
-# })
+renderUI({
+Superheroes_binary %>% 
+    filter(title == "Thor") %>%
+  select(-title) %>% 
+    if_else(binary == "TRUE", print("1"), print("2"))
+ })
+
+#library(imager)
+#
+#plot(im)
+# filter(if(FILTER_BY_DAYS_USED) Days_Used >= 5 else n() >= 3)
 
 
 
@@ -118,11 +135,13 @@ Column {data-width=450}
 
 pal <- c("blue", "red")
 
+renderPlotly({
 Superheroes %>% 
   filter(binary == "PASS") %>% 
      mutate(
     text_label = str_c("Title:", title)
   ) %>% 
+    filter(universe == input[["Studio_choice"]]) %>% 
   plot_ly(x = ~ year, y = ~ title, type = "scatter", mode = "markers",
           color = ~ universe, colors = pal, alpha = 0.9) %>%
     layout(title = "Superhero Movies that Pass the Bechdel Test over the Years",
@@ -132,11 +151,11 @@ Superheroes %>%
                       showticklabels = F)) %>%
   animation_opts(
     1000, easing = "elastic", redraw = FALSE
-  ) 
+  ) })
 
+# filter(if(FILTER_BY_DAYS_USED) Days_Used >= 5 else n() >= 3)
 
-
-
+# filter(if(FILTER_BY_DAYS_USED) Days_Used >= 5 else n() >= 3)
 
 ```
 

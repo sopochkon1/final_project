@@ -57,8 +57,7 @@ write_xlsx(Superheroes_finally,path = "~/Desktop/Mailman/Semester 3/data science
 
 ```{r}
 
-Superheroes_finally %>% 
-  
+
 
 
 
