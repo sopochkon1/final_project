@@ -20,12 +20,12 @@ knitr::opts_chunk$set(
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
-## Data Overview
+## Data Sources
 
 The source of the dataset comes from R for Data Science's [Tidy Tuesday Project](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-03-09), which provides weekly releases of raw datasets for users to wrangle and analyze. The data itself originates from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/bechdel), containing movies ranging from 1970 to 2013, and merges data from several sources:
 
 * **[IMDB](https://imdb.com)**: Provides information about each film, such as year, runtime, genres, accolades, fan and critic ratings.
-* **[BechdelTest.com](http://bechdeltest.com)**: The site is user-operated database where fans can rate films based on the criteria of the Bechdel Test. The site has detailed, coded information about the year, title, and whether it passes each level of the Bechdel Test requirements (see [Data Cleaning](Data Sources.html#Data_cleaning) for further information about scoring).
+* **[BechdelTest.com](http://bechdeltest.com)**: The site is user-operated database where fans can rate films based on the criteria of the Bechdel Test. The site has detailed, coded information about the year, title, and whether it passes each level of the Bechdel Test requirements (see [Data Cleaning](Data_Sources.html#Data_cleaning) for further information about scoring).
 * **[The-Numbers.com](https://The-Numbers.com)**: Contains financial information for films, including the budget and gross domestic and international revenues.
 
 ## Data Import and Cleaning
@@ -41,7 +41,8 @@ head(movies) %>%
   kableExtra::scroll_box(width = "100%", height = "300px")
 ```
   
-  
+\n 
+
 The `movies.csv` dataset contains `r nrow(movies)` observations and `r ncol(movies)` variables. Each observation corresponds to a film, and contains variables for title, IMDB ID, year, genres, ratings, budget, domestic and international gross revenue, and 2013-adjusted budget and revenues. The variables `clean_test` categorizes movies according to the different Bechdel Test criteria whether it passes the Bechdel Test (based on qualitative scores and a binary pass/fail),
 
 ### Data cleaning
@@ -67,7 +68,7 @@ The data cleaning steps involve the following:
 - Renaming key variables to relevant names
 - Removing extraneous variables
 
-The table below displays the full tidied dataset.
+The table below displays the full tidied data, and summarizes each variable within the dataset.
 
 ```{r tidy movies}
 movies_df = movies %>% 
@@ -138,7 +139,15 @@ movies_df %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12) %>% 
   kableExtra::scroll_box(width = "100%", height = "300px")
 ```
-  
-   
-Our resulting dataset contains `r nrow(movies_df)` observations and `r ncol(movies_df)` variables, providing information about the movie's decade, genre, and runtime, whether it passes the Bechdel Test Score, a binary Bechdel Test variable, and information about its budget, revenue, and ratings.
 
+```{r summarise df}
+summary(movies_df) %>% 
+  knitr::kable(digits = 3) %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12) %>% 
+  kableExtra::scroll_box(width = "100%", height = "300px")
+```
+
+  
+\p
+
+Our resulting dataset contains `r nrow(movies_df)` observations and `r ncol(movies_df)` variables, with information about the movie's decade, genre, and runtime, a Bechdel Test categorical variable, a binary Bechdel Test variable, and information about its budget, revenue, and ratings. This cleaned and aggregated data will serve the basis of our exploratory and formal analyses.

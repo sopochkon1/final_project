@@ -1800,8 +1800,8 @@ border-radius: 0px;
 </div>
 
 
-<div id="data-overview" class="section level2">
-<h2>Data Overview</h2>
+<div id="data-sources" class="section level2">
+<h2>Data Sources</h2>
 <p>The source of the dataset comes from R for Data Science’s <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-03-09">Tidy
 Tuesday Project</a>, which provides weekly releases of raw datasets for
 users to wrangle and analyze. The data itself originates from <a href="https://github.com/fivethirtyeight/data/tree/master/bechdel">FiveThirtyEight</a>,
@@ -1815,7 +1815,7 @@ fan and critic ratings.</li>
 user-operated database where fans can rate films based on the criteria
 of the Bechdel Test. The site has detailed, coded information about the
 year, title, and whether it passes each level of the Bechdel Test
-requirements (see <a href="Data%20Sources.html#Data_cleaning">Data
+requirements (see <a href="Data_Sources.html#Data_cleaning">Data
 Cleaning</a> for further information about scoring).</li>
 <li><strong><a href="https://The-Numbers.com">The-Numbers.com</a></strong>: Contains
 financial information for films, including the budget and gross domestic
@@ -2628,7 +2628,8 @@ instead of domestic revenue.
 <li>Renaming key variables to relevant names</li>
 <li>Removing extraneous variables</li>
 </ul>
-<p>The table below displays the full tidied dataset.</p>
+<p>The table below displays the full tidied data, and summarizes each
+variable within the dataset.</p>
 <pre class="r"><code>movies_df = movies %&gt;% 
   mutate(test = as.factor(test), 
          clean_test = fct_recode(clean_test, 
@@ -200157,10 +200158,920 @@ FALSE
 </table>
 </div></li>
 </ol>
+<pre class="r"><code>summary(movies_df) %&gt;% 
+  knitr::kable(digits = 3) %&gt;% 
+  kableExtra::kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;), font_size = 12) %&gt;% 
+  kableExtra::scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+bechdel_score
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pass_bechdel
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+budget_2013
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+domgross_2013
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+intgross_2013
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+decade
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+imdb_id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+metascore
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+imdb_rating
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+award_winner
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+runtime
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+profit
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+ROI
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+action
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+adventure
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+animation
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+biography
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+comedy
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+crime
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+documentary
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+drama
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+family
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+fantasy
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+history
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+horror
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+music
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+musical
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+mystery
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+romance
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+sci_fi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+sport
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+thriller
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+war
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+western
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Min. :1970
+</td>
+<td style="text-align:left;">
+Length:1794
+</td>
+<td style="text-align:left;">
+Less than 2 women :141
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Min. : 8632
+</td>
+<td style="text-align:left;">
+Min. :8.990e+02
+</td>
+<td style="text-align:left;">
+Min. :8.990e+02
+</td>
+<td style="text-align:left;">
+1970-1979: 54
+</td>
+<td style="text-align:left;">
+Length:1794
+</td>
+<td style="text-align:left;">
+Min. : 11
+</td>
+<td style="text-align:left;">
+Min. :2.10
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Min. : 55
+</td>
+<td style="text-align:left;">
+Min. :-120328632
+</td>
+<td style="text-align:left;">
+Min. : -0.9999
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+<td style="text-align:left;">
+Mode :logical
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1st Qu.:1998
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+Don’t talk to each other:514
+</td>
+<td style="text-align:left;">
+FALSE:849
+</td>
+<td style="text-align:left;">
+1st Qu.: 16068918
+</td>
+<td style="text-align:left;">
+1st Qu.:2.055e+07
+</td>
+<td style="text-align:left;">
+1st Qu.:3.323e+07
+</td>
+<td style="text-align:left;">
+1980-1989:125
+</td>
+<td style="text-align:left;">
+Class :character
+</td>
+<td style="text-align:left;">
+1st Qu.: 47
+</td>
+<td style="text-align:left;">
+1st Qu.:6.20
+</td>
+<td style="text-align:left;">
+FALSE:1402
+</td>
+<td style="text-align:left;">
+1st Qu.: 97
+</td>
+<td style="text-align:left;">
+1st Qu.: 5802238
+</td>
+<td style="text-align:left;">
+1st Qu.: 0.3463
+</td>
+<td style="text-align:left;">
+FALSE:1351
+</td>
+<td style="text-align:left;">
+FALSE:1435
+</td>
+<td style="text-align:left;">
+FALSE:1686
+</td>
+<td style="text-align:left;">
+FALSE:1717
+</td>
+<td style="text-align:left;">
+FALSE:1234
+</td>
+<td style="text-align:left;">
+FALSE:1535
+</td>
+<td style="text-align:left;">
+FALSE:1790
+</td>
+<td style="text-align:left;">
+FALSE:1055
+</td>
+<td style="text-align:left;">
+FALSE:1687
+</td>
+<td style="text-align:left;">
+FALSE:1614
+</td>
+<td style="text-align:left;">
+FALSE:1745
+</td>
+<td style="text-align:left;">
+FALSE:1623
+</td>
+<td style="text-align:left;">
+FALSE:1757
+</td>
+<td style="text-align:left;">
+FALSE:1773
+</td>
+<td style="text-align:left;">
+FALSE:1651
+</td>
+<td style="text-align:left;">
+FALSE:1556
+</td>
+<td style="text-align:left;">
+FALSE:1590
+</td>
+<td style="text-align:left;">
+FALSE:1766
+</td>
+<td style="text-align:left;">
+FALSE:1490
+</td>
+<td style="text-align:left;">
+FALSE:1765
+</td>
+<td style="text-align:left;">
+FALSE:1782
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Median :2005
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Only talk about men :194
+</td>
+<td style="text-align:left;">
+TRUE :945
+</td>
+<td style="text-align:left;">
+Median : 36995786
+</td>
+<td style="text-align:left;">
+Median :5.599e+07
+</td>
+<td style="text-align:left;">
+Median :9.624e+07
+</td>
+<td style="text-align:left;">
+1990-1999:337
+</td>
+<td style="text-align:left;">
+Mode :character
+</td>
+<td style="text-align:left;">
+Median : 60
+</td>
+<td style="text-align:left;">
+Median :6.80
+</td>
+<td style="text-align:left;">
+TRUE :190
+</td>
+<td style="text-align:left;">
+Median :107
+</td>
+<td style="text-align:left;">
+Median : 54966804
+</td>
+<td style="text-align:left;">
+Median : 1.6574
+</td>
+<td style="text-align:left;">
+TRUE :443
+</td>
+<td style="text-align:left;">
+TRUE :359
+</td>
+<td style="text-align:left;">
+TRUE :108
+</td>
+<td style="text-align:left;">
+TRUE :77
+</td>
+<td style="text-align:left;">
+TRUE :560
+</td>
+<td style="text-align:left;">
+TRUE :259
+</td>
+<td style="text-align:left;">
+TRUE :4
+</td>
+<td style="text-align:left;">
+TRUE :739
+</td>
+<td style="text-align:left;">
+TRUE :107
+</td>
+<td style="text-align:left;">
+TRUE :180
+</td>
+<td style="text-align:left;">
+TRUE :49
+</td>
+<td style="text-align:left;">
+TRUE :171
+</td>
+<td style="text-align:left;">
+TRUE :37
+</td>
+<td style="text-align:left;">
+TRUE :21
+</td>
+<td style="text-align:left;">
+TRUE :143
+</td>
+<td style="text-align:left;">
+TRUE :238
+</td>
+<td style="text-align:left;">
+TRUE :204
+</td>
+<td style="text-align:left;">
+TRUE :28
+</td>
+<td style="text-align:left;">
+TRUE :304
+</td>
+<td style="text-align:left;">
+TRUE :29
+</td>
+<td style="text-align:left;">
+TRUE :12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Mean :2003
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Dubious :142
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 55464608
+</td>
+<td style="text-align:left;">
+Mean :9.517e+07
+</td>
+<td style="text-align:left;">
+Mean :1.978e+08
+</td>
+<td style="text-align:left;">
+2000-2009:840
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Mean : 59
+</td>
+<td style="text-align:left;">
+Mean :6.76
+</td>
+<td style="text-align:left;">
+NA’s :202
+</td>
+<td style="text-align:left;">
+Mean :111
+</td>
+<td style="text-align:left;">
+Mean : 142111306
+</td>
+<td style="text-align:left;">
+Mean : 5.1966
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+3rd Qu.:2009
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Passes Bechdel :803
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 78337905
+</td>
+<td style="text-align:left;">
+3rd Qu.:1.217e+08
+</td>
+<td style="text-align:left;">
+3rd Qu.:2.415e+08
+</td>
+<td style="text-align:left;">
+2010-2013:438
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.: 72
+</td>
+<td style="text-align:left;">
+3rd Qu.:7.40
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3rd Qu.:122
+</td>
+<td style="text-align:left;">
+3rd Qu.: 164515762
+</td>
+<td style="text-align:left;">
+3rd Qu.: 4.0423
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Max. :2013
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :461435929
+</td>
+<td style="text-align:left;">
+Max. :1.772e+09
+</td>
+<td style="text-align:left;">
+Max. :3.172e+09
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :100
+</td>
+<td style="text-align:left;">
+Max. :9.30
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Max. :271
+</td>
+<td style="text-align:left;">
+Max. :3024171833
+</td>
+<td style="text-align:left;">
+Max. :430.5175
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :18
+</td>
+<td style="text-align:left;">
+NA’s :11
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :378
+</td>
+<td style="text-align:left;">
+NA’s :202
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA’s :203
+</td>
+<td style="text-align:left;">
+NA’s :11
+</td>
+<td style="text-align:left;">
+NA’s :11
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Our resulting dataset contains 1794 observations and 36 variables,
-providing information about the movie’s decade, genre, and runtime,
-whether it passes the Bechdel Test Score, a binary Bechdel Test
-variable, and information about its budget, revenue, and ratings.</p>
+with information about the movie’s decade, genre, and runtime, a Bechdel
+Test categorical variable, a binary Bechdel Test variable, and
+information about its budget, revenue, and ratings. This cleaned and
+aggregated data will serve the basis of our exploratory and formal
+analyses.</p>
 </div>
 </div>
 
