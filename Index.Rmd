@@ -1,8 +1,7 @@
 ---
 title: "Female Representation in Film: Does Girl Power Translate to Success"
 output: 
-  html_document:
-    theme: journal
+  html_document
 ---
 <style type="text/css">
 
