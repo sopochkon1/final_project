@@ -1,9 +1,7 @@
 ---
-title: "Female Representation in Film: Does Girl Power Translate to Profit"
+title: "Female Representation in Film: Does Girl Power Translate to Success"
 output: 
   html_document:
-    toc: true
-    toc_float: true
     theme: journal
 ---
 <style type="text/css">

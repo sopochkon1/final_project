@@ -11,7 +11,7 @@
 
 
 
-<title>Regression</title>
+<title>Analysis</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -33,8 +33,16 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -228,6 +236,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -327,7 +338,9 @@ div.tocify {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li>
+  <a href="report.html">Project Report</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -345,9 +358,6 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li>
-  <a href="report.html">Project Report</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Analysis
@@ -364,6 +374,9 @@ div.tocify {
     <li>
       <a href="Regression.html">Regression</a>
     </li>
+    <li>
+      <a href="results.html">Results Summary</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -376,7 +389,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="http://github.com/sopochkon1/">
+  <a href="http://github.com/sopochkon1/final_project">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -388,14 +401,1577 @@ div.tocify {
 
 <div id="header">
 
-
-
-<h1 class="title toc-ignore">Regression</h1>
-
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
 </div>
 
 
 
+<h1 class="title toc-ignore">Analysis</h1>
+
+</div>
+
+
+<div id="linear-models" class="section level2">
+<h2>Linear Models</h2>
+<p>We tested the association of <code>bechdel_score</code> with outcomes
+<code>budget</code>, <code>profit</code>, <code>imdb_rating</code>, and
+<code>metascore</code> individually using linear regression.</p>
+<p>Bechdel score of <code>"Less than 2 women"</code> was taken as the
+reference category. A movie with less than 2 women would fail all three
+dimensions of the Bechdel test which are: 1) have at least 2 women in
+the movie 2) the women talk to each other 3) they talk about something
+other than a man. Thus, the intercept will be used to compare movies
+that fail all dimensions of the Bechdel test with the movies that pass
+all dimensions of the Bechdel test.</p>
+<div id="linear-regression-of-budget-vs.-categorical-bechdel-score"
+class="section level3">
+<h3>Linear Regression of Budget vs. Categorical Bechdel Score</h3>
+<pre class="r"><code>budget = movies_df %&gt;% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = &quot;white&quot;) + 
+  labs(
+    x = &quot;Budget (Dollars, 2013-adjusted)&quot; ,
+    y = &quot;Count&quot;,
+    title = &quot;Distribution of Movie Budgets&quot;)
+
+ggplotly(budget)</code></pre>
+<div id="htmlwidget-0f60f1ab5be832690c73" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0f60f1ab5be832690c73">{"x":{"data":[{"orientation":"v","width":[15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034484,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483,15911286.1034483],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[0,15911286.1034483,31822572.2068966,47733858.3103448,63645144.4137931,79556430.5172414,95467716.6206897,111379002.724138,127290288.827586,143201574.931034,159112861.034483,175024147.137931,190935433.241379,206846719.344828,222758005.448276,238669291.551724,254580577.655172,270491863.758621,286403149.862069,302314435.965517,318225722.068965,334137008.172414,350048294.275862,365959580.37931,381870866.482759,397782152.586207,413693438.689655,429604724.793103,445516010.896552,461427297],"y":[239,395,317,192,156,106,103,64,57,36,31,29,15,21,11,4,7,5,3,1,0,1,0,0,0,0,0,0,0,1],"text":["count: 239<br />budget_2013:         0","count: 395<br />budget_2013:  15911286","count: 317<br />budget_2013:  31822572","count: 192<br />budget_2013:  47733858","count: 156<br />budget_2013:  63645144","count: 106<br />budget_2013:  79556431","count: 103<br />budget_2013:  95467717","count:  64<br />budget_2013: 111379003","count:  57<br />budget_2013: 127290289","count:  36<br />budget_2013: 143201575","count:  31<br />budget_2013: 159112861","count:  29<br />budget_2013: 175024147","count:  15<br />budget_2013: 190935433","count:  21<br />budget_2013: 206846719","count:  11<br />budget_2013: 222758005","count:   4<br />budget_2013: 238669292","count:   7<br />budget_2013: 254580578","count:   5<br />budget_2013: 270491864","count:   3<br />budget_2013: 286403150","count:   1<br />budget_2013: 302314436","count:   0<br />budget_2013: 318225722","count:   1<br />budget_2013: 334137008","count:   0<br />budget_2013: 350048294","count:   0<br />budget_2013: 365959580","count:   0<br />budget_2013: 381870866","count:   0<br />budget_2013: 397782153","count:   0<br />budget_2013: 413693439","count:   0<br />budget_2013: 429604725","count:   0<br />budget_2013: 445516011","count:   1<br />budget_2013: 461427297"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(89,89,89,0.8)","line":{"width":null,"color":"rgba(255,255,255,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of Movie Budgets","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-31822572.2068966,493249869.206897],"tickmode":"array","ticktext":["0e+00","1e+08","2e+08","3e+08","4e+08"],"tickvals":[0,100000000,200000000,300000000,400000000],"categoryorder":"array","categoryarray":["0e+00","1e+08","2e+08","3e+08","4e+08"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Budget (Dollars, 2013-adjusted)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-19.75,414.75],"tickmode":"array","ticktext":["0","100","200","300","400"],"tickvals":[0,100,200,300,400],"categoryorder":"array","categoryarray":["0","100","200","300","400"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1059f4617e9bf":{"x":{},"type":"bar"}},"cur_data":"1059f4617e9bf","visdat":{"1059f4617e9bf":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>Since budget was heavily right-skewed, we log-transformed it to
+enforce more normal distributions.</p>
+<pre class="r"><code>log_budget = movies_df %&gt;% ggplot(aes(x = log(budget_2013))) + geom_histogram(alpha = 0.8, color = &quot;white&quot;) + 
+  labs(
+    x =  &quot;Log-Budget (Dollars, 2013-adjusted)&quot;,
+    y = &quot;Count&quot; ,
+    title = &quot;Distribution of Log-Transformed Movie Budgets&quot;)
+
+ggplotly(log_budget)</code></pre>
+<div id="htmlwidget-16d90d5cd38aaf158095" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-16d90d5cd38aaf158095">{"x":{"data":[{"orientation":"v","width":[0.375400767698682,0.375400767698686,0.375400767698682,0.375400767698682,0.375400767698686,0.375400767698682,0.375400767698686,0.375400767698682,0.375400767698682,0.375400767698682,0.375400767698686,0.375400767698682,0.375400767698686,0.375400767698682,0.375400767698682,0.375400767698682,0.375400767698686,0.375400767698682,0.375400767698686,0.375400767698681,0.375400767698679,0.375400767698686,0.375400767698679,0.375400767698686,0.375400767698679,0.375400767698679,0.375400767698679,0.375400767698679,0.375400767698686,0.375400767698679],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[9.00961842476839,9.38501919246707,9.76041996016576,10.1358207278644,10.5112214955631,10.8866222632618,11.2620230309605,11.6374237986592,12.0128245663579,12.3882253340565,12.7636261017552,13.1390268694539,13.5144276371526,13.8898284048513,14.26522917255,14.6406299402486,15.0160307079473,15.391431475646,15.7668322433447,16.1422330110434,16.5176337787421,16.8930345464407,17.2684353141394,17.6438360818381,18.0192368495368,18.3946376172355,18.7700383849341,19.1454391526328,19.5208399203315,19.8962406880302],"y":[1,1,0,0,4,3,1,2,3,3,8,9,7,19,18,29,31,53,62,94,151,183,243,215,214,209,145,71,14,1],"text":["count:   1<br />log(budget_2013):  9.009618","count:   1<br />log(budget_2013):  9.385019","count:   0<br />log(budget_2013):  9.760420","count:   0<br />log(budget_2013): 10.135821","count:   4<br />log(budget_2013): 10.511221","count:   3<br />log(budget_2013): 10.886622","count:   1<br />log(budget_2013): 11.262023","count:   2<br />log(budget_2013): 11.637424","count:   3<br />log(budget_2013): 12.012825","count:   3<br />log(budget_2013): 12.388225","count:   8<br />log(budget_2013): 12.763626","count:   9<br />log(budget_2013): 13.139027","count:   7<br />log(budget_2013): 13.514428","count:  19<br />log(budget_2013): 13.889828","count:  18<br />log(budget_2013): 14.265229","count:  29<br />log(budget_2013): 14.640630","count:  31<br />log(budget_2013): 15.016031","count:  53<br />log(budget_2013): 15.391431","count:  62<br />log(budget_2013): 15.766832","count:  94<br />log(budget_2013): 16.142233","count: 151<br />log(budget_2013): 16.517634","count: 183<br />log(budget_2013): 16.893035","count: 243<br />log(budget_2013): 17.268435","count: 215<br />log(budget_2013): 17.643836","count: 214<br />log(budget_2013): 18.019237","count: 209<br />log(budget_2013): 18.394638","count: 145<br />log(budget_2013): 18.770038","count:  71<br />log(budget_2013): 19.145439","count:  14<br />log(budget_2013): 19.520840","count:   1<br />log(budget_2013): 19.896241"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(89,89,89,0.8)","line":{"width":null,"color":"rgba(255,255,255,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of Log-Transformed Movie Budgets","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[8.25881688937103,20.6470422234276],"tickmode":"array","ticktext":["9","12","15","18"],"tickvals":[9,12,15,18],"categoryorder":"array","categoryarray":["9","12","15","18"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Log-Budget (Dollars, 2013-adjusted)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-12.15,255.15],"tickmode":"array","ticktext":["0","50","100","150","200","250"],"tickvals":[0,50,100,150,200,250],"categoryorder":"array","categoryarray":["0","50","100","150","200","250"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1059f491247ba":{"x":{},"type":"bar"}},"cur_data":"1059f491247ba","visdat":{"1059f491247ba":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>We then quantitatively tested the association of the
+<code>log(budget)</code> variable with the categorical Bechdel score
+using linear regression.</p>
+<p>Model statement: <span class="math inline">\(log(Budget) =\beta_0+
+\beta_1(&lt;2 women) +\beta_2(don&#39;t talk) +\beta_3(talk about men) +
+beta_4(dubious)+beta_5(pass)\)</span></p>
+<pre class="r"><code>log_budget= movies_df %&gt;%
+  lm(log(budget_2013)~bechdel_score, data=.)%&gt;% 
+  broom::tidy()
+
+  
+knitr::kable(log_budget, digits=3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+17.341
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+<td style="text-align:right;">
+150.109
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDon’t talk to each other
+</td>
+<td style="text-align:right;">
+0.154
+</td>
+<td style="text-align:right;">
+0.130
+</td>
+<td style="text-align:right;">
+1.183
+</td>
+<td style="text-align:right;">
+0.237
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreOnly talk about men
+</td>
+<td style="text-align:right;">
+-0.226
+</td>
+<td style="text-align:right;">
+0.152
+</td>
+<td style="text-align:right;">
+-1.488
+</td>
+<td style="text-align:right;">
+0.137
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDubious
+</td>
+<td style="text-align:right;">
+-0.078
+</td>
+<td style="text-align:right;">
+0.163
+</td>
+<td style="text-align:right;">
+-0.478
+</td>
+<td style="text-align:right;">
+0.633
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scorePasses Bechdel
+</td>
+<td style="text-align:right;">
+-0.310
+</td>
+<td style="text-align:right;">
+0.125
+</td>
+<td style="text-align:right;">
+-2.475
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on parameter estimate of -0.31 with a p value of 0.01, passing
+all three Bechdel dimensions had a negative relationship with the budget
+of the movies. Movies that passed all three Bechdel dimensions had a
+lower budget than movies that failed every Bechdel dimension.</p>
+<ul>
+<li>Movies that failed every Bechdel dimension had an average budget of
+<code>$33,963,942</code></li>
+<li>Movies that passed all three Bechdel dimensions had an average
+budget of <code>$24,910,750</code></li>
+</ul>
+</div>
+<div id="linear-regression-of-profit-vs.-categorical-bechdel-score"
+class="section level3">
+<h3>Linear Regression of Profit vs. Categorical Bechdel Score</h3>
+<pre class="r"><code>profit = movies_df %&gt;% ggplot(aes(x = profit)) + geom_histogram(alpha = 0.8, color = &quot;white&quot;) + 
+  labs(
+    x = &quot;Profit (Dollars)&quot;,
+    y = &quot;Count&quot;,
+    title = &quot;Distribution of Profits&quot;)
+
+ggplotly(profit)</code></pre>
+<div id="htmlwidget-377c4e9ac6e2f4ddda90" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-377c4e9ac6e2f4ddda90">{"x":{"data":[{"orientation":"v","width":[108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241,108431050.517241],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[-108431050.517241,-7.45058059692383e-09,108431050.517241,216862101.034483,325293151.551724,433724202.068965,542155252.586207,650586303.103448,759017353.62069,867448404.137931,975879454.655172,1084310505.17241,1192741555.68966,1301172606.2069,1409603656.72414,1518034707.24138,1626465757.75862,1734896808.27586,1843327858.7931,1951758909.31034,2060189959.82759,2168621010.34483,2277052060.86207,2385483111.37931,2493914161.89655,2602345212.41379,2710776262.93103,2819207313.44828,2927638363.96552,3036069414.48276],"y":[14,872,447,175,76,63,36,27,23,19,10,5,2,3,4,1,0,0,1,1,1,0,0,0,0,1,0,0,1,1],"text":["count:  14<br />profit: -1.084311e+08","count: 872<br />profit: -7.450581e-09","count: 447<br />profit:  1.084311e+08","count: 175<br />profit:  2.168621e+08","count:  76<br />profit:  3.252932e+08","count:  63<br />profit:  4.337242e+08","count:  36<br />profit:  5.421553e+08","count:  27<br />profit:  6.505863e+08","count:  23<br />profit:  7.590174e+08","count:  19<br />profit:  8.674484e+08","count:  10<br />profit:  9.758795e+08","count:   5<br />profit:  1.084311e+09","count:   2<br />profit:  1.192742e+09","count:   3<br />profit:  1.301173e+09","count:   4<br />profit:  1.409604e+09","count:   1<br />profit:  1.518035e+09","count:   0<br />profit:  1.626466e+09","count:   0<br />profit:  1.734897e+09","count:   1<br />profit:  1.843328e+09","count:   1<br />profit:  1.951759e+09","count:   1<br />profit:  2.060190e+09","count:   0<br />profit:  2.168621e+09","count:   0<br />profit:  2.277052e+09","count:   0<br />profit:  2.385483e+09","count:   0<br />profit:  2.493914e+09","count:   1<br />profit:  2.602345e+09","count:   0<br />profit:  2.710776e+09","count:   0<br />profit:  2.819207e+09","count:   1<br />profit:  2.927638e+09","count:   1<br />profit:  3.036069e+09"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(89,89,89,0.8)","line":{"width":null,"color":"rgba(255,255,255,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of Profits","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-325293151.551724,3252931515.51724],"tickmode":"array","ticktext":["0e+00","1e+09","2e+09","3e+09"],"tickvals":[0,1000000000,2000000000,3000000000],"categoryorder":"array","categoryarray":["0e+00","1e+09","2e+09","3e+09"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Profit (Dollars)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-43.6,915.6],"tickmode":"array","ticktext":["0","250","500","750"],"tickvals":[0,250,500,750],"categoryorder":"array","categoryarray":["0","250","500","750"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1059f76167a50":{"x":{},"type":"bar"}},"cur_data":"1059f76167a50","visdat":{"1059f76167a50":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>In the graph, profit appears to be heavily right skewed. Thus, we
+log-transformed the data to enforce more normal distributions.
+Additionally, before the logarithm is applied, 1 was added to the base
+value to prevent applying a logarithm to a 0 value. This will be
+subtracted while calculating the results.</p>
+<pre class="r"><code>profit = movies_df %&gt;% ggplot(aes(x = log(profit))) + geom_histogram(alpha = 0.8, color = &quot;white&quot;) + 
+  labs(
+    x = &quot;Log-Profit&quot;,
+    y = &quot;Count&quot;,
+    title = &quot;Distribution of Log-Transformed Profits&quot;)
+
+ggplotly(profit)</code></pre>
+<div id="htmlwidget-eebb8db27e4b57c561c7" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eebb8db27e4b57c561c7">{"x":{"data":[{"orientation":"v","width":[0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300883,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879,0.372822907300886,0.372822907300879],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[11.1846872190265,11.5575101263274,11.9303330336282,12.3031559409291,12.67597884823,13.0488017555309,13.4216246628318,13.7944475701327,14.1672704774335,14.5400933847344,14.9129162920353,15.2857391993362,15.6585621066371,16.031385013938,16.4042079212388,16.7770308285397,17.1498537358406,17.5226766431415,17.8954995504424,18.2683224577432,18.6411453650441,19.013968272345,19.3867911796459,19.7596140869468,20.1324369942477,20.5052599015485,20.8780828088494,21.2509057161503,21.6237286234512,21.9965515307521],"y":[1,2,0,0,3,7,6,7,10,18,22,26,40,44,58,70,95,117,132,151,157,144,107,87,66,56,17,5,3,1],"text":["count:   1<br />log(profit): 11.18469","count:   2<br />log(profit): 11.55751","count:   0<br />log(profit): 11.93033","count:   0<br />log(profit): 12.30316","count:   3<br />log(profit): 12.67598","count:   7<br />log(profit): 13.04880","count:   6<br />log(profit): 13.42162","count:   7<br />log(profit): 13.79445","count:  10<br />log(profit): 14.16727","count:  18<br />log(profit): 14.54009","count:  22<br />log(profit): 14.91292","count:  26<br />log(profit): 15.28574","count:  40<br />log(profit): 15.65856","count:  44<br />log(profit): 16.03139","count:  58<br />log(profit): 16.40421","count:  70<br />log(profit): 16.77703","count:  95<br />log(profit): 17.14985","count: 117<br />log(profit): 17.52268","count: 132<br />log(profit): 17.89550","count: 151<br />log(profit): 18.26832","count: 157<br />log(profit): 18.64115","count: 144<br />log(profit): 19.01397","count: 107<br />log(profit): 19.38679","count:  87<br />log(profit): 19.75961","count:  66<br />log(profit): 20.13244","count:  56<br />log(profit): 20.50526","count:  17<br />log(profit): 20.87808","count:   5<br />log(profit): 21.25091","count:   3<br />log(profit): 21.62373","count:   1<br />log(profit): 21.99655"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(89,89,89,0.8)","line":{"width":null,"color":"rgba(255,255,255,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of Log-Transformed Profits","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[10.4390414044247,22.7421973453538],"tickmode":"array","ticktext":["12.5","15.0","17.5","20.0","22.5"],"tickvals":[12.5,15,17.5,20,22.5],"categoryorder":"array","categoryarray":["12.5","15.0","17.5","20.0","22.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Log-Profit","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-7.85,164.85],"tickmode":"array","ticktext":["0","50","100","150"],"tickvals":[0,50,100,150],"categoryorder":"array","categoryarray":["0","50","100","150"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1059f3e25078e":{"x":{},"type":"bar"}},"cur_data":"1059f3e25078e","visdat":{"1059f3e25078e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>We quantitatively tested the association of <code>profit</code> with
+the categorical Bechdel score using linear regression.</p>
+<p>Model statement : <span class="math inline">\(log(profit) =\beta_0+
+\beta_1(&lt;2 women) +\beta_2(don&#39;t talk) +\beta_3(talk about men) +
+beta_4(dubious)+beta_5(pass)\)</span></p>
+<pre class="r"><code>profit = movies_df %&gt;% 
+  lm(log(profit+1)~bechdel_score, data =.) %&gt;% 
+  broom::tidy()
+
+
+knitr::kable(profit, digits=3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+18.139
+</td>
+<td style="text-align:right;">
+0.160
+</td>
+<td style="text-align:right;">
+113.117
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDon’t talk to each other
+</td>
+<td style="text-align:right;">
+0.080
+</td>
+<td style="text-align:right;">
+0.179
+</td>
+<td style="text-align:right;">
+0.447
+</td>
+<td style="text-align:right;">
+0.655
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreOnly talk about men
+</td>
+<td style="text-align:right;">
+-0.012
+</td>
+<td style="text-align:right;">
+0.208
+</td>
+<td style="text-align:right;">
+-0.057
+</td>
+<td style="text-align:right;">
+0.955
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDubious
+</td>
+<td style="text-align:right;">
+0.071
+</td>
+<td style="text-align:right;">
+0.224
+</td>
+<td style="text-align:right;">
+0.317
+</td>
+<td style="text-align:right;">
+0.751
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scorePasses Bechdel
+</td>
+<td style="text-align:right;">
+-0.282
+</td>
+<td style="text-align:right;">
+0.173
+</td>
+<td style="text-align:right;">
+-1.625
+</td>
+<td style="text-align:right;">
+0.104
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the parameter estimate of -0.044, profits of movies that
+passed all three dimensions of the Bechdel test had lower profits than
+movies that failed all dimensions of the Bechdel test. However since the
+p-value of 0.7 &gt; 0.05, the difference was not found to be
+statistically significant.</p>
+<ul>
+<li>Movies that failed all dimensions of the Bechdel test made an
+average profit of <code>$75,526,942</code></li>
+<li>Movies that passed all dimensions of the Bechdel test made an
+average profit of <code>$57,082,034</code></li>
+</ul>
+</div>
+<div id="linear-regression-of-imdb-rating-vs.-categorical-bechdel-score"
+class="section level3">
+<h3>Linear Regression of IMDB Rating vs. Categorical Bechdel Score</h3>
+<p>…</p>
+<pre class="r"><code>imdb = movies_df %&gt;% ggplot(aes(x = imdb_rating)) + geom_histogram(alpha = 0.8, color = &quot;white&quot;) + 
+  labs(
+    x = &quot;IMDB Rating&quot;,
+    y = &quot;Count&quot;,
+    title = &quot;Distribution of IMDB Ratings&quot;)
+
+ggplotly(imdb)</code></pre>
+<div id="htmlwidget-c4d8972cbd9c56d3ac9f" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c4d8972cbd9c56d3ac9f">{"x":{"data":[{"orientation":"v","width":[0.248275862068966,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068966,0.248275862068965,0.248275862068966,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068967,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068967,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965,0.248275862068965],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1.98620689655172,2.23448275862069,2.48275862068966,2.73103448275862,2.97931034482759,3.22758620689655,3.47586206896552,3.72413793103448,3.97241379310345,4.22068965517241,4.46896551724138,4.71724137931034,4.96551724137931,5.21379310344828,5.46206896551724,5.71034482758621,5.95862068965517,6.20689655172414,6.4551724137931,6.70344827586207,6.95172413793104,7.2,7.44827586206897,7.69655172413793,7.9448275862069,8.19310344827586,8.44137931034483,8.68965517241379,8.93793103448276,9.18620689655173],"y":[1,0,0,1,1,2,5,3,3,7,9,14,25,43,59,91,80,148,131,196,107,223,100,161,70,63,25,15,5,4],"text":["count:   1<br />imdb_rating: 1.986207","count:   0<br />imdb_rating: 2.234483","count:   0<br />imdb_rating: 2.482759","count:   1<br />imdb_rating: 2.731034","count:   1<br />imdb_rating: 2.979310","count:   2<br />imdb_rating: 3.227586","count:   5<br />imdb_rating: 3.475862","count:   3<br />imdb_rating: 3.724138","count:   3<br />imdb_rating: 3.972414","count:   7<br />imdb_rating: 4.220690","count:   9<br />imdb_rating: 4.468966","count:  14<br />imdb_rating: 4.717241","count:  25<br />imdb_rating: 4.965517","count:  43<br />imdb_rating: 5.213793","count:  59<br />imdb_rating: 5.462069","count:  91<br />imdb_rating: 5.710345","count:  80<br />imdb_rating: 5.958621","count: 148<br />imdb_rating: 6.206897","count: 131<br />imdb_rating: 6.455172","count: 196<br />imdb_rating: 6.703448","count: 107<br />imdb_rating: 6.951724","count: 223<br />imdb_rating: 7.200000","count: 100<br />imdb_rating: 7.448276","count: 161<br />imdb_rating: 7.696552","count:  70<br />imdb_rating: 7.944828","count:  63<br />imdb_rating: 8.193103","count:  25<br />imdb_rating: 8.441379","count:  15<br />imdb_rating: 8.689655","count:   5<br />imdb_rating: 8.937931","count:   4<br />imdb_rating: 9.186207"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(89,89,89,0.8)","line":{"width":null,"color":"rgba(255,255,255,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of IMDB Ratings","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.48965517241379,9.68275862068966],"tickmode":"array","ticktext":["2","4","6","8"],"tickvals":[2,4,6,8],"categoryorder":"array","categoryarray":["2","4","6","8"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"IMDB Rating","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-11.15,234.15],"tickmode":"array","ticktext":["0","50","100","150","200"],"tickvals":[0,50,100,150,200],"categoryorder":"array","categoryarray":["0","50","100","150","200"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1059f527e2764":{"x":{},"type":"bar"}},"cur_data":"1059f527e2764","visdat":{"1059f527e2764":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>The graph shows an approximately normal distribution.</li>
+</ul>
+<p>Testing association of IMDB rating with categorical Bechdel scores
+using linear regression:</p>
+<p>Model statement: <span class="math inline">\(IMDB =\beta_0+
+\beta_1(&lt;2 women) +\beta_2(don&#39;t talk) +\beta_3(talk about men) +
+beta_4(dubious)+beta_5(pass)\)</span></p>
+<pre class="r"><code>imdb = movies_df %&gt;% 
+  lm(imdb_rating~bechdel_score, data=.) %&gt;% 
+  broom::tidy()
+
+
+knitr::kable(imdb, digits=3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+6.944
+</td>
+<td style="text-align:right;">
+0.085
+</td>
+<td style="text-align:right;">
+81.848
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDon’t talk to each other
+</td>
+<td style="text-align:right;">
+-0.032
+</td>
+<td style="text-align:right;">
+0.095
+</td>
+<td style="text-align:right;">
+-0.335
+</td>
+<td style="text-align:right;">
+0.738
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreOnly talk about men
+</td>
+<td style="text-align:right;">
+-0.074
+</td>
+<td style="text-align:right;">
+0.113
+</td>
+<td style="text-align:right;">
+-0.653
+</td>
+<td style="text-align:right;">
+0.514
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDubious
+</td>
+<td style="text-align:right;">
+-0.208
+</td>
+<td style="text-align:right;">
+0.121
+</td>
+<td style="text-align:right;">
+-1.723
+</td>
+<td style="text-align:right;">
+0.085
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scorePasses Bechdel
+</td>
+<td style="text-align:right;">
+-0.344
+</td>
+<td style="text-align:right;">
+0.092
+</td>
+<td style="text-align:right;">
+-3.729
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the parameter estimate of -0.344 with a p-value of 0.00019,
+movies that passed all three dimensions of the Bechdel test had a
+negative relationship with <code>imdbrating</code>.</p>
+<ul>
+<li>Movies that passed all dimensions of the Bechdel test received 0.34
+points lower IMDB ratings than movies that failed all dimensions of the
+Bechdel test.</li>
+</ul>
+</div>
+<div id="linear-regression-of-metascore-vs.-categorical-bechdel-score"
+class="section level3">
+<h3>Linear Regression of Metascore vs. Categorical Bechdel Score</h3>
+<pre class="r"><code>meta = movies_df %&gt;% ggplot(aes(x = metascore)) + geom_histogram(alpha = 0.8, color = &quot;white&quot;) + 
+  labs(
+    x = &quot;Metascore&quot;,
+    y = &quot;Count&quot;,
+    title = &quot;Distribution of Metascores&quot;)
+
+ggplotly(meta)</code></pre>
+<div id="htmlwidget-6565a050aecc7004b453" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6565a050aecc7004b453">{"x":{"data":[{"orientation":"v","width":[3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724137,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724138,3.06896551724139,3.06896551724137,3.06896551724139,3.06896551724139,3.06896551724139,3.06896551724139,3.06896551724139,3.06896551724139,3.06896551724139,3.06896551724137,3.06896551724139,3.06896551724139,3.06896551724139],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[12.2758620689655,15.3448275862069,18.4137931034483,21.4827586206897,24.551724137931,27.6206896551724,30.6896551724138,33.7586206896552,36.8275862068966,39.8965517241379,42.9655172413793,46.0344827586207,49.1034482758621,52.1724137931035,55.2413793103448,58.3103448275862,61.3793103448276,64.448275862069,67.5172413793103,70.5862068965517,73.6551724137931,76.7241379310345,79.7931034482759,82.8620689655172,85.9310344827586,89,92.0689655172414,95.1379310344828,98.2068965517241,101.275862068966],"y":[3,4,11,10,14,25,33,54,39,46,56,66,73,102,71,96,87,103,117,77,68,56,57,49,43,32,12,10,1,1],"text":["count:   3<br />metascore:  12.27586","count:   4<br />metascore:  15.34483","count:  11<br />metascore:  18.41379","count:  10<br />metascore:  21.48276","count:  14<br />metascore:  24.55172","count:  25<br />metascore:  27.62069","count:  33<br />metascore:  30.68966","count:  54<br />metascore:  33.75862","count:  39<br />metascore:  36.82759","count:  46<br />metascore:  39.89655","count:  56<br />metascore:  42.96552","count:  66<br />metascore:  46.03448","count:  73<br />metascore:  49.10345","count: 102<br />metascore:  52.17241","count:  71<br />metascore:  55.24138","count:  96<br />metascore:  58.31034","count:  87<br />metascore:  61.37931","count: 103<br />metascore:  64.44828","count: 117<br />metascore:  67.51724","count:  77<br />metascore:  70.58621","count:  68<br />metascore:  73.65517","count:  56<br />metascore:  76.72414","count:  57<br />metascore:  79.79310","count:  49<br />metascore:  82.86207","count:  43<br />metascore:  85.93103","count:  32<br />metascore:  89.00000","count:  12<br />metascore:  92.06897","count:  10<br />metascore:  95.13793","count:   1<br />metascore:  98.20690","count:   1<br />metascore: 101.27586"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(89,89,89,0.8)","line":{"width":null,"color":"rgba(255,255,255,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Distribution of Metascores","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[6.13793103448276,107.413793103448],"tickmode":"array","ticktext":["25","50","75","100"],"tickvals":[25,50,75,100],"categoryorder":"array","categoryarray":["25","50","75","100"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Metascore","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-5.85,122.85],"tickmode":"array","ticktext":["0","30","60","90","120"],"tickvals":[0,30,60,90,120],"categoryorder":"array","categoryarray":["0","30","60","90","120"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1059f584f8c44":{"x":{},"type":"bar"}},"cur_data":"1059f584f8c44","visdat":{"1059f584f8c44":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>The graph shows an approximately normal distribution.</li>
+</ul>
+<p>Testing association of Metascore with categorical Bechdel scores
+using linear regression:</p>
+<p>Model statement: <span class="math inline">\(Metascore =\beta_0+
+\beta_1(&lt;2 women) +\beta_2(don&#39;t talk) +\beta_3(talk about men) +
+beta_4(dubious)+beta_5(pass)\)</span></p>
+<pre class="r"><code>meta = movies_df %&gt;% 
+  lm(metascore~bechdel_score, data=.) %&gt;% 
+  broom::tidy()
+knitr::kable(meta, digits=3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+58.730
+</td>
+<td style="text-align:right;">
+1.636
+</td>
+<td style="text-align:right;">
+35.897
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDon’t talk to each other
+</td>
+<td style="text-align:right;">
+1.306
+</td>
+<td style="text-align:right;">
+1.841
+</td>
+<td style="text-align:right;">
+0.709
+</td>
+<td style="text-align:right;">
+0.478
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreOnly talk about men
+</td>
+<td style="text-align:right;">
+-0.591
+</td>
+<td style="text-align:right;">
+2.155
+</td>
+<td style="text-align:right;">
+-0.274
+</td>
+<td style="text-align:right;">
+0.784
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scoreDubious
+</td>
+<td style="text-align:right;">
+2.032
+</td>
+<td style="text-align:right;">
+2.324
+</td>
+<td style="text-align:right;">
+0.874
+</td>
+<td style="text-align:right;">
+0.382
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bechdel_scorePasses Bechdel
+</td>
+<td style="text-align:right;">
+-0.464
+</td>
+<td style="text-align:right;">
+1.775
+</td>
+<td style="text-align:right;">
+-0.262
+</td>
+<td style="text-align:right;">
+0.794
+</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the parameter estimate -0.4642, movies that pass all
+dimensions of the Bechdel test had a negative relationship with
+Metascores. However since the p-value of 0.7 &gt; 0.05, the difference
+was not statistically significant.</p>
+<ul>
+<li>Movies that passed all dimensions of the Bechdel test received 0.46
+points less in Metascore than movies that failed all dimensions of the
+Bechdel test.</li>
+</ul>
+</div>
+</div>
+<div id="stepwise-regression-modeling" class="section level2">
+<h2>Stepwise Regression Modeling</h2>
+<p>In order to assess whether a movie passing the Bechdel test is a
+significant predictor of that movie’s success, we utilized a stepwise
+selection algorithm. The <code>stepAIC</code> command from the
+<code>MASS</code> package performs stepwise model selection by
+optimizing AIC.</p>
+<p>The setup of the regression models here follows the methodology
+outlined previously including log-transforming variables like
+<code>profit</code> and <code>budget_2013</code> to enforce a normal
+distribution. Additionally, the binary Bechdel test variable was applied
+in these models to optimize degrees of freedom.</p>
+<p>We assessed movie success based on three factors:
+<code>profit</code>, <code>imdb_rating</code>, and
+<code>budget_2013</code>.</p>
+<div id="profit" class="section level3">
+<h3>Profit</h3>
+<p>We first assessed the Bechdel test as a potential predictor of
+<code>profit</code>. Other potential predictors included in the model
+were <code>budget_2013</code>, <code>imdb_rating</code>, and all genre
+variables.</p>
+<pre class="r"><code># Stepwise regression for profit
+## logProfit ~ Bechdel (binary) + logBudget + IMDB + Genre
+modelprofit = lm(log(profit +1) ~ pass_bechdel + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepprofit &lt;- MASS::stepAIC(modelprofit, direction = &quot;both&quot;, trace = FALSE) %&gt;% broom::tidy()
+knitr::kable(stepprofit, digits = 3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+4.205
+</td>
+<td style="text-align:right;">
+0.599
+</td>
+<td style="text-align:right;">
+7.020
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+log(budget_2013)
+</td>
+<td style="text-align:right;">
+0.646
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+<td style="text-align:right;">
+21.721
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+imdb_rating
+</td>
+<td style="text-align:right;">
+0.395
+</td>
+<td style="text-align:right;">
+0.041
+</td>
+<td style="text-align:right;">
+9.539
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adventureTRUE
+</td>
+<td style="text-align:right;">
+0.453
+</td>
+<td style="text-align:right;">
+0.101
+</td>
+<td style="text-align:right;">
+4.463
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+biographyTRUE
+</td>
+<td style="text-align:right;">
+-0.338
+</td>
+<td style="text-align:right;">
+0.179
+</td>
+<td style="text-align:right;">
+-1.886
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dramaTRUE
+</td>
+<td style="text-align:right;">
+-0.369
+</td>
+<td style="text-align:right;">
+0.085
+</td>
+<td style="text-align:right;">
+-4.330
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+horrorTRUE
+</td>
+<td style="text-align:right;">
+0.547
+</td>
+<td style="text-align:right;">
+0.128
+</td>
+<td style="text-align:right;">
+4.264
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+musicTRUE
+</td>
+<td style="text-align:right;">
+0.481
+</td>
+<td style="text-align:right;">
+0.262
+</td>
+<td style="text-align:right;">
+1.834
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+romanceTRUE
+</td>
+<td style="text-align:right;">
+0.197
+</td>
+<td style="text-align:right;">
+0.107
+</td>
+<td style="text-align:right;">
+1.848
+</td>
+<td style="text-align:right;">
+0.065
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sci_fiTRUE
+</td>
+<td style="text-align:right;">
+-0.210
+</td>
+<td style="text-align:right;">
+0.113
+</td>
+<td style="text-align:right;">
+-1.851
+</td>
+<td style="text-align:right;">
+0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+westernTRUE
+</td>
+<td style="text-align:right;">
+-2.685
+</td>
+<td style="text-align:right;">
+0.496
+</td>
+<td style="text-align:right;">
+-5.412
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm selected budget, IMDB rating, and the genre variables
+of adventure, biography, drama, horror, music, romance, sci-fi, and
+western as influential predictors of a movie’s profit.
+<code>pass_bechdel</code> was not selected as an influential
+predictor.</p>
+</div>
+<div id="imdb-ratings" class="section level3">
+<h3>IMDB Ratings</h3>
+<p>The second metric we assessed as a measure of movie success was movie
+reviews as measured by <code>imdb_rating</code>. Other potential
+predictors we included in the model were budget, <code>runtime</code>,
+<code>profit</code>, <code>award_winner</code>, and all genre
+variables.</p>
+<pre class="r"><code># Stepwise regression for imdb ratings
+## IMDB ~ Bechdel (binary) + logBudget + runtime + award_winner + profit + Genre
+modelIMDB = lm(imdb_rating ~ pass_bechdel + log(budget_2013) + profit + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepIMDB &lt;- MASS::stepAIC(modelIMDB, direction = &quot;both&quot;, trace = FALSE) %&gt;% broom::tidy()
+knitr::kable(stepIMDB, digits = 3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+8.427
+</td>
+<td style="text-align:right;">
+0.312
+</td>
+<td style="text-align:right;">
+26.991
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pass_bechdelTRUE
+</td>
+<td style="text-align:right;">
+-0.255
+</td>
+<td style="text-align:right;">
+0.043
+</td>
+<td style="text-align:right;">
+-5.943
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+log(budget_2013)
+</td>
+<td style="text-align:right;">
+-0.080
+</td>
+<td style="text-align:right;">
+0.018
+</td>
+<td style="text-align:right;">
+-4.450
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+profit
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+14.631
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actionTRUE
+</td>
+<td style="text-align:right;">
+-0.418
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+<td style="text-align:right;">
+-6.930
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adventureTRUE
+</td>
+<td style="text-align:right;">
+-0.212
+</td>
+<td style="text-align:right;">
+0.065
+</td>
+<td style="text-align:right;">
+-3.266
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+animationTRUE
+</td>
+<td style="text-align:right;">
+0.320
+</td>
+<td style="text-align:right;">
+0.092
+</td>
+<td style="text-align:right;">
+3.477
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+biographyTRUE
+</td>
+<td style="text-align:right;">
+0.336
+</td>
+<td style="text-align:right;">
+0.102
+</td>
+<td style="text-align:right;">
+3.299
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+comedyTRUE
+</td>
+<td style="text-align:right;">
+-0.412
+</td>
+<td style="text-align:right;">
+0.055
+</td>
+<td style="text-align:right;">
+-7.490
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+crimeTRUE
+</td>
+<td style="text-align:right;">
+0.140
+</td>
+<td style="text-align:right;">
+0.062
+</td>
+<td style="text-align:right;">
+2.268
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dramaTRUE
+</td>
+<td style="text-align:right;">
+0.199
+</td>
+<td style="text-align:right;">
+0.056
+</td>
+<td style="text-align:right;">
+3.526
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+familyTRUE
+</td>
+<td style="text-align:right;">
+-0.462
+</td>
+<td style="text-align:right;">
+0.089
+</td>
+<td style="text-align:right;">
+-5.218
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fantasyTRUE
+</td>
+<td style="text-align:right;">
+-0.116
+</td>
+<td style="text-align:right;">
+0.070
+</td>
+<td style="text-align:right;">
+-1.655
+</td>
+<td style="text-align:right;">
+0.098
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+horrorTRUE
+</td>
+<td style="text-align:right;">
+-0.684
+</td>
+<td style="text-align:right;">
+0.081
+</td>
+<td style="text-align:right;">
+-8.438
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+musicTRUE
+</td>
+<td style="text-align:right;">
+-0.236
+</td>
+<td style="text-align:right;">
+0.139
+</td>
+<td style="text-align:right;">
+-1.703
+</td>
+<td style="text-align:right;">
+0.089
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+romanceTRUE
+</td>
+<td style="text-align:right;">
+-0.139
+</td>
+<td style="text-align:right;">
+0.065
+</td>
+<td style="text-align:right;">
+-2.138
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thrillerTRUE
+</td>
+<td style="text-align:right;">
+-0.242
+</td>
+<td style="text-align:right;">
+0.063
+</td>
+<td style="text-align:right;">
+-3.834
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+warTRUE
+</td>
+<td style="text-align:right;">
+0.233
+</td>
+<td style="text-align:right;">
+0.156
+</td>
+<td style="text-align:right;">
+1.499
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm selected the Bechdel test, budget, profit, and the
+genre variables of action, adventure, animation, biography, comedy,
+crime, drama, family, fantasy, horror, music, romance, thriller, and war
+as influential variables of a movie’s IMDB rating. The p-value of
+<code>pass_bechdel</code> is significant at 5% and, on average, movies
+that pass the Bechdel test have a 0.255 point lower rating on IMDB than
+movies that do not pass, when adjusting for budget, profit, and the
+aforementioned genre variables.</p>
+</div>
+<div id="budget" class="section level3">
+<h3>Budget</h3>
+<p>As budget is a significant predictor of both profit and IMDB ratings,
+we also assessed whether passing the Bechdel test is an influential
+predictor of a movie’s budget. Other potential predictors we included in
+the model were <code>runtime</code> and all genre variables.</p>
+<pre class="r"><code># Stepwise regression for budget
+## logBudget ~ Bechdel (binary) + runtime + Genre
+modelbudget = lm(log(budget_2013) ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepbudget &lt;- MASS::stepAIC(modelbudget, direction = &quot;both&quot;, trace = FALSE) %&gt;%  broom::tidy()
+knitr::kable(stepbudget, digits = 3)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+13.521
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+72.873
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+runtime
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:right;">
+17.882
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actionTRUE
+</td>
+<td style="text-align:right;">
+0.817
+</td>
+<td style="text-align:right;">
+0.076
+</td>
+<td style="text-align:right;">
+10.814
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adventureTRUE
+</td>
+<td style="text-align:right;">
+0.622
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+7.613
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+animationTRUE
+</td>
+<td style="text-align:right;">
+1.300
+</td>
+<td style="text-align:right;">
+0.124
+</td>
+<td style="text-align:right;">
+10.492
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+biographyTRUE
+</td>
+<td style="text-align:right;">
+0.326
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+<td style="text-align:right;">
+2.433
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+comedyTRUE
+</td>
+<td style="text-align:right;">
+0.287
+</td>
+<td style="text-align:right;">
+0.073
+</td>
+<td style="text-align:right;">
+3.917
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+crimeTRUE
+</td>
+<td style="text-align:right;">
+0.173
+</td>
+<td style="text-align:right;">
+0.080
+</td>
+<td style="text-align:right;">
+2.157
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+documentaryTRUE
+</td>
+<td style="text-align:right;">
+-1.750
+</td>
+<td style="text-align:right;">
+0.539
+</td>
+<td style="text-align:right;">
+-3.246
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dramaTRUE
+</td>
+<td style="text-align:right;">
+-0.247
+</td>
+<td style="text-align:right;">
+0.071
+</td>
+<td style="text-align:right;">
+-3.474
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+familyTRUE
+</td>
+<td style="text-align:right;">
+0.677
+</td>
+<td style="text-align:right;">
+0.115
+</td>
+<td style="text-align:right;">
+5.890
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fantasyTRUE
+</td>
+<td style="text-align:right;">
+0.549
+</td>
+<td style="text-align:right;">
+0.093
+</td>
+<td style="text-align:right;">
+5.904
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+musicalTRUE
+</td>
+<td style="text-align:right;">
+0.531
+</td>
+<td style="text-align:right;">
+0.237
+</td>
+<td style="text-align:right;">
+2.239
+</td>
+<td style="text-align:right;">
+0.025
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mysteryTRUE
+</td>
+<td style="text-align:right;">
+0.483
+</td>
+<td style="text-align:right;">
+0.101
+</td>
+<td style="text-align:right;">
+4.771
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+romanceTRUE
+</td>
+<td style="text-align:right;">
+0.285
+</td>
+<td style="text-align:right;">
+0.084
+</td>
+<td style="text-align:right;">
+3.388
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sci_fiTRUE
+</td>
+<td style="text-align:right;">
+0.424
+</td>
+<td style="text-align:right;">
+0.090
+</td>
+<td style="text-align:right;">
+4.726
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sportTRUE
+</td>
+<td style="text-align:right;">
+0.571
+</td>
+<td style="text-align:right;">
+0.208
+</td>
+<td style="text-align:right;">
+2.751
+</td>
+<td style="text-align:right;">
+0.006
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thrillerTRUE
+</td>
+<td style="text-align:right;">
+0.331
+</td>
+<td style="text-align:right;">
+0.083
+</td>
+<td style="text-align:right;">
+3.976
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm selected <code>runtime</code> and the genre variables
+of action, adventure, animation, biography, comedy, crime, documentary,
+drama, family, fantasy, musical, mystery, romance, sci-fi, sport, and
+thriller. <code>pass_bechdel</code> was not selected as an influential
+predictor.</p>
+<p>In conclusion, based on our data, whether or not a movie passes the
+Bechdel test is not a significant predictor of that movie’s potential
+for success based on the criteria of profit and budget. It is a
+significant predictor of a movie’s IMDB ratings where movies that pass
+have, on average, a lower rating than movies that do not pass.
+Therefore, passing the Bechdel test can be considered detrimental to a
+movie’s success.</p>
+</div>
+</div>
 
 
 
@@ -432,6 +2008,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

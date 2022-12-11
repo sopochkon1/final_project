@@ -5,17 +5,12 @@ output: html_document
 
 ```{r include=FALSE}
 library(magick)
-
 library(cropcircles)
-
-# image_Sophia = 
-# df <- tibble(y = 1:4, images = images) |>
-   #  mutate(images_cropped = circle_crop(images))
 
 
 ```
 
-<br></br>
+
 
 They say you should never meet your Sheroes, but our dream team of Columbia MPH students is worth the meet and greats, autographs, and signed limited edition funko-pop figurines. 
 
@@ -45,4 +40,7 @@ They say you should never meet your Sheroes, but our dream team of Columbia MPH 
 <br></br>
 
 # <img src="images/Cathy.jpeg" alt="Avatar" width="300" height="300" style="border:2px solid orange"> Cathy Yang
+
+
+
 

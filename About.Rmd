@@ -1,9 +1,29 @@
 ---
-title: "About"
-output: 
-  html_document:
+title: <center> Our Project & the Screencast
+html_document:
     toc: true
     toc_float: true
 ---
+
+<br>
+
+<center>
+<img src="images/poster.webp" style="width:80%" class="center">
+</center>
+
+
+
+### Speak Friend and Enter
+
+Hi there!
+<br>
+Our Project is aimed to examine the inequalities in Film, and how it is represented in terms of budget, profit, user reviews, etc. 
+<br>
+The Following video explains how to successfully navigate our website, and what is included in our project. 
+
+
+### One Video to Explain it all 
+
+
 
 

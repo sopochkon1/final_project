@@ -191,7 +191,7 @@ Based on the parameter estimate -0.4642, movies that pass all dimensions of the 
 * Movies that passed all dimensions of the Bechdel test received 0.46 points less in Metascore than movies that failed all dimensions of the Bechdel test.
 
 
-## Using Stepwise Selection for Linear Regression: Is the Bechdel test a significant predictor of movie success?
+## Stepwise Regression Modeling 
 
 In order to assess whether a movie passing the Bechdel test is a significant predictor of that movie's success, we utilized a stepwise selection algorithm. The `stepAIC` command from the `MASS` package performs stepwise model selection by optimizing AIC.
 
