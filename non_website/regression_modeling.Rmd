@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 # Read in dataset
-movies_df <- read_csv("../Cathy/movies_df.csv")
+movies_df <- read_csv("./Cathy/movies_df.csv")
 ```
 
 ## Linear Models
@@ -191,4 +191,53 @@ Based on the parameter estimate -0.4642, movies that pass all dimensions of the 
 * Movies that passed all dimensions of the Bechdel test received 0.46 points less in Metascore than movies that failed all dimensions of the Bechdel test.
 
 
+## Using Stepwise Selection for Linear Regression: Is the Bechdel test a significant predictor of movie success?
+
+In order to assess whether a movie passing the Bechdel test is a significant predictor of that movie's success, we utilized a stepwise selection algorithm. The `stepAIC` command from the `MASS` package performs stepwise model selection by optimizing AIC.
+
+The setup of the regression models here follows the methodology outlined previously including log-transforming variables like `profit` and `budget_2013` to enforce a normal distribution. Additionally, the binary Bechdel test variable was applied in these models to optimize degrees of freedom.
+
+We assessed movie success based on three factors: `profit`, `imdb_rating`, and `budget_2013`.
+
+### Profit
+
+We first assessed the Bechdel test as a potential predictor of `profit`. Other potential predictors included in the model were `budget_2013`, `imdb_rating`, and all genre variables. 
+
+```{r profit log transfrom, warning=FALSE}
+# Stepwise regression for profit
+## logProfit ~ Bechdel (binary) + logBudget + IMDB + Genre
+modelprofit = lm(log(profit +1) ~ pass_bechdel + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepprofit <- stepAIC(modelprofit, direction = "both", trace = FALSE) %>% broom::tidy()
+knitr::kable(stepprofit, digits = 3)
+```
+The algorithm selected budget, IMDB rating, and the genre variables of adventure, biography, drama, horror, music, romance, sci-fi, and western as influential predictors of a movie's profit. `pass_bechdel` was not selected as an influential predictor.
+
+### IMDB Ratings
+
+The second metric we assessed as a measure of movie success was movie reviews as measured by `imdb_rating`. Other potential predictors we included in the model were budget, `runtime`, `profit`, `award_winner`, and all genre variables.
+
+```{r imdb, warning=FALSE}
+# Stepwise regression for imdb ratings
+## IMDB ~ Bechdel (binary) + logBudget + runtime + award_winner + profit + Genre
+modelIMDB = lm(imdb_rating ~ pass_bechdel + log(budget_2013) + profit + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepIMDB <- stepAIC(modelIMDB, direction = "both", trace = FALSE) %>% broom::tidy()
+knitr::kable(stepIMDB, digits = 3)
+```
+The algorithm selected the Bechdel test, budget, profit, and the genre variables of action, adventure, animation, biography, comedy, crime, drama, family, fantasy, horror, music, romance, thriller, and war as influential variables of a movie's IMDB rating. The p-value of `pass_bechdel` is significant at 5% and, on average, movies that pass the Bechdel test have a 0.255 point lower rating on IMDB than movies that do not pass, when adjusting for budget, profit, and the aforementioned genre variables.
+
+### Budget
+
+As budget is a significant predictor of both profit and IMDB ratings, we also assessed whether passing the Bechdel test is an influential predictor of a movie's budget. Other potential predictors we included in the model were `runtime` and all genre variables.
+
+```{r budget log transform}
+# Stepwise regression for budget
+## logBudget ~ Bechdel (binary) + runtime + Genre
+modelbudget = lm(log(budget_2013) ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepbudget <- stepAIC(modelbudget, direction = "both", trace = FALSE) %>%  broom::tidy()
+knitr::kable(stepbudget, digits = 3)
+```
+The algorithm selected `runtime` and the genre variables of action, adventure, animation, biography, comedy, crime, documentary, drama, family, fantasy, musical, mystery, romance, sci-fi, sport, and thriller. `pass_bechdel` was not selected as an influential predictor.
+
+
+In conclusion, based on our data, whether or not a movie passes the Bechdel test is not a significant predictor of that movie's potential for success based on the criteria of profit and budget. It is a significant predictor of a movie's IMDB ratings where movies that pass have, on average, a lower rating than movies that do not pass. Therefore, passing the Bechdel test can be considered detrimental to a movie's success.
 
