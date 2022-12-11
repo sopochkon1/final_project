@@ -47,7 +47,7 @@ modelIMDB = lm(imdb_rating ~ pass_bechdel + log(budget_2013) + profit + imdb_rat
 stepIMDB <- stepAIC(modelIMDB, direction = "both", trace = FALSE) %>% broom::tidy()
 knitr::kable(stepIMDB, digits = 3)
 ```
-The algorithm selected the Bechdel test, budget, profit, and the genre variables of action, adventure, animation, biography, comedy, crime, drama, family, fantasy, horror, music, romance, thriller, and war as influential variables of a movie's IMDB rating. The p-value of `pass_bechdel` is significant at 5% and, on average, movies that pass the Bechdel test have a 0.255 point lower rating on IMDB than movies that do not pass.
+The algorithm selected the Bechdel test, budget, profit, and the genre variables of action, adventure, animation, biography, comedy, crime, drama, family, fantasy, horror, music, romance, thriller, and war as influential variables of a movie's IMDB rating. The p-value of `pass_bechdel` is significant at 5% and, on average, movies that pass the Bechdel test have a 0.255 point lower rating on IMDB than movies that do not pass, when adjusting for budget, profit, and the aforementioned genre variables.
 
 ### Budget
 

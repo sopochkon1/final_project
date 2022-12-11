@@ -23,22 +23,172 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 # Read in dataset
 movies_df <- read_csv("../Cathy/movies_df.csv")
 ```
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Linear Models
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+We tested the association of `bechdel_score` with outcomes `budget`, `profit`, `imdb_rating`, and `metascore` individually using linear regression.  
 
-```{r cars}
-summary(cars)
+Bechdel score of `"Less than 2 women"` was taken as the reference category.
+A movie with less than 2 women would fail all three dimensions of the Bechdel test which are: 
+  1. have at least 2 women in the movie
+  2. the women talk to each other 
+  3. they talk about something other than a man. 
+Thus, the intercept will be used to compare movies that fail all dimensions of the Bechdel test with the movies that pass all dimensions of the Bechdel test.
+
+### Linear Regression of Budget vs. Categorical Bechdel Score
+
+```{r}
+budget = movies_df %>% ggplot(aes(x = budget_2013)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Budget (Dollars, 2013-adjusted)" ,
+    y = "Count",
+    title = "Distribution of Movie Budgets")
+
+ggplotly(budget)
+
 ```
 
-## Including Plots
+Since budget was heavily right-skewed, we log-transformed it to enforce more normal distributions.
 
-You can also embed plots, for example:
+```{r}
+log_budget = movies_df %>% ggplot(aes(x = log(budget_2013))) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x =  "Log-Budget (Dollars, 2013-adjusted)",
+    y = "Count" ,
+    title = "Distribution of Log-Transformed Movie Budgets")
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+ggplotly(log_budget)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+We then quantitatively tested the association of the `log(budget)` variable with the categorical Bechdel score using linear regression.
+
+Model statement:
+$log(Budget) =\beta_0+ \beta_1(<2 women) +\beta_2(don't talk) +\beta_3(talk about men) + beta_4(dubious)+beta_5(pass)$
+
+```{r budget}
+
+log_budget= movies_df %>%
+  lm(log(budget_2013)~bechdel_score, data=.)%>% 
+  broom::tidy()
+
+  
+knitr::kable(log_budget, digits=3)
+
+```
+
+Based on parameter estimate of -0.31 with a p value of 0.01, 
+passing all three Bechdel dimensions had a negative relationship with the budget of the movies. Movies that passed all three Bechdel dimensions had a lower budget than movies that failed every Bechdel dimension.
+
+* Movies that failed every Bechdel dimension had an average budget of `$33,963,942`
+* Movies that passed all three Bechdel dimensions had an average budget of `$24,910,750`
+
+### Linear Regression of Profit vs. Categorical Bechdel Score
+
+```{r}
+profit = movies_df %>% ggplot(aes(x = profit)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Profit (Dollars)",
+    y = "Count",
+    title = "Distribution of Profits")
+
+ggplotly(profit)
+```
+
+
+In the graph, profit appears to be heavily right skewed. Thus, we log-transformed the data to enforce more normal distributions. Additionally, before the logarithm is applied, 1 was added to the base value to prevent applying a logarithm to a 0 value. This will be subtracted while calculating the results.
+
+```{r}
+profit = movies_df %>% ggplot(aes(x = log(profit))) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Log-Profit",
+    y = "Count",
+    title = "Distribution of Log-Transformed Profits")
+
+ggplotly(profit)
+```
+We quantitatively tested the association of `profit` with the categorical Bechdel score using linear regression.
+
+ 
+Model statement : 
+$log(profit) =\beta_0+ \beta_1(<2 women) +\beta_2(don't talk) +\beta_3(talk about men) + beta_4(dubious)+beta_5(pass)$
+
+```{r}
+
+profit = movies_df %>% 
+  lm(log(profit+1)~bechdel_score, data =.) %>% 
+  broom::tidy()
+
+
+knitr::kable(profit, digits=3)
+```
+Based on the parameter estimate of -0.044, 
+profits of movies that passed all three dimensions of the Bechdel test had lower profits than movies that failed all dimensions of the Bechdel test. However since the p-value of 0.7 > 0.05, the difference was not found to be statistically significant.
+
+* Movies that failed all dimensions of the Bechdel test made an average profit of `$75,526,942`
+* Movies that passed all dimensions of the Bechdel test made an average profit of `$57,082,034`
+
+
+### Linear Regression of IMDB Rating vs. Categorical Bechdel Score
+
+…
+```{r}
+imdb = movies_df %>% ggplot(aes(x = imdb_rating)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "IMDB Rating",
+    y = "Count",
+    title = "Distribution of IMDB Ratings")
+
+ggplotly(imdb)
+```
+* The graph shows an approximately normal distribution.
+
+Testing association of IMDB rating with categorical Bechdel scores using linear regression:
+
+Model statement:
+$IMDB =\beta_0+ \beta_1(<2 women) +\beta_2(don't talk) +\beta_3(talk about men) + beta_4(dubious)+beta_5(pass)$
+
+```{r}
+imdb = movies_df %>% 
+  lm(imdb_rating~bechdel_score, data=.) %>% 
+  broom::tidy()
+
+
+knitr::kable(imdb, digits=3)
+
+```
+
+Based on the parameter estimate of -0.344 with a p-value of 0.00019, movies that passed all three dimensions of the Bechdel test had a negative relationship with `imdb_rating`.
+
+* Movies that passed all dimensions of the Bechdel test received 0.34 points lower IMDB ratings than movies that failed all dimensions of the Bechdel test.
+
+### Linear Regression of Metascore vs. Categorical Bechdel Score
+
+```{r}
+meta = movies_df %>% ggplot(aes(x = metascore)) + geom_histogram(alpha = 0.8, color = "white") + 
+  labs(
+    x = "Metascore",
+    y = "Count",
+    title = "Distribution of Metascores")
+
+ggplotly(meta)
+```
+* The graph shows an approximately normal distribution.
+
+Testing association of Metascore with categorical Bechdel scores using linear regression:
+
+Model statement: 
+$Metascore =\beta_0+ \beta_1(<2 women) +\beta_2(don't talk) +\beta_3(talk about men) + beta_4(dubious)+beta_5(pass)$
+
+```{r}
+meta = movies_df %>% 
+  lm(metascore~bechdel_score, data=.) %>% 
+  broom::tidy()
+knitr::kable(meta, digits=3)
+
+```
+Based on the parameter estimate -0.4642, movies that pass all dimensions of the Bechdel test had a negative relationship with Metascores. However since the p-value of 0.7 > 0.05, the difference was not statistically significant.
+
+* Movies that passed all dimensions of the Bechdel test received 0.46 points less in Metascore than movies that failed all dimensions of the Bechdel test.
+
+
+
