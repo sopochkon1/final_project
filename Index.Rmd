@@ -14,7 +14,6 @@ h1.title {
 
 &nbsp;
 
-
 <center>
 <img src="images/Leia.jpg" style="width:50%" class="center">
 </center>
