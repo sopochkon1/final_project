@@ -5,5 +5,25 @@ html_document:
     toc_float: true
 ---
 
+<br></br>
 
 
+<iframe src="https://giphy.com/embed/nnRG5giXc4coZ7xWCw" width="380" height="380" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/marvelstudios-nnRG5giXc4coZ7xWCw">via GIPHY</a></p>
+
+
+<br></br>
+
+### Key Takeaways:
+  * Since 1970, an increasing proportion of movies pass the Bechdel test, however this level has seemed to plateau since the 2000's.
+  *	Passing the Bechdel test had a negative association with all the factors we considered to assess the success of movies i.e Budget, Profit and IMDB ratings
+  *	Based on the stepwise regression:
+      * Bechdel test was not a significant predictor of a movie’s budget and profit
+      * Bechdel test was a significant predictor of a movie’s IMDB ratings. Movies that passed the Bechdel test had lower ratings on average.
+  *	Based on the Superheroes dashboard:
+    * Marvel has a larger percent of movies that pass the Bechdel test compared to DC
+    * More superhero movies are passing the test post-2016 
+
+### Potential Future Analysis:
+  *	Exploring movies post-2013 until the present day
+  *	Exploring female representation behind the camera (directors, producers, creative staff, etc.)
+  * Exploring representation beyond the gender binary

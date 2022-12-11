@@ -5,7 +5,7 @@ output:
     toc: true
     toc_float: true
 ---
-<<<<<<< HEAD
+
 ```{r setup}
 library(tidyverse)
 library(readr)

@@ -15,56 +15,57 @@ library(dplyr)
 library(plotly)
 ```
 
-# Female Representation in Film: Does Girl Power Translate to Sucess?
+# Female Representation in Film: Does Girl Power Translate to Success?
 
 ### Topic
-Analysis of movies released between 1970-2013 that pass Bechdel’s test, and looking at their association with movie budget, profit and other factors.
+An analysis of movies released between 1970-2013 that pass the Bechdel test, and looking at their association with movie budget, profit, and other factors.
 
 ### Motivation
 The **Bechdel test** is an _indicator of the active presence of women_ in the entire field of _film_ and other fiction, and calls attention to _gender inequality_ in fiction. Some studies indicate that films that pass the test perform better financially while receiving a lower budget, compared to those that do not. Thus, through this project, we intend:
 
 * To examine the number of movies that pass the Bechdel test over time (1970 - 2013)
-* To examine the relationship between representation in movies and movie budget
-* To examine the relationship between representation in movies and movie profit
-* To examine this correlation with key time points in film history
+* To examine the relationship between female representation in movies and movie budget
+* To examine the relationship between female representation in movies and movie profit
 
-### Related work/ Inspiration
-Female representation is growing by day in every sector, and so is in the movies. All of us, being huge fans of fictional movies and TV shows, wanted to look for progressive movies that signify higher representation of females or are completely centralized to females. The Bechdel Test has been a simple and popular measure of feminism in works of fiction. The rules of the test were first defined back in 1985 in a comic strip featuring two queer women who could not find a movie that
+### Inspiration
+Female representation is growing by day in every sector, with particular attention given to it in film. We, a group of movie nerdgirls, wanted to look for progressive movies that signify higher representation of women or where women are completely centered in the story. The Bechdel Test has been a simple and popular measure of feminism in works of fiction. The rules of the test were first defined back in 1985 in a comic strip featuring two queer women who could not find a movie that
 
-* Has at least two women in it
-* who talk to each other,
+* Had at least two women in it
+* who talked to each other,
 * about something other than a man.
 
-We came across articles talking about the importance of these tests in the industry, and some previous studies that used this test to determine if the movie had a significant representation of female character(s). Using this information, we further wanted to explore the budget of these movies and see if the movies that passed the test made profits at the box office.
+We came across articles talking about the importance of these tests in the industry, and some previous studies that used this test to determine if the movie had significant representation for female character(s). Using this information, we further wanted to explore the prioritization of these movies in the industry and their success through an examination of their budget, profits, and ratings.
 
-### Initial Questions
-*  Number of movies that pass the Bechdel’s test (from 1970-2013).
-*  Association between the movies that pass the Bechdel’s test and the movie budget
-*  Association between the movies that pass the Bechdel’s test and the movie profit
 
-_Other questions that we are considering in the analysis are:_
+### Research Questions
+Initially, our motivation for this project was prompted by the following questions:
+*  How many movies from 1970-2013 pass the Bechdel test and has the number changed over time?
+*  What is the association between the movies that pass the Bechdel test and the movie's budget?
+*  What is the association between the movies that pass the Bechdel test and the movie's profit?
 
-*  Stratifying the movies that pass the Bechdel’s test by genre.
-*  Association between the movies that pass the Bechdel’s test and their IMDB rating
- 
+As we delved into the data, we further wanted to explore:
+* What is the association between movies that pass the Bechdel test and their review ratings?
+
+
 ### Data Sources
 * **FiveThirtyEight**:
-The _FiveThirtyEight Bechdel dataset_ contains data about 1794 films released from 1970 to 2013. We used this data to examine the relationship between the prominence of women in a film and that film’s budget and gross profits for films released between 2000-2013 (?). The dataset consists of important variables like `name of the film`, `year of release`, `film budget`, `domestic and international gross box office earnings`, `test criteria` to see if the film passes Bechdel’s test, film’s `pass/fail status`, etc. 
+The _FiveThirtyEight Bechdel dataset_ contains data about 1794 films released from 1970 to 2013. We used this data to examine the relationship between the prominence of women in a film and that film’s budget and profits. The dataset consists of variables including `title`, `year`, `budget`, domestic and international gross revenue, budget and revenues adjusted for 2013 inflation, and the Bechdel test (evaluated both as binary pass/fail and categorically evaluating the three criteria).
+
 
 * **Bechdel Test**:
-This database consists of a list of 9802 movies released between 1874 and 2022 (as of Dec 8th, 2022), and results for whether they pass or fail the Bechdel’s test. The important variables include `title of the film`, `date` when the film was added, `reviews and comments`, and their `IMDB ratings`. The data was accessed through API.
+This database consists of a list of 9802 movies released between 1874 and 2022 (as of Dec 8th, 2022), and results for whether they pass or fail the Bechdel test. Variables include `title of the film`, `date` when the film was added, `reviews and comments`, and `IMDB ratings`. The data can be accessed through API.
 
 * **The-Numbers**: 
 This is a film industry data website that tracks box office revenue in a systematic and algorithmic way. We accounted for the `budget` and `revenue` variables for the movies using this website. The data can be accessed through API.
 
 * **IMDb**:
-The _Internet Movie Database_ (IMDb) is an online database containing information and statistics about movies, TV shows and video games as well as actors, directors and other film industry professionals. We used the information about the `year of release`, `runtime`, `genre`, `language` and `rating` of the films.
+The _Internet Movie Database_ (IMDb) is an online database containing information and statistics about movies, TV shows, and video games as well as actors, directors, and other film industry professionals. We used the information about the `year of release`, `runtime`, `genre`, `language` and `rating` of the films.
 
 * **Tidy Tuesday Project**:
 This is the _main source for our dataset_ which provides weekly releases of raw datasets for users to wrangle and analyse. The data itself _originates from FiveThirtyEight_ that contains movies ranging from 1970 to 2013, and _merges data from the other sources: IMDb, The-Numbers.com, and BechdelTest.com_. 
 
 ### Data Cleaning
-We imported the following datasets from the Tidy Tuesday project using read.csv from ‘readr’ library. This dataset was divided into 2 files: **`movies.csv`** and **`raw_bechdel.csv`**, initially.
+We imported the following datasets from the Tidy Tuesday project using `read_csv` from ‘readr’ library. This dataset was divided into 2 files: **`movies.csv`** and **`raw_bechdel.csv`**, initially.
 
 ```{r load}
 raw_bechdel = readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-09/raw_bechdel.csv')
@@ -92,7 +93,7 @@ For data cleaning,
 
 * Created an `award_winner` variable that is `TRUE` if the movie has won at least 1 Oscar, Golden Globe, or BAFTA award
 
-* Split the `genre` character variable into dummy-coded variables indicating whether the movie falls under one of 20 different genres
+* Split the `genre` character variable into dummy-coded variables indicating whether the movie falls under up to three of 20 different genres
 
 * Created a logical variable `pass_bechdel` that indicates whether the movie passes or fails the Bechdel Test based on the `bechdel_score` variable
 
@@ -164,15 +165,17 @@ movies_df = movies %>%
   mutate(across(action:western, ~replace_na(., FALSE))) %>%
   select(year, title, bechdel_score, pass_bechdel, budget_2013:intgross_2013, decade, imdb_id, metascore, imdb_rating, award_winner, runtime, profit, ROI, action:western) 
 
+skimr::skim(movies_df) %>% 
+  knitr::kable(digits = 3) %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12) %>% 
+  kableExtra::scroll_box(width = "100%", height = "300px")
 ```
 
-`r skimr:: skim(movies_df)`
-
-This resulting dataset `movies_df` contains `r nrow(movies_df)` observations and `r ncol(movies_df)` variables, indicating information about each movie's Bechdel Test score, budget, revenue, genre, and ratings.
+This resulting dataset `movies_df` contains `r nrow(movies_df)` observations and `r ncol(movies_df)` variables, indicating information about each movie's Bechdel test score, budget, revenue, genre, and ratings.
 
 ### EDA
 
-We looked at the overall distribution of movies from 1970 to 2013 that Passed or Failed the Bechdel test, and distribution of movies as per Bechdel test scores.
+We looked at the overall distribution of movies from 1970 to 2013 that passed or failed the Bechdel test, and distribution of movies as per Bechdel test scores.
 
 ```{r bechdel distribution}
 movies_df %>% 
@@ -192,7 +195,7 @@ movies_df %>%
 ```
 
 The findings suggested that over half of the movies, i.e. **52.7%** movies in the data **passed** the Bechdel Test.
-Stratifying by levels of Bechdel scores, it was seen that among the movies that passed the test, a small proportion had dubitable passing status. Among those that failed the test, most movies had women who didn't talk to each other. 
+Stratifying by levels of Bechdel scores, it was seen that among the movies that passed the test, a small proportion had a dubious passing status. Among those that failed the test, most movies had women who didn't talk to each other. 
 
 We conducted a further exploratory data analysis to answer our main questions:
 
@@ -239,7 +242,7 @@ decades %>%
          yaxis = list(title = "Percentage (%)"))
 ```
 
-This concluded that the proportion of movies that passed the Bechdel test increased over the decades. Due to a smaller sample of movies in the last decade (2010-13), we that the results seemed to have had levelled-off since 2000s. Also, the proportion of movies that decisively passed the test is still below 50%.
+This concluded that the proportion of movies that passed the Bechdel test increased over the decades. Due to a smaller sample of movies in the last decade (2010-13), we that the results seemed to have had leveled-off since 2000s. Also, the proportion of movies that decisively passed the test is still below 50%.
 
 #### 2. How do the **_movies that pass the Bechdel’s test associate with the movie budget_**?
 
@@ -258,7 +261,7 @@ movies_df %>%
          title = "Movie budgets (2013-adjusted) stratified by Bechdel Test criteria")
 ```
 
-It was seen that the movies that passed the Bechdel Test appeared to have smaller budgets than movies that don't pass. 
+It was seen that the movies that passed the Bechdel test appeared to have smaller budgets than movies that don't pass. 
 On stratifying by the categorical Bechdel score, the budgets were not significantly different from each other. This possibly suggests that Hollywood puts more money behind male-only films than films in which women talk to each other.
 
 #### 3. How do the **_movies that pass the Bechdel’s test associate with the movie profit_**?
@@ -274,11 +277,11 @@ movies_df %>%
          title = "Movie profits stratified by Bechdel Test criteria")
 ```
 
-Movies failing the Bechdel test seemed to make more profit as compared to the ones that passed the test. The distribution of these profits across movies that passed and failed the Bechdel test was not appreciably different. Upon starifying, there were no notable differences in the profits between Bechdel criteria.
+Movies failing the Bechdel test seemed to make more profit as compared to the ones that passed the test. The distribution of these profits across movies that passed and failed the Bechdel test was not appreciably different. Upon stratifying, there were no notable differences in the profits between Bechdel criteria.
 
 #### 4. How do the **_movies that pass the Bechdel’s test associate with the ROI_**?
 
-We also checked for ROI to check for the ratio of profit to the budget (2013)
+We also checked for ROI to check for the ratio of profit to the budget (2013 inflation).
 Because ROI was heavily right-skewed, we used log-transform for this variable to visualize differences in the ROI distribution between movies of differing Bechdel criteria. 
 
 ```{r roi}
@@ -296,7 +299,7 @@ Despite having slightly lower budgets, we could see that the primacy of women's 
 
 #### 5. How do the **_movies that pass the Bechdel’s test associate with the IMDb ratings_**?
 
-We wanted to see how the fans recieved the movies that passed the Bechdel test. We plotted IMDB ratings (fan ratings) against Metacritic Scores (aggregate scores based on critic reviews) and stratify by Bechdel Score.
+We wanted to see how the fans received the movies that passed the Bechdel test. We plotted IMDB ratings (fan ratings) against Metacritic Scores (aggregate scores based on critic reviews) and stratified by Bechdel Score.
 
 ```{r ratings}
 movies_df %>% 
@@ -311,13 +314,13 @@ There was no appreciable difference between the movies that pass and fail the Be
 
 ### Linear Models
 
-To test and determine the strength of association, we used linear regression models for ` categorical Bechdel score` with outcomes `budget`, `profit`, `IMDB rating` and `Meta scores` individually.
+To test and determine the strength of association, we used linear regression models for ` categorical Bechdel score` with outcomes `budget`, `profit`, `imdb_rating` and `Metascores` individually.
 
 _For these linear models, we used the `"less than 2 women"` as the reference category._ The intercept was used to compare movies that fail all dimensions of the Bechdel test with the movies that pass all dimensions of the Bechdel test.
 
-#### 1. Linear regression of **_Budget vs. categorical Bechdel score_**
+#### 1. Linear regression of **_Budget vs. Categorical Bechdel Score_**
 
-Because the budget was heavily `right skewed`, we log-transformed it to enforce normal distribution.
+Because the budget was heavily right skewed, we log-transformed it to enforce normal distribution.
 
 ```{r }
 log_budget = movies_df %>% ggplot(aes(x = log(budget_2013))) + geom_histogram(alpha = 0.8, color = "white") + 
@@ -328,7 +331,7 @@ log_budget = movies_df %>% ggplot(aes(x = log(budget_2013))) + geom_histogram(al
 ggplotly(log_budget)
 ```
 
-We quantitatively tested the association of log of budget with categorical Bechdel score using linear regression model: 
+We quantitatively tested the association of the log of budget with categorical Bechdel score using linear regression model: 
 
 ```{r budget}
 log_budget= movies_df %>%
@@ -422,3 +425,75 @@ knitr::kable(meta, digits=3)
 
 * Movies that passed all dimensions of the Bechdel test received **`0.46 points`** less in Metascore than movies that failed all dimensions of the Bechdel test.
 
+### Stepwise Regression
+
+We used stepwise regression to check if the Bechdel score was an influential predictor of movie performance as measured by `profit`, `budget_2013`, and review ratings. The setup of the regression models here follows the methodology utilized for the linear regression models including log-transforming variables like `profit` and `budget_2013` to enforce a normal distribution. For the review rating variable, we had a choice of using the Metacritic scores or the IMDB scores. Because `imdb_rating` proved to be statistically significantly associated with the Bechdel test in the linear regression analysis, we decided to use this variable over the `metascore`. We utilized a stepwise algorithm that optimized model AIC from the `MASS` package. First, we tested both the binary and categorical variables for the Bechdel test in the algorithm. Upon running the models, we found that the binary variable was more likely to be selected as a part of the final model due to having fewer degrees of freedom, so that became the variable used in the final models. Initially, we included return on investment, `ROI` as an outcome variable as well, but after running the models, we found that it displayed the same results as the `profit` variable. Because of this, it was removed from the final analyses. 
+
+We first assessed the Bechdel test as a potential predictor of `profit`. Other potential predictors included in the model were `budget_2013`, `imdb_rating`, and all genre variables. 
+
+```{r profit log transfrom, warning=FALSE}
+# Stepwise regression for profit
+## logProfit ~ Bechdel (binary) + logBudget + IMDB + Genre
+modelprofit = lm(log(profit +1) ~ pass_bechdel + log(budget_2013) + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepprofit <- MASS::stepAIC(modelprofit, direction = "both", trace = FALSE) %>% broom::tidy()
+knitr::kable(stepprofit, digits = 3)
+```
+
+The second metric we assessed as a measure of movie success was movie reviews as measured by `imdb_rating`. Other potential predictors we included in the model were `budget_2013`, `runtime`, `profit`, `award_winner`, and all genre variables.
+
+```{r imdb, warning=FALSE}
+# Stepwise regression for imdb ratings
+## IMDB ~ Bechdel (binary) + logBudget + runtime + award_winner + profit + Genre
+modelIMDB = lm(imdb_rating ~ pass_bechdel + log(budget_2013) + profit + imdb_rating + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepIMDB <- MASS::stepAIC(modelIMDB, direction = "both", trace = FALSE) %>% broom::tidy()
+knitr::kable(stepIMDB, digits = 3)
+```
+
+As budget is a significant predictor of both profit and IMDB ratings, we also assessed whether passing the Bechdel test is an influential predictor of a movie's budget. Other potential predictors we included in the model were `runtime` and all genre variables.
+```{r budget log transform}
+# Stepwise regression for budget
+## logBudget ~ Bechdel (binary) + runtime + Genre
+modelbudget = lm(log(budget_2013) ~ pass_bechdel + runtime + action + adventure + animation + biography + comedy + crime + documentary + drama + family + fantasy + history + horror + music + musical + mystery + romance + sci_fi + sport + thriller + war + western, data = movies_df)
+stepbudget <- MASS::stepAIC(modelbudget, direction = "both", trace = FALSE) %>%  broom::tidy()
+knitr::kable(stepbudget, digits = 3)
+```
+
+The Bechdel test was selected as an influential predictor only for `imdb_rating` and not for `profit` or `budget_2013`. The IMDB ratings for movies that passed the Bechdel test were lower on average than for movies that failed. Based on this, passing the Bechdel test can be considered a neutral to negative factor to a movie's potential success.
+
+### Discussion
+
+At first, we explored the proportion of the movies from our dataset that passed the Bechdel test. We then also wanted to see if there was a change in the trend over time for the proportion of movies that passed the Bechdel test. We saw that **52.7%** movies in the data **passed** the Bechdel test. There was also an increase in the proportion of movies that passed the Bechdel test over each decade.
+
+For further analysis, we tried to measure the success of these movies based on factors like the budget, profit, and their IMDb ratings. While looking at these associations, we saw that the movies that passed the test had lower budgets and made lesser profits as compared to those that failed the test. Additionally, the movies that passed and failed the test had no appreciable difference between the IMDb ratings. On stratifying, there were more films that passed the Bechdel test and had higher critic ratings (compared to general audience ratings), and there were more films that failed the Bechdel test with lower critic ratings relative to audience ratings. This was suggestive of inherent biases held by general audiences that make them more critical of films with female-dominant roles, while critics may have been more likely to isolate these biases while judging films.
+
+We found that a movie passing the Bechdel test plays an influential role in predicting IMDb ratings, but not profits or budget. Movies that pass the Bechdel test, on average, have lower ratings than movies that fail. 
+
+In conclusion, while not all results were statistically significant, our analysis pointed to a similar pattern, where passing the Bechdel test had a negative influence on our measures of success. 
+
+
+#### Superheroes Bonus 
+
+The `Superheroes` dataset was obtained using the Selector Gadget Chrome Extension. 
+<br>
+We created a custom [IMDB](https://www.imdb.com/list/ls566366989/) list containing all released movies from Marvel Cinematic Universe, as well as one for the DC Extended Universe. Several DC Superheroes movies not in the Extended Universe were also added. Using the Selector Gadget, we pulled variables `title` and `year`. 
+<br>
+Data on budget, domestic and international gross was pulled using the Selector Gadget from [Wikipedia](https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_films).
+<br>
+Data on the Bechdel test results for each movie was merged from our `movies_df` dataframe, as well as [bechdeltest.com](https://bechdeltest.com/). 
+<br></br>
+The datasets obtained from each website were cleaned and merged to create the Superheroes_finally.xlsx file used for the Superheroes dashboard. 
+<br></br>
+The Dashboard contains 2 graphs. One is depicting the proportion of movies that pass the Bechdel test in the DC Universe and the Marvel universe, represented as a bar plot. We can observe that marvel has a higher percentage of movies that pass the test.
+<br>
+The second graph depicts movies that pass the test over the years. The purpose of this scatter plot is to see the cluster of movies that pass the test is bigger post-2016 compared to before 2016, while no movie passed the test before 2008. This trend shows that the amount of superhero movies passing the Bechdel test is increasing. 
+<br>
+finally, we put the search table in the dashboard for the user to easily be able to look at which movies passed the Bechdel test and which failed. 
+
+<br></br>
+
+#### Members: 
+- sc4934
+- sm5134
+- rp3022
+- sm4956
+- my2731
